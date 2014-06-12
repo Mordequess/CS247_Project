@@ -1,23 +1,25 @@
 #ifndef STRAIGHTS_H
 #define STRAIGHTS_H
 
-#import "Card.h"
-#import "Deck.h"
-#import "Round.h"
-#import "Player.h"
+#include "Card.h"
+#include "Deck.h"
+#include "Round.h"
+#include "Player.h"
 
 class Straights {
 public:
 	Straights();
 	Straights(int seed);
-	Straights();
+	~Straights();
 
 	newRound();
 	void invitePlayers();
 	void updateScores();
+	void playedCards();
+	void 
 
 private:
-	Player[4] players;
+	Player[4] players_;
 	Deck deck_;
 };
 

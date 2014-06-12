@@ -5,7 +5,7 @@
 
 class Human : public Player {
 public:
-	Player();
+	Human();
 
 	void print();
 	void play();

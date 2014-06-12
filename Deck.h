@@ -5,7 +5,9 @@
 
 class Deck {
 public:
+	Deck();
 	void shuffle();
+	
 private:
 	Card*[] cards_;
 };
