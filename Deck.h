@@ -8,7 +8,7 @@ public:
 	Deck();
 	Deck(int seed);
 	~Deck();
-	
+
 	void newDeck();
 	void shuffle();
 

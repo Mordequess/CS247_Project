@@ -6,10 +6,11 @@
 class Computer : public Player {
 public:
 	Computer();
-
 	void print();
 	void play();
 private:
+
+
 
 };
 
