@@ -6,10 +6,14 @@
 class Deck {
 public:
 	Deck();
-	void shuffle();
+	Deck(int seed);
+	~Deck();
 	
+	void newDeck();
+	void shuffle();
+
 private:
-	Card*[] cards_;
+	Card*[52] cards_;
 };
 
 #endif

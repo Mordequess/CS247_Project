@@ -3,7 +3,7 @@
 
 class Round {
 public:
-	Round(Player[]&);
+	Round(Player[]&, Deck&);
 
 private:
 	Player[4] players_;

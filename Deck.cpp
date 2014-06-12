@@ -2,8 +2,21 @@
 
 
 Deck::Deck() {
-	cards_ = ;//set up all the cards
-	shuffle();
+	newDeck();
+	shuffle(0);
+}
+
+Deck::Deck(int seed) {
+	newDeck();
+	shuffle(seed);
+}
+
+void Deck::newDeck(){
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < 13; i++) {
+			cards_[i + j*13] = new Card(j, i);
+		}
+	}
 }
 
 /* To ensure that the your cards are ordered the same way as
@@ -12,11 +25,12 @@ the given program, use this shuffling algorithm.
 CARD_COUNT is the constant 52
 cards_ is an array of pointers to cards
 */
-void Deck::shuffle(){
+
+void Deck::shuffle(int seed){
 	int n = 52;
 
 	while ( n > 1 ) {
-		int k = (int) (lrand48() % n);
+		int k = (int) (lrand48(seed) % n);
 		--n;
 		Card *c = cards_[n];
 		cards_[n] = cards_[k];
@@ -24,4 +38,4 @@ void Deck::shuffle(){
 	}
 }
 
-// Card*[] cards_;
+// Card*[52] cards_;

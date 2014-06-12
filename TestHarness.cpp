@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 #include "Command.h"
 #include "Deck.h"
@@ -32,6 +33,7 @@ int main() {
     
             //play a card
             case PLAY: {
+                //command.card
             }
             
             //discard a card
@@ -57,9 +59,7 @@ int main() {
                 break;
         } // switch
 					
-    //get next command	
-    cout << "Command: ";
-    Command command;
+    //get next command
     cin >> command;
         
     } // while cin OK
