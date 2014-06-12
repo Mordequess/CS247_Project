@@ -1,7 +1,7 @@
 #ifndef DECK_H
 #define DECK_H
 
-#import "Card.h"
+#include "Card.h"
 
 class Deck {
 public:

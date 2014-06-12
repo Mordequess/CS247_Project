@@ -6,6 +6,8 @@ public:
 	Round(Player[]&);
 
 private:
+	Player[4] players_;
+	Deck deck_;
 };
 
 #endif	

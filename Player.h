@@ -10,6 +10,7 @@ public:
 	void print();
 	void play();
 private:
+	Card*[] hand_;
 	int score_;
 	int order_;
 };

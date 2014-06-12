@@ -15,8 +15,8 @@ public:
 	newRound();
 	void invitePlayers();
 	void updateScores();
-	void playedCards();
-	void 
+	void printPlayedCards();
+	void printDeck();
 
 private:
 	Player[4] players_;
