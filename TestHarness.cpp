@@ -2,10 +2,7 @@
 #include <cassert>
 
 #include "Command.h"
-#include "Deck.h"
-#include "Player.h"
-#include "Computer.h"
-#include "Human.h"
+#include "Straights.h"
 
 using namespace std;
 
@@ -13,7 +10,9 @@ using namespace std;
 //************************************************************************
 //  Test Harness Helper functions
 //************************************************************************
-
+void turnIncrement(int& whosTurn){
+    whosTurn = (++whosTurn)%4;
+}
 
 
 //******************************************************************
@@ -23,7 +22,7 @@ using namespace std;
 int main() {
     cout << "Harness for Straights Game:" << endl << endl;
     Straights game = new Straights();
-    
+    int whosTurn = game.getFirstPlayer();
     //get first command
     Command command;
     cin >> command;
@@ -34,11 +33,12 @@ int main() {
             //play a card
             case PLAY: {
                 //command.card
+                turnIncrement(whosTurn);
             }
             
             //discard a card
             case DISCARD: {
-
+                turnIncrement(whosTurn);
             }
                 
                 

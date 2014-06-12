@@ -14,3 +14,7 @@ private:
 };
 
 #endif
+
+// Card*[] hand_;
+// 	int score_;
+// 	int order_;

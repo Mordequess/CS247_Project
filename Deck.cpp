@@ -3,7 +3,7 @@
 
 Deck::Deck() {
 	newDeck();
-	shuffle(0);
+	//shuffle(0);
 }
 
 Deck::Deck(int seed) {
@@ -18,13 +18,6 @@ void Deck::newDeck(){
 		}
 	}
 }
-
-/* To ensure that the your cards are ordered the same way as
-the given program, use this shuffling algorithm.
-
-CARD_COUNT is the constant 52
-cards_ is an array of pointers to cards
-*/
 
 void Deck::shuffle(int seed){
 	int n = 52;

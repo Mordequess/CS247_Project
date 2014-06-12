@@ -1,10 +1,17 @@
 #include <iostream>
-#include "Card.h"
+
+#include "Deck.h"
+#include "Players.h"
+#include "Human.h"
+#include "Computer.h"
+#include "Round.h"
+
+using namespace std;
 
 Straights::Straights (){
 	deck_ = new Deck();
     invitePlayers();
-    
+    round_ = new Round(players_, deck_);
 
 }
 
@@ -21,3 +28,7 @@ void Straights::invitePlayers () {
 
 // Player[4] players;
 // Deck deck_;
+// bool[13] playedHeart;
+// bool[13] playedClub;
+// bool[13] playedSpade;
+// bool[13] playedDiamond;
