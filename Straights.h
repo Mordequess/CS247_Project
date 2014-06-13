@@ -3,8 +3,8 @@
 
 #include "Card.h"
 #include "Deck.h"
-#include "Round.h"
 #include "Player.h"
+#include "Played.h"
 
 class Straights {
 public:
@@ -27,6 +27,7 @@ private:
 
 	Player[4] players_;
 	Deck deck_;
+	Played played_;
 };
 
 #endif
