@@ -1,16 +1,10 @@
 #include "Card.h"
 
-
-Deck::Deck() {
+Deck::Deck(int seed) : seed_(seed) {
 	newDeck();
-	//shuffle(0);
 }
 
-Deck::Deck(int seed) {
-	newDeck();
-	shuffle(seed);
-}
-
+//fills an empty deck with all cards in sorted order
 void Deck::newDeck(){
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 13; i++) {
@@ -32,9 +26,15 @@ void Deck::shuffle(int seed){
 }
 
 std::ostream &operator<<(std::ostream& out, const Deck& d){
-	out << 
+	for (int i = 0; i < 4; i++){
+		for (int j = 0; j < 13; j++) {
+			out << d[j+i*13] << " ";
+		}
+		out << endl;
+	}
+	return out;
 }
 
 // Card*[52] cards_;
 
-int bomb = played_.rank["J"];
+//int bomb = played_.rank["J"];

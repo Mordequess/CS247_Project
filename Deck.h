@@ -5,8 +5,8 @@
 
 class Deck {
 public:
-	Deck();
-	//Deck(int seed);
+	//Deck();
+	Deck(int seed);
 	~Deck();
 
 	void newDeck();
@@ -14,9 +14,9 @@ public:
 
 private:
 	Card*[52] cards_;
+	int seed_;
 };
 
 std::ostream &operator<<(std::ostream &, const Deck &);
-
 
 #endif

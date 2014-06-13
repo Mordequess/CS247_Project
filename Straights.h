@@ -8,28 +8,25 @@
 
 class Straights {
 public:
-	Straights();
-	//Straights(int seed);
+	Straights(int seed);
 	~Straights();
 
-	void updateScores();
+	void nextRound();
 	void printDeck();
 
-	void playCard(Card, Player);
-	void discardCard(Card, Player);
-	void rageQuit(int position);
+	void playCard(int, Card);
+	void discardCard(int, Card);
+	void rageQuit(int);
 
 	int getFirstPlayer();
 
 private:
+	void playCompTurn();
 	void invitePlayers();
 	void printPlayedCards();
 
 	Player[4] players_;
 	Deck deck_;
-	Round round_;
-	//int seed_;
-	
 };
 
 #endif
