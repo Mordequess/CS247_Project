@@ -28,7 +28,4 @@ void Straights::invitePlayers () {
 
 // Player[4] players;
 // Deck deck_;
-// bool[13] playedHeart;
-// bool[13] playedClub;
-// bool[13] playedSpade;
-// bool[13] playedDiamond;
+// Played Played_

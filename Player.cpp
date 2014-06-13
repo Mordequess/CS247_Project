@@ -21,3 +21,5 @@ vector<Card> Player::discardCard(Card &card) {
 	IntIterator i = find(cards.begin(), cards.end(), card)	
 	hand_.erase(i);
 }
+
+//play card needs to modify played_ and remove card from hand

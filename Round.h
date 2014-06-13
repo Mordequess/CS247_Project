@@ -8,8 +8,6 @@
 class Round {
 public:
 	Round(Player[]& players_, Deck& deck_);
-	void play(Computer);
-	void play(Human);
 
 	void printDeck();
 	void printPlayedCards();
@@ -25,6 +23,3 @@ private:
 };
 
 #endif	
-
-
-play(plyaers_[i])

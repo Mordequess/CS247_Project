@@ -17,6 +17,16 @@ private:
 	vector<Card> hand_;
 	vector<Card> discarded_;
 	int score_;
+	Played played_;
 };		
 
 #endif
+
+
+//to be implemented in Player
+	//getScore() ?
+	//getDiscardedSum() ?
+	// void printValidPlays();
+	// bool validPlay(Card);
+	// Player(Played);
+	// -> Human(Played p) : Player() : played_(p) {}
