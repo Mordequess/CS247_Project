@@ -9,14 +9,12 @@ class Round {
 public:
 	Round(Player[]& players_, Deck& deck_);
 
-	void printDeck();
+private:
+//	void printDeck();
+
 	void printPlayedCards();
 	void printPlayerHand();
-	void printValidPlays();
 
-	bool validPlay(Card);
-
-private:
 	Player[4] players_;
 	Deck deck_;
 	Played played_;

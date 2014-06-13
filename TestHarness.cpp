@@ -44,6 +44,7 @@ int main() {
                 
             //print the deck
             case DECK: {
+                game.printDeck();
             }
                 
             //exit program

@@ -31,4 +31,10 @@ void Deck::shuffle(int seed){
 	}
 }
 
+std::ostream &operator<<(std::ostream& out, const Deck& d){
+	out << 
+}
+
 // Card*[52] cards_;
+
+int bomb = played_.rank["J"];

@@ -12,7 +12,6 @@ Straights::Straights (){
 	deck_ = new Deck();
     invitePlayers();
     round_ = new Round(players_, deck_);
-
 }
 
 void Straights::invitePlayers () {
@@ -25,6 +24,11 @@ void Straights::invitePlayers () {
         else players[i] = new Computer();
     }
 }
+
+void Straights::printDeck() {
+	cout << deck_;
+}
+
 
 // Player[4] players;
 // Deck deck_;

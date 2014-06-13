@@ -12,9 +12,7 @@ public:
 	//Straights(int seed);
 	~Straights();
 
-	void invitePlayers();
 	void updateScores();
-	void printPlayedCards();
 	void printDeck();
 
 	void playCard(Card, Player);
@@ -24,6 +22,9 @@ public:
 	int getFirstPlayer();
 
 private:
+	void invitePlayers();
+	void printPlayedCards();
+
 	Player[4] players_;
 	Deck deck_;
 	Round round_;
