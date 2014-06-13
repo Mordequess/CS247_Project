@@ -4,6 +4,7 @@ Player::Player() {
 	score_ = 0;
 	hand_ = NULL;
 	discarded_ = NULL;
+	number = plnumber_;
 }
 
 void Player::setHand(vector<Card> playerhand) {
@@ -34,11 +35,17 @@ vector<Card> Player::setDiscard(vector<Card> discard) {
 	discard = discard_;
 }
 
+vector<Card> Player::legalPlays(vector<Card> currHand){
 
+}
+
+bool inHand (Card &card) {
+	return (find(hand_.begin(), hand_.end(), card));
+}
 
 vector<Card> Player::discardCard(Card &card) {
 	discarded_.push_back(card);
-	std::v;ector<Card>::iterator position = std::find(vector.begin(), vector.end(), card);
+	std::vector<Card>::iterator position = find(hand_.begin(), hand_.end(), card);
     hand_.erase(position);
 }
 

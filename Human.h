@@ -9,7 +9,6 @@ public:
 	~Human();
 	void print();
 	void play();
-	
 };
 
 #endif
@@ -17,3 +16,5 @@ public:
 // Card*[] hand_;
 // 	int score_;
 // 	int order_;
+
+// Copy constructor for computer player
