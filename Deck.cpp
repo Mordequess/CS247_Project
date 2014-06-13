@@ -13,9 +13,9 @@ void Deck::newDeck(){
 	}
 }
 
+//shuffle deck using seed (default 0)
 void Deck::shuffle(int seed){
 	int n = 52;
-
 	while ( n > 1 ) {
 		int k = (int) (lrand48(seed) % n);
 		--n;
@@ -25,6 +25,7 @@ void Deck::shuffle(int seed){
 	}
 }
 
+//prints deck in current order
 std::ostream &operator<<(std::ostream& out, const Deck& d){
 	for (int i = 0; i < 4; i++){
 		for (int j = 0; j < 13; j++) {
