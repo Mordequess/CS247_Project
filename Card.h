@@ -15,7 +15,6 @@ public:
 	Card(Suit, Rank);
 	Suit getSuit() const;
 	Rank getRank() const;
-	
 private:
 	Suit suit_;
 	Rank rank_;

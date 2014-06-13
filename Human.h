@@ -6,10 +6,9 @@
 class Human : public Player {
 public:
 	Human();
-
+	~Human();
 	void print();
 	void play();
-private:
 	
 };
 

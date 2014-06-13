@@ -9,10 +9,13 @@ public:
 	virtual ~Player();
 	virtual void print();
 	virtual void play();
-	int incrementScore(int score);
+	void incrementScore();
+	int getScore();
+	void setHand(vector<Card>);
+	vector<Card> getDiscard();
+	vector<Card> setDiscard();
 	vector<Card> getHand();
 	vector<Card> discardCard(Card &);
-			
 private:
 	vector<Card> hand_;
 	vector<Card> discarded_;
@@ -24,8 +27,6 @@ private:
 
 
 //to be implemented in Player
-	//getScore() ?
-	//getDiscardedSum() ?
 	// void printValidPlays();
 	// bool validPlay(Card);
 	// Player(Played);

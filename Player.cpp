@@ -1,25 +1,45 @@
 #include "player.h"
-#include <vector>
 
 Player::Player() {
 	score_ = 0;
 	hand_ = NULL;
 	discarded_ = NULL;
 }
-	
-int Player::incrementScore (int score) {
-	score_ += score;
+
+void Player::setHand(vector<Card> playerhand) {
+	hand_ = playerhand;
+}
+
+int Player::getScore() {
 	return score_;
 }
 
-vector<Card> Player::getHand(){
+void Player::incrementScore () {
+	int scoreIncrement = 0;
+	for(int i = 0; i < discard_.size(0; i++)){
+		scoreIncrement = discard[i].getRank() + 1;
+		score += scoreIncrement;
+	}
+}
+
+vector<Card> Player::getHand() {
 	return hand_;
 }
 
+vector<Card> Player::getDiscard() {
+	return discard_;
+}
+
+vector<Card> Player::setDiscard(vector<Card> discard) {
+	discard = discard_;
+}
+
+
+
 vector<Card> Player::discardCard(Card &card) {
 	discarded_.push_back(card);
-	IntIterator i = find(cards.begin(), cards.end(), card)	
-	hand_.erase(i);
+	std::v;ector<Card>::iterator position = std::find(vector.begin(), vector.end(), card);
+    hand_.erase(position);
 }
 
 //play card needs to modify played_ and remove card from hand
