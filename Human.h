@@ -2,6 +2,7 @@
 #define HUMAN_H
 
 #include "Card.h"
+#include <iostream>
 
 class Human : public Player {
 public:

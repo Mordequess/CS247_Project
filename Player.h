@@ -9,11 +9,13 @@ public:
 	virtual ~Player();
 	virtual void print();
 	virtual void playTurn();
+	void playCard(Card);
 	void incrementScore();
 	int getScore();
 	void setHand(vector<Card>);
 	bool inHand(Card);
-	bool isLegal(Card, Played &p); // Tyler must change to call this
+	bool isLegal(Card); // Tyler must change to call this
+
 	vector<Card> legalPlays(vector<Card>, Played);
 	vector<Card> getDiscard();
 	vector<Card> setDiscard();
@@ -24,7 +26,7 @@ private:
 	vector<Card> hand_;
 	vector<Card> discarded_;
 	int score_;
-	static int plnumber_; 
+	int plnumber_; 
 	Played played_;
 };		
 

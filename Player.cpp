@@ -11,6 +11,21 @@ void Player::setHand(vector<Card> playerhand) {
 	hand_ = playerhand;
 }
 
+void Player::playCard(Card card) {
+	if(card.getSuit()) == "CLUB") {
+		played_.playedClub[card.getRank()] = true;
+	} else if (card.getSuit() == "DIAMOND") {
+		played_.playedDiamond[card.getRank()] = true;
+	} else if (card.getSuit() == "HEART") {
+		played_.playedHeart[card.getRank()] = true;
+	} else if (card.getSuit() == "SPADE") {
+		played_.playedSpade[card.getRank()] = true;
+	} else {
+		throw "No card was marked as played";
+	}
+}
+
+
 int Player::getScore() {
 	return score_;
 }

@@ -20,6 +20,60 @@ void Human::print() {
 }
 
 void Human::playerTurn() {
-	
+
+    Command command;
+    cin >> command;
+    
+    switch (command.type) {
+    
+        //play a card
+        case PLAY: {
+            if (!(inHand(command.card)) || !(isLegal(command.card))) {
+            	throw "This is not a legal play.";
+            } 
+            else () {
+            	cout << "Player " << plnumber_ << " plays " << command.card << "." << endl;
+            	playcard(command.card);
+            	//remove from hand
+            }
+            break;
+        }
+        //discard a card
+        case DISCARD: {
+            if (legalPlays.size() != 0) {
+            	throw "You have a legal play. You may not discard.";
+            } 
+            else () {
+            	cout << "Player " << plnumber_ << " discards " << command.card << "." << endl;
+            	// Add to discard vector, remove from hand
+            }
+            break;
+        }
+            
+        //print the deck
+        case DECK: {
+            throw "print deck";
+            break;
+        }
+            
+        //exit program
+        case QUIT: {
+            throw "quit";
+            break;
+        }
+
+        //replace current human player with a computer
+        case RAGEQUIT: {
+            throw "rage quit";
+            break;
+        }
+            
+        default:
+            break;
+    } // switch
+					
+
 }
+
+
 
