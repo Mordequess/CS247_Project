@@ -7,7 +7,7 @@ Player::Player() {
 	number = plnumber_;
 }
 
-void Player::setHand(vector<Card> playerhand) {
+void Player::setHand(std::vector<Card> playerhand) {
 	hand_ = playerhand;
 }
 
@@ -39,20 +39,20 @@ int Player::incrementScore () {
 	return scoreIncrement;
 }
 
-vector<Card> Player::getHand() {
+std::vector<Card> Player::getHand() {
 	return hand_;
 }
 
-vector<Card> Player::getDiscard() {
+std::vector<Card> Player::getDiscard() {
 	return discard_;
 }
 
-vector<Card> Player::setDiscard(vector<Card> discard) {
+std::vector<Card> Player::setDiscard(std::vector<Card> discard) {
 	discard_ = discard;
 }
 
-vector<Card> Player::legalPlays(vector<Card> currHand, Played &p){
-	vector<Card> = legalCards;
+std::vector<Card> Player::legalPlays(std::vector<Card> currHand, Played &p){
+	std::vector<Card> = legalCards;
 	for (int i = 0; i < currHand.size(); i++){
 		if (isLegal(currHand[i], p)){
 			legalCards.push_back(currHand[i]);

@@ -1,6 +1,8 @@
 #include "Computer.h"
+#include <vector>
 
-Computer::Computer() : Player(pl) {
+
+Computer::Computer(int playernum) : Player(playernum) {
 	
 }
 
@@ -8,14 +10,14 @@ Computer::Computer() : Player(pl) {
 void Computer::print() { }
 
 void Computer::playTurn(bool ignore) {
-	vector<Card> hand = getHand();
-	vector<Card> plays = legalPlays(hand);
+	std::vector<Card> hand = getHand();
+	std::vector<Card> plays = legalPlays(hand);
 	if (plays.size() > 0) {
-		cout << "Player " << plnumber_ << " plays " << plays[0] << "." << endl;
-		playcard(plays[0]);
-    	hand.erase(0);
+		std::cout << "Player " << plnumber_ << " plays " << plays[0] << "." << std::endl;
+		playCard(plays[0]);
+    	hand.erase(hand.begin());
 	} else {
-		cout << "Player " << plnumber_ << " discards " << hand[0] << "." << endl;
+		std::cout << "Player " << plnumber_ << " discards " << hand[0] << "." << std::endl;
 		discardCard(hand[0]);
 	} 
 }
@@ -24,7 +26,7 @@ void Computer::playTurn(bool ignore) {
 /*
 void Human::playerTurn() {
     Command command;
-    cin >> command;
+    std::cin >> command;
     
     switch (command.type) {
         //play a card
@@ -33,7 +35,7 @@ void Human::playerTurn() {
             	throw "This is not a legal play.";
             } 
             else {
-            	cout << "Player " << plnumber_ << " plays " << command.card << "." << endl;
+            	std::cout << "Player " << plnumber_ << " plays " << command.card << "." << std::endl;
             	playcard(command.card);
             	std::vector<Card>::iterator position = find(hand_.begin(), hand_.end(), card);
     			hand_.erase(position);
@@ -46,7 +48,7 @@ void Human::playerTurn() {
             	throw "You have a legal play. You may not discard.";
             } 
             else {
-            	cout << "Player " << plnumber_ << " discards " << command.card << "." << endl;
+            	std::cout << "Player " << plnumber_ << " discards " << command.card << "." << std::endl;
             	discardCard(command.card);
             }
             break;
@@ -74,3 +76,5 @@ void Human::playerTurn() {
             break;
     } // switch
 }
+
+*/

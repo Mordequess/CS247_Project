@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    Straights game = new Straights(0); //*** retrieve input from string[args]?
+    Straights game = new Straights(0); //*** retrieve input from std::string[args]?
     int winner;
     bool end = false;
     while (!end) {
@@ -31,7 +31,7 @@ int main() {
      //check for ties
     int winScore = game.getMinScore();
     for (int i = 0; i < 4; i++) {
-        if (game.getScore(i) == winScore) cout << "Player " << winner << " wins!" << endl;
+        if (game.getScore(i) == winScore) std::cout << "Player " << winner << " wins!" << std::endl;
     }
 }
 

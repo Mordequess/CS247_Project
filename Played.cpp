@@ -3,21 +3,21 @@
 using namespace std;
 
 ostream &operator<<(ostream &out, Played &p){
-	out << "Cards on the table:" << endl << "Clubs:";
+	out << "Cards on the table:" << std::endl << "Clubs:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedClub[i]) cout << " " << rank[i];
+		if (p.playedClub[i]) std::cout << " " << rank[i];
 	}
-	out << endl << "Diamonds:";
+	out << std::endl << "Diamonds:";
 	for (int i = 0; i < 13; i++){
-		if (p.playedDiamond[i]) cout << " " << rank[i];
+		if (p.playedDiamond[i]) std::cout << " " << rank[i];
 	}
-	out << endl << "Hearts:";
+	out << std::endl << "Hearts:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedHeart[i]) cout << " " << rank[i];
+		if (p.playedHeart[i]) std::cout << " " << rank[i];
 	}
-	out << endl << "Spades:";
+	out << std::endl << "Spades:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedSpade[i]) cout << " " << rank[i];
+		if (p.playedSpade[i]) std::cout << " " << rank[i];
 	}
 
 	return out;

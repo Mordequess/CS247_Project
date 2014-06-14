@@ -29,7 +29,7 @@ void Straights::nextRound(){
 	}
 	//reset board
 	played_ = new Played();
-	cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << endl;
+	std::cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << std::endl;
 }
 
 bool Straights::checkEnd() {
@@ -53,13 +53,13 @@ int Straights::getMinScore() {
 
 void Straights::updateScores() {
 	for (int i = 0; i < 4; i++){
-		cout << "Player " << i << "'s discards: ";
+		std::cout << "Player " << i << "'s discards: ";
 		for (int j = 0; j < players_[i].getDiscard().size(); j++) {
-			cout << players_[i].getDiscard()[j];
+			std::cout << players_[i].getDiscard()[j];
 		}
-		cout << endl << "Player " << i << "'s score: " << players_[i].getScore();
-		cout << " + " << players_[i].incrementScore();
-		cout << " = " << players_[i].getScore() << endl;
+		std::cout << std::endl << "Player " << i << "'s score: " << players_[i].getScore();
+		std::cout << " + " << players_[i].incrementScore();
+		std::cout << " = " << players_[i].getScore() << std::endl;
 	}
 }
 
@@ -87,11 +87,11 @@ void Straights::playerTurn(int position){
 		}
 		catch () {
 			//print deck, new command
-			cout << deck_;
+			std::cout << deck_;
 		}
 		catch () {
 			//ragequit
-			cout << "Player " << position << " ragequits. A computer will now take over." << endl;
+			std::cout << "Player " << position << " ragequits. A computer will now take over." << std::endl;
 
 			std::vector<Card> hand = players_[position].getHand();
 			std::vector<Card> discard = players_[position].getDiscard();
@@ -115,9 +115,9 @@ void Straights::playerTurn(int position){
 
 void Straights::invitePlayers () {
 	for (int i = 0; i < 4; i++) {
-        cout << "Is player " + i + " a human(h) or a computer(c)?" << endl;
+        std::cout << "Is player " + i + " a human(h) or a computer(c)?" << std::endl;
         char type;
-        cin >> type;
+        std::cin >> type;
         assert (type == 'h' || type == 'c');
         if (type == h) players[i] = new Human(i);
         else players[i] = new Computer(i);

@@ -2,11 +2,12 @@
 #define HUMAN_H
 
 #include "Card.h"
+#include "Player.h"
 #include <iostream>
 
 class Human : public Player {
 public:
-	Human();
+	Human(int);
 	~Human();
 	void print();
 	void playTurn(bool);

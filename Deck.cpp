@@ -32,7 +32,7 @@ std::ostream &operator<<(std::ostream& out, const Deck& d){
 		for (int j = 0; j < 13; j++) {
 			out << d[j+i*13] << " ";
 		}
-		out << endl;
+		out << std::endl;
 	}
 	return out;
 }

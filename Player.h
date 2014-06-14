@@ -2,6 +2,9 @@
 #define PLAYER_H
 
 #include "Card.h"
+#include <vector>
+#include <iostream>
+#include "Played.h"
 
 class Player {
 public:
@@ -12,21 +15,21 @@ public:
 	void playCard(Card);
 	int incrementScore();
 	int getScore();
-	void setHand(vector<Card>);
+	void setHand(std::vector<Card>);
 	bool inHand(Card);
-	bool isLegal(Card, Played); 
+	bool isLegal(Card); 
 
-	vector<Card> legalPlays(vector<Card>, Played);
-	vector<Card> getDiscard();
-	vector<Card> setDiscard();
-	vector<Card> getHand();
+	std::vector<Card> legalPlays(std::vector<Card>);;
+	std::vector<Card> getDiscard();
+	std::vector<Card> setDiscard();
+	std::vector<Card> getHand();
 	void discardCard(Card &);
-
-private:
-	vector<Card> hand_;
-	vector<Card> discarded_;
-	int score_;
+protected:
 	int plnumber_; 
+private:
+	std::vector<Card> hand_;
+	std::vector<Card> discarded_;
+	int score_;
 	Played played_;
 };		
 

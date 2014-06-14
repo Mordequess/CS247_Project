@@ -2,10 +2,12 @@
 #define COMPUTER_H
 
 #include "Card.h"
+#include "Player.h"
+
 
 class Computer : public Player {
 public:
-	Computer();
+	Computer(int);
 	~Computer();
 	void print();
 	void playTurn(bool);
