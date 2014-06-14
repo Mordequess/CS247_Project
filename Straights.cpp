@@ -103,7 +103,6 @@ int main() {
     Command command;
     cin >> command;
     
-    
     bool quit = false;
     while (!cin.eof()) {
         switch (command.type) {
