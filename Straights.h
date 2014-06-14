@@ -19,10 +19,8 @@ public:
 	void printDeck();
 	void rageQuit(int);
 
-
 private:
 	void invitePlayers();
-	void printPlayedCards();
 
 	Player[4] players_;
 	Deck deck_;

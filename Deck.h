@@ -9,10 +9,10 @@ public:
 	Deck(int seed);
 	~Deck();
 
-	void newDeck();
 	void shuffle();
 
 private:
+	void newDeck();
 	Card*[52] cards_;
 	int seed_;
 };

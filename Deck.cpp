@@ -4,15 +4,6 @@ Deck::Deck(int seed) : seed_(seed) {
 	newDeck();
 }
 
-//fills an empty deck with all cards in sorted order
-void Deck::newDeck(){
-	for (int j = 0; j < 4; j++) {
-		for (int i = 0; i < 13; i++) {
-			cards_[i + j*13] = new Card(j, i);
-		}
-	}
-}
-
 //shuffle deck using seed (default 0)
 void Deck::shuffle(int seed){
 	int n = 52;
@@ -22,6 +13,15 @@ void Deck::shuffle(int seed){
 		Card *c = cards_[n];
 		cards_[n] = cards_[k];
 		cards_[k] = c;
+	}
+}
+
+//fills an empty deck with all cards in sorted order
+void Deck::newDeck(){
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < 13; i++) {
+			cards_[i + j*13] = new Card(j, i);
+		}
 	}
 }
 

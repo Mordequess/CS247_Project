@@ -29,15 +29,35 @@ void Straights::nextRound(){
 	cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << endl;
 }
 
-void Straights::invitePlayers () {
-	for (int i = 0; i < 4; i++) {
-        cout << "Is player " + i + " a human(h) or a computer(c)?" << endl;
-        char type;
-        cin >> type;
-        assert (type == 'h' || type == 'c');
-        if (type == h) players[i] = new Human(i);
-        else players[i] = new Computer(i);
-    }
+bool Straights::checkWinner() {
+
+}
+
+int Straights::getFirstPlayer(){
+	int first = 0;
+	//check for 7S
+	while (!players_[first].isInHand(Card(3, 6))) {
+		first++;
+	}
+	return first;
+}
+
+void Straights::playerTurn(int position){
+	try	{
+		players_[position].playTurn();
+	}
+	catch () {
+		//invalid, new command
+	}
+	catch () {
+		//print deck, new command
+	}
+	catch () {
+		//ragequit
+	}
+	catch () {
+		//quit
+	}
 }
 
 void Straights::printDeck() {
@@ -54,31 +74,15 @@ void Straights::rageQuit(int position){
 	players_[position].incrementScore(score);
 }
 
-int Straights::getFirstPlayer(){
-	int first = 0;
-	//check for 7S
-	while (!players_[first].isInHand(Card(3, 6))) {
-		first++;
-	}
-	return first;
-}
-
-void Straights::playTurn(int position){
-	try	{
-		players_[position].playTurn();
-	}
-	catch () {
-		//invalid, new command
-	}
-	catch () {
-		//print deck, new command
-	}
-	catch () {
-		//ragequit
-	}
-	catch () {
-		//quit
-	}
+void Straights::invitePlayers () {
+	for (int i = 0; i < 4; i++) {
+        cout << "Is player " + i + " a human(h) or a computer(c)?" << endl;
+        char type;
+        cin >> type;
+        assert (type == 'h' || type == 'c');
+        if (type == h) players[i] = new Human(i);
+        else players[i] = new Computer(i);
+    }
 }
 
 // Player[4] players;
