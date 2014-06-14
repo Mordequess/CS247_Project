@@ -37,7 +37,7 @@ void Human::playTurn(bool printinfo) {
             	cout << "Player " << plnumber_ << " plays " << command.card << "." << endl;
             	playcard(command.card);
             	std::vector<Card>::iterator position = find(hand.begin(), hand.end(), card);
-    			hand.erase(position); // Need to create vector of hand
+    			hand.erase(position); 
             }
             break;
         }
