@@ -23,7 +23,7 @@ void Deck::shuffle(){
 void Deck::newDeck(){
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 13; i++) {
-			cards_[i + j*13] = *(new Card(j, i));
+			cards_[i + j*13] = *(new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
 		}
 	}
 }
