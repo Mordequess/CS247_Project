@@ -9,6 +9,11 @@ Card::Card(Suit s, Rank r){
 	rank_ = r;
 }
 
+Card::Card(int s, int r){
+	suit_ = (*this).Suit[s];
+	rank_ = (*this).Rank[r];
+}
+
 Suit Card::getSuit() const{
 	return suit_;
 }

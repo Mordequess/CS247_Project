@@ -13,6 +13,7 @@ class Card{
 
 public:
 	Card(Suit, Rank);
+	Card(int, int);
 	Suit getSuit() const;
 	Rank getRank() const;
 private:
