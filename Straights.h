@@ -13,15 +13,14 @@ public:
 
 	void nextRound();
 	bool checkWinner();
+	int getFirstPlayer();
 
 	void playerTurn();
 	void printDeck();
 	void rageQuit(int);
 
-	int getFirstPlayer();
 
 private:
-	void playCompTurn();
 	void invitePlayers();
 	void printPlayedCards();
 
