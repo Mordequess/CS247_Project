@@ -14,7 +14,7 @@ public:
 
 private:
 	void newDeck();
-	Card*[52] cards_;
+	Card *cards_[52];
 	int seed_;
 };
 

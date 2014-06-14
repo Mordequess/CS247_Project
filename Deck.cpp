@@ -1,5 +1,7 @@
 #include <sstream>
+#include <stdlib.h>
 #include "Card.h"
+#include "Deck.h"
 
 Deck::Deck(int seed) : seed_(seed) {
 	newDeck();
@@ -9,7 +11,7 @@ Deck::Deck(int seed) : seed_(seed) {
 void Deck::shuffle(){
 	int n = 52;
 	while ( n > 1 ) {
-		int k = (int) (lrand48(seed_) % n);
+		int k = (int) (lrand48() % n); //seed_
 		--n;
 		Card *c = cards_[n];
 		cards_[n] = cards_[k];
@@ -21,7 +23,7 @@ void Deck::shuffle(){
 void Deck::newDeck(){
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 13; i++) {
-			cards_[i + j*13] = new Card(j, i);
+			cards_[i + j*13] = *(new Card(j, i));
 		}
 	}
 }
