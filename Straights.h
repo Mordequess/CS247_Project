@@ -1,7 +1,6 @@
 #ifndef STRAIGHTS_H
 #define STRAIGHTS_H
 
-#include "Card.h"
 #include "Deck.h"
 #include "Player.h"
 #include "Played.h"
@@ -12,12 +11,11 @@ public:
 	~Straights();
 
 	void nextRound();
-	bool checkWinner();
+	int checkWinner();
+	void updateScores();
 	int getFirstPlayer();
 
 	void playerTurn();
-	void printDeck();
-	void rageQuit(int);
 
 private:
 	void invitePlayers();

@@ -23,70 +23,27 @@ int main() {
     cout << "Harness for Straights Game:" << endl << endl;
     Straights game = new Straights(0); //*** retrieve input from string[args]?
     int winner;
-    while (game.checkWinner()) {
+    bool end = false;
+    while (!end) {
         game.newRound();
         int whosTurn = game.getFirstPlayer();
         for (int i = 0; i < 13; i++) { //play out every card till no more in hand 
-            game.playerTurn( (whosTurn+j) %4 );
+            try {
+                game.playerTurn( (whosTurn+j) %4 );
+            }
+            catch (q_err) {
+                end = true;
+                break;
+            }
         }
-        //calculate scores
-        //check for winner
+        if (end) break;
+        game.updateScores();
+
+        //check for ties***
+        winner = game.checkWinner();
+        if (winner > -1) {
+            end = true;
+            cout << "Player " << winner << " has won the game!" << endl;
+        }
     }
 }
-
-
-void getCommanded(int whosTurn) {
-    //get first command
-    Command command;
-    cin >> command;
-    
-    bool quit = false;
-    while (!cin.eof()) {
-        switch (command.type) {
-    
-            //play a card
-            case PLAY: {
-                game.playCard(whosTurn, command.card);
-                turnIncrement(whosTurn);
-                break;
-            }
-            
-            //discard a card
-            case DISCARD: {
-                game.discardCard(whosTurn, command.card);
-                turnIncrement(whosTurn);
-                break;
-            }
-                
-            //print the deck
-            case DECK: {
-                game.printDeck();
-                break;
-            }
-                
-            //exit program
-            case QUIT: {
-                quit = false;
-                break;
-            }
-
-            //replace current human player with a computer
-            case RAGEQUIT: {
-                game.rageQuit(whosTurn);
-                break;
-            }
-                
-            default:
-                break;
-        } // switch
-					
-    //get next command
-    if (quit) break;
-    cin >> command;
-        
-    } // while cin OK
-    
-    //***delete game?
-    return 0;
-}
-

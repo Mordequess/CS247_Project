@@ -1,6 +1,7 @@
 #ifndef DECK_H
 #define DECK_H
 
+#include <sstream>
 #include "Card.h"
 
 class Deck {

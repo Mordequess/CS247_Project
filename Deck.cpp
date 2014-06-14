@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Card.h"
 
 Deck::Deck(int seed) : seed_(seed) {

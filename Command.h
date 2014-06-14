@@ -16,3 +16,6 @@ struct Command{
 std::istream &operator>>(std::istream &, Command &);
 
 #endif
+
+//if (not in hand) throw("This is not a legal play.")
+//playCardInHand(command.card);
