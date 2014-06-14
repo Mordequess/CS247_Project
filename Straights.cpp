@@ -13,7 +13,6 @@ using namespace std;
 Straights::Straights (int seed){
 	deck_ = new Deck(seed);
     invitePlayers();
-    //round_ = new Round(players_, deck_);
     nextRound();
 }
 
@@ -25,8 +24,9 @@ void Straights::nextRound(){
 			hand.push_back(deck_[j+i*13]);
 		}
 		players_[i].setHand(hand);
+	}
 	played_ = new Played();
-	cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play.";
+	cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << endl;
 }
 
 void Straights::invitePlayers () {
@@ -63,94 +63,24 @@ int Straights::getFirstPlayer(){
 	return first;
 }
 
-void Straights::playCard(int position, Card card){
-
+void Straights::playTurn(int position){
+	try	{
+		players_[position].playTurn();
+	}
+	catch () {
+		//invalid, new command
+	}
+	catch () {
+		//print deck, new command
+	}
+	catch () {
+		//ragequit
+	}
+	catch () {
+		//quit
+	}
 }
-
-void Straights::discardCard(int position, Card card){
-
-}
-
-void Straights::playCompTurn(int position){
-	if (players_[position].validPlays = 0?) discardCard(position, players_[position].getHand[0]);
-	else playCard(position, players_[position].validPlays[0]);
-	//if (players_[position+1])
-
-}
-
 
 // Player[4] players;
 // Deck deck_;
 // Played played_
-
-//************************************************************************
-//  Test Harness Helper functions
-//************************************************************************
-void turnIncrement(int& whosTurn){
-    whosTurn = (++whosTurn)%4;
-}
-
-
-//******************************************************************
-// Harness for Straights
-//******************************************************************
-
-int main() {
-    cout << "Harness for Straights Game:" << endl << endl;
-    Straights game = new Straights(0); //*** retrieve input from string[args]?
-    int whosTurn = game.getFirstPlayer();
-    //get first command
-    Command command;
-    cin >> command;
-    
-    bool quit = false;
-    while (!cin.eof()) {
-        switch (command.type) {
-    
-            //play a card
-            case PLAY: {
-                game.playCard(whosTurn, command.card);
-                cout << "Player " << whosTurn << " plays " << command.card << ".";
-                turnIncrement(whosTurn);
-                break;
-            }
-            
-            //discard a card
-            case DISCARD: {
-                game.discardCard(whosTurn, command.card);
-                cout << "Player " << whosTurn << " discards " << command.card << ".";
-                turnIncrement(whosTurn);
-                break;
-            }
-                
-            //print the deck
-            case DECK: {
-                game.printDeck();
-                break;
-            }
-                
-            //exit program
-            case QUIT: {
-                quit = false;
-                break;
-            }
-
-            //replace current human player with a computer
-            case RAGEQUIT: {
-                game.rageQuit(whosTurn);
-                break;
-            }
-                
-            default:
-                break;
-        } // switch
-					
-    //get next command
-    if (quit) break;
-    cin >> command;
-        
-    } // while cin OK
-    
-    //***delete game?
-    return 0;
-}

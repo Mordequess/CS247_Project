@@ -22,7 +22,20 @@ void turnIncrement(int& whosTurn){
 int main() {
     cout << "Harness for Straights Game:" << endl << endl;
     Straights game = new Straights(0); //*** retrieve input from string[args]?
-    int whosTurn = game.getFirstPlayer();
+    int winner;
+    while (game.checkWinner()) {
+        game.newRound();
+        int whosTurn = game.getFirstPlayer();
+        for (int i = 0; i < 13; i++) { //play out every card till no more in hand 
+            game.playerTurn( (whosTurn+j) %4 );
+        }
+        //calculate scores
+        //check for winner
+    }
+}
+
+
+void getCommanded(int whosTurn) {
     //get first command
     Command command;
     cin >> command;
@@ -76,3 +89,4 @@ int main() {
     //***delete game?
     return 0;
 }
+

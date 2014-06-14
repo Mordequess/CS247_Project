@@ -12,10 +12,10 @@ public:
 	~Straights();
 
 	void nextRound();
-	void printDeck();
+	bool checkWinner();
 
-	void playCard(int, Card);
-	void discardCard(int, Card);
+	void playerTurn();
+	void printDeck();
 	void rageQuit(int);
 
 	int getFirstPlayer();
