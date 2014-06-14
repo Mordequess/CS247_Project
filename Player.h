@@ -8,12 +8,13 @@ public:
 	Player(int number);
 	virtual ~Player();
 	virtual void print();
-	virtual void play();
+	virtual void playTurn();
 	void incrementScore();
 	int getScore();
 	void setHand(vector<Card>);
 	bool inHand(Card);
-	vector<Card> legalPlays(vector<Card>);
+	bool isLegal(Card, Played &p); // Tyler must change to call this
+	vector<Card> legalPlays(vector<Card>, Played);
 	vector<Card> getDiscard();
 	vector<Card> setDiscard();
 	vector<Card> getHand();

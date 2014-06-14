@@ -8,7 +8,7 @@ public:
 	Human();
 	~Human();
 	void print();
-	void play();
+	void playerTurn();
 };
 
 #endif

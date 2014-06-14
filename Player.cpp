@@ -32,21 +32,30 @@ vector<Card> Player::getDiscard() {
 }
 
 vector<Card> Player::setDiscard(vector<Card> discard) {
-	discard = discard_;
+	discard_ = discard;
 }
 
-vector<Card> Player::legalPlays(vector<Card> currHand){
-
+vector<Card> Player::legalPlays(vector<Card> currHand, Played &p){
+	vector<Card> = legalCards;
+	for (int i = 0; i < currHand.size(); i++){
+		if (isLegal(currHand[i], p)){
+			legalCards.push_back(currHand[i]);
+		}
+	}
 }
 
-bool inHand (Card &card) {
+bool Player::inHand (Card &card) {
 	return (find(hand_.begin(), hand_.end(), card));
 }
+
+
 
 vector<Card> Player::discardCard(Card &card) {
 	discarded_.push_back(card);
 	std::vector<Card>::iterator position = find(hand_.begin(), hand_.end(), card);
     hand_.erase(position);
 }
+
+
 
 //play card needs to modify played_ and remove card from hand
