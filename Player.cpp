@@ -30,12 +30,13 @@ int Player::getScore() {
 	return score_;
 }
 
-void Player::incrementScore () {
+int Player::incrementScore () {
 	int scoreIncrement = 0;
 	for(int i = 0; i < discard_.size(0; i++)){
-		scoreIncrement = discard[i].getRank() + 1;
-		score += scoreIncrement;
+		scoreIncrement += discard[i].getRank() + 1;
 	}
+	score_ += scoreIncrement; 
+	return scoreIncrement;
 }
 
 vector<Card> Player::getHand() {
@@ -63,14 +64,14 @@ bool Player::inHand (Card &card) {
 	return (find(hand_.begin(), hand_.end(), card));
 }
 
-
-
-vector<Card> Player::discardCard(Card &card) {
-	discarded_.push_back(card);
+void Player::discardCard(Card &card) {
+	discard_.push_back(card);
 	std::vector<Card>::iterator position = find(hand_.begin(), hand_.end(), card);
     hand_.erase(position);
 }
 
 
+bool Player::isLegal(Card, Played) {
 
+}
 //play card needs to modify played_ and remove card from hand

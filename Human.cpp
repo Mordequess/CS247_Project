@@ -19,22 +19,25 @@ void Human::print() {
 	cout "\n";
 }
 
-void Human::playerTurn() {
-
+void Human::playTurn(bool printinfo) {
+	if (printinfo) {
+		print();
+	}
     Command command;
     cin >> command;
     
     switch (command.type) {
-    
         //play a card
         case PLAY: {
             if (!(inHand(command.card)) || !(isLegal(command.card))) {
             	throw "This is not a legal play.";
             } 
-            else () {
+            else {
+            	vector<Card> hand = getHand();
             	cout << "Player " << plnumber_ << " plays " << command.card << "." << endl;
             	playcard(command.card);
-            	//remove from hand
+            	std::vector<Card>::iterator position = find(hand.begin(), hand.end(), card);
+    			hand.erase(position); // Need to create vector of hand
             }
             break;
         }
@@ -43,9 +46,9 @@ void Human::playerTurn() {
             if (legalPlays.size() != 0) {
             	throw "You have a legal play. You may not discard.";
             } 
-            else () {
+            else {
             	cout << "Player " << plnumber_ << " discards " << command.card << "." << endl;
-            	// Add to discard vector, remove from hand
+            	discardCard(command.card);
             }
             break;
         }
@@ -71,8 +74,6 @@ void Human::playerTurn() {
         default:
             break;
     } // switch
-					
-
 }
 
 

@@ -7,7 +7,7 @@ class Computer : public Player {
 public:
 	Computer();
 	void print();
-	void play();
+	void playTurn(bool);
 private:
 
 

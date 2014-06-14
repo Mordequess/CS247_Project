@@ -10,7 +10,7 @@ public:
 	virtual void print();
 	virtual void playTurn();
 	void playCard(Card);
-	void incrementScore();
+	int incrementScore();
 	int getScore();
 	void setHand(vector<Card>);
 	bool inHand(Card);
@@ -20,7 +20,7 @@ public:
 	vector<Card> getDiscard();
 	vector<Card> setDiscard();
 	vector<Card> getHand();
-	vector<Card> discardCard(Card &);
+	void discardCard(Card &);
 
 private:
 	vector<Card> hand_;
