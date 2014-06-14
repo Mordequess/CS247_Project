@@ -18,7 +18,7 @@ int main() {
         //play out every card till no more in hand 
         for (int i = 0; i < 13; i++) {
             try {
-                game.playerTurn( (whosTurn+j) %4 );
+                game.playerTurn( (whosTurn+j)%4 );
             }
             //check if quit command is called
             catch (std::string e) {

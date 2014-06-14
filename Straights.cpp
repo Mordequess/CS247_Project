@@ -21,7 +21,7 @@ void Straights::nextRound(){
 	deck_.shuffle();
 	//fill hands (should be empty after each round)
 	for (int i = 0; i < 4; i++) {
-		std::vector<Card> hand;
+		std::vector<Card*> hand;
 		for (int j = 0; j < 13; j++) {
 			hand.push_back(deck_[j+i*13]);
 		}
