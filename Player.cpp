@@ -72,6 +72,6 @@ void Player::discardCard(Card &card) {
 
 
 bool Player::isLegal(Card, Played) {
-
+	return true;
 }
 //play card needs to modify played_ and remove card from hand

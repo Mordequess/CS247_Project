@@ -9,7 +9,7 @@ public:
 	Human();
 	~Human();
 	void print();
-	void playerTurn();
+	void playTurn(bool);
 };
 
 #endif

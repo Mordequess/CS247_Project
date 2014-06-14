@@ -6,6 +6,7 @@
 class Computer : public Player {
 public:
 	Computer();
+	~Computer();
 	void print();
 	void playTurn(bool);
 private:

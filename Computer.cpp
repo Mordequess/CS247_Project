@@ -10,10 +10,9 @@ void Computer::print() { }
 void Computer::playTurn(bool ignore) {
 	vector<Card> hand = getHand();
 	vector<Card> plays = legalPlays(hand);
-	vector<Card> discarded = getDiscard();
 	if (plays.size() > 0) {
 		cout << "Player " << plnumber_ << " plays " << plays[0] << "." << endl;
-		playcard(command.card);
+		playcard(plays[0]);
     	hand.erase(0);
 	} else {
 		cout << "Player " << plnumber_ << " discards " << hand[0] << "." << endl;
