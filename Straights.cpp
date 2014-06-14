@@ -17,7 +17,9 @@ Straights::Straights (int seed){
 }
 
 void Straights::nextRound(){
-	deck_.shuffle(0);
+	//shuffle deck
+	deck_.shuffle();
+	//fill hands (should be empty after each round)
 	for (int i = 0; i < 4; i++) {
 		std::vector<Card> hand;
 		for (int j = 0; j < 13; j++) {
@@ -25,23 +27,40 @@ void Straights::nextRound(){
 		}
 		players_[i].setHand(hand);
 	}
+	//reset board
 	played_ = new Played();
 	cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << endl;
 }
 
-int Straights::checkWinner() {
-	int winner = -1;
-	bool end = false;
+bool Straights::checkEnd() {
 	for (int i = 0; i < 4; i++) {
-		if (players_[i].getScore() >= 80 ) end = true;
+		if (players_[i].getScore() >= 80 ) return true;
 	}
-	if (end) {
-		winner = 0;
-		for (int i = 1; i < 3; i++) {
+	return false;
+}
 
-		}
+int Straights::getScore(int position) {
+	return players_[position].getScore();
+}
+
+int Straights::getMinScore() {
+	int min = players_[0].getScore();
+	for (int i = 1; i < 4; i++){
+		if (players_[i].getScore() < min) min = players_[i].getScore();
 	}
-	return winner;
+	return min;
+}
+
+void Straights::updateScores() {
+	for (int i = 0; i < 4; i++){
+		cout << "Player " << i << "'s discards: ";
+		for (int j = 0; j < players_[i].getDiscard().size(); j++) {
+			cout << players_[i].getDiscard()[j];
+		}
+		cout << endl << "Player " << i << "'s score: " << players_[i].getScore();
+		cout << " + " << players_[i].incrementScore();
+		cout << " = " << players_[i].getScore() << endl;
+	}
 }
 
 int Straights::getFirstPlayer(){
@@ -54,36 +73,45 @@ int Straights::getFirstPlayer(){
 }
 
 void Straights::playerTurn(int position){
-	try	{
-		players_[position].playTurn();
-	}
-	catch () {
-		//invalid, new command
-		players_[position].playTurn();
-	}
-	catch () {
-		//print deck, new command
-		cout << deck_;
-		players_[position].playTurn();
-	}
-	catch () {
-		//ragequit
-		cout << "Player " << position << " ragequits. A computer will now take over." << endl;
+	//keep track of "first" command call
+	bool first = true;
 
-		std::vector<Card> hand = players_[position].getHand();
-		std::vector<Card> discard = players_[position].getDiscard();
-		int score = players_[position].getScore();
-		players_[position] = new Computer(***);
-		players_[position].setHand(hand);
-		players_[position].setDiscard(discard);
-		players_[position].incrementScore(score);
-		players_[position].playTurn();
-	}
-	catch () {
-		//quit
-		throw("quit");
-	}
+	//loop until valid input
+	while (true) {
+		try	{
+			players_[position].playTurn(first);
+			break;
+		}
+		catch () {
+			//invalid, new command
+		}
+		catch () {
+			//print deck, new command
+			cout << deck_;
+		}
+		catch () {
+			//ragequit
+			cout << "Player " << position << " ragequits. A computer will now take over." << endl;
+
+			std::vector<Card> hand = players_[position].getHand();
+			std::vector<Card> discard = players_[position].getDiscard();
+			int score = players_[position].getScore();
+			players_[position] = new Computer();
+			players_[position].setHand(hand);
+			players_[position].setDiscard(discard);
+			players_[position].incrementScore(score);
+			players_[position].playTurn();
+		}
+		catch () {
+			//quit
+			throw("quit");
+		}
+
+		//if looped, will not call human print function
+		first = false;
+	}//while
 }
+
 
 void Straights::invitePlayers () {
 	for (int i = 0; i < 4; i++) {
@@ -95,7 +123,3 @@ void Straights::invitePlayers () {
         else players[i] = new Computer(i);
     }
 }
-
-// Player[4] players;
-// Deck deck_;
-// Played played_

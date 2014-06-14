@@ -6,10 +6,10 @@ Deck::Deck(int seed) : seed_(seed) {
 }
 
 //shuffle deck using seed (default 0)
-void Deck::shuffle(int seed){
+void Deck::shuffle(){
 	int n = 52;
 	while ( n > 1 ) {
-		int k = (int) (lrand48(seed) % n);
+		int k = (int) (lrand48(seed_) % n);
 		--n;
 		Card *c = cards_[n];
 		cards_[n] = cards_[k];

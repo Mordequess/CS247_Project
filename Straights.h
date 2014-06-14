@@ -11,7 +11,9 @@ public:
 	~Straights();
 
 	void nextRound();
-	int checkWinner();
+	bool checkEnd();
+	int getScore(int position);
+	int getMinScore();
 	void updateScores();
 	int getFirstPlayer();
 
