@@ -7,6 +7,15 @@ Deck::Deck(int seed) : seed_(seed) {
 	newDeck();
 }
 
+Card* Deck::getArray(int index) const{
+	return cards_[index];
+}
+
+void Deck::setArray(int index, Card* newCard){
+	cards_[index] = newCard;
+}
+
+
 //shuffle deck using seed (default 0)
 void Deck::shuffle(){
 	int n = 52;
@@ -23,7 +32,7 @@ void Deck::shuffle(){
 void Deck::newDeck(){
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 13; i++) {
-			cards_[i + j*13] = *(new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
+			cards_[i + j*13] = (new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
 		}
 	}
 }
@@ -32,7 +41,7 @@ void Deck::newDeck(){
 std::ostream &operator<<(std::ostream& out, const Deck& d){
 	for (int i = 0; i < 4; i++){
 		for (int j = 0; j < 13; j++) {
-			out << d[j+i*13] << " ";
+			out << d.getArray(j+i*13) << " ";
 		}
 		out << std::endl;
 	}

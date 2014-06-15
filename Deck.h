@@ -10,11 +10,14 @@ public:
 	Deck(int seed);
 	~Deck();
 
+	Card* getArray(int) const;
+	void setArray(int, Card*);
+
 	void shuffle();
 
 private:
 	void newDeck();
-	Card *cards_[52];
+	Card* cards_[52];
 	int seed_;
 };
 
