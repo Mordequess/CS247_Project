@@ -35,23 +35,8 @@ int main() {
 }
 
 /*
-if (card.getRank() == "7") return true;
-if (card.getRank() == "A")     //[suit][rank]
-if (card.getSuit() == "CLUB") return (played_.playedClub[card.getRank()-1] || played_.playedClub[card.getRank()+1]);
-if (card.getSuit() == "HEART") return (played_.playedHeart[card.getRank()-1] || played_.playedHeart[card.getRank()+1]);
-if (card.getSuit() == "DIAMOND") return (played_.playedDiamond[card.getRank()-1] || played_.playedDiamond[card.getRank()+1]);
-if (card.getSuit() == "SPADE") return (played_.playedSpade[card.getRank()-1] || played_.playedSpade[card.getRank()+1]);
-
-
-
 
 PLAYED SHOWS ADDRESS
 Implement is Valid
-
-
-
-
-
-
 
 */

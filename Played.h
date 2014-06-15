@@ -2,15 +2,15 @@
 #define PLAYED_H
 
 #include <istream>
+#include "Card.h"
 
 struct Played{
 	Played();
 	void resetBoard();
+	void setCard(Card card);
+	bool isLegal(Card card);
 
-	bool playedHeart[13];
-	bool playedClub[13];
-	bool playedSpade[13];
-	bool playedDiamond[13];
+	bool playedCards[4][13];
 };
 
 

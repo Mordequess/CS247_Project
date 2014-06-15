@@ -19,17 +19,7 @@ void Player::setHand(std::vector<Card*> playerhand) {
 }
 
 void Player::playCard(Card* card) {
-	if(card->getSuit() == 0 ) {
-		played_->playedClub[card->getRank()] = true;
-	} else if (card->getSuit() == 1) {
-		played_->playedDiamond[card->getRank()] = true;
-	} else if (card->getSuit() == 2) { //
-		played_->playedHeart[card->getRank()] = true;
-	} else if (card->getSuit() == 3) { //Spades
-		played_->playedSpade[card->getRank()] = true;
-	} else {
-		throw "No card was marked as played";
-	}
+	played_->setCard(*card);
 
 	std::vector<Card*>::iterator it;
 	int j = 0;
@@ -104,7 +94,8 @@ void Player::discardCard(Card* card) {
 }
 
 
-bool Player::isLegal(Card* bitch) {
+bool Player::isLegal(Card* card) {
+	return played_->isLegal(*card);
 	return true;
 }
 //play card needs to modify played_ and remove card from hand

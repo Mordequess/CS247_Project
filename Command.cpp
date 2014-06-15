@@ -27,6 +27,3 @@ istream &operator>>(istream &in, Command &c){
 	
 	return in;
 }
-
-
-// SHOW MY COMMENT

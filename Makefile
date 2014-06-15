@@ -1,7 +1,7 @@
 CXX_FLAGS=-g -Wall
 
 GTEST_DIR=~/Programming/gtest
-GTEST_FLAGS=-isystem $(GTEST_DIR)/include -pthread
+GTEST_FLAGS=-isystem $(GTEST_DIR)/include -pthread -std=c++98
 GTEST_LIBS=$(GTEST_DIR)/lib/*
 
 
