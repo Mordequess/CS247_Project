@@ -12,11 +12,12 @@ bool Played::isLegal(Card card) {
 	if (card.getRank() == 6) return true;
 	if (card.getRank() == 0) return playedCards[card.getSuit()][1];
 	if (card.getRank() == 12) return playedCards[card.getSuit()][11];
-	return playedCards[card.getSuit()][card.getRank()-1] || playedCards[card.getSuit()][card.getRank()+1];
+	return (playedCards[card.getSuit()][card.getRank()-1] || playedCards[card.getSuit()][card.getRank()+1]);
 }
 
 void Played::setCard(Card card) {
-	playedCards[card.getSuit()][card.getRank()] = true;
+	playedCards[card.getSuit()][card.getRank	()] = true;
+	std::cout << "This card was set to true " << card << std::endl;
 }
 
 void Played::resetBoard(){
