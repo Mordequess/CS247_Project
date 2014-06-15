@@ -9,7 +9,7 @@ Played::Played() {
 
 bool Played::isLegal(Card card) {
 	//7, A, K
-	if (card.getRank() == 7) return true;
+	if (card.getRank() == 6) return true;
 	if (card.getRank() == 0) return playedCards[card.getSuit()][1];
 	if (card.getRank() == 12) return playedCards[card.getSuit()][11];
 	return playedCards[card.getSuit()][card.getRank()-1] || playedCards[card.getSuit()][card.getRank()+1];
