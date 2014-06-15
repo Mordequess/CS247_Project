@@ -73,8 +73,7 @@ void Straights::updateScores() {
 
 int Straights::getFirstPlayer(){
 	int first = 0;
-	//check for 7S
-	while (!players_[first]->inHand(new Card(static_cast<Suit>(3), static_cast<Rank>(6)))) {
+	while (!players_[first]->inHand(new Card(static_cast<Suit>(3), static_cast<Rank>(6))) ) {
 		first++;
 	}
 	return first;

@@ -1,5 +1,5 @@
 #include "Player.h"
-#include <algorithm>
+//#include <algorithm>
 
 Player::Player(int number, Played* played) {
 	hand_ = std::vector<Card*>();
@@ -69,14 +69,29 @@ std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 }
 
 bool Player::inHand (Card* card) {
-
-	return (std::find(hand_.begin(), hand_.end(), card) != hand_.end());
+	bool found = false;
+	for (int i = 0; i < hand_.size(); i++) {
+		if (*card == *hand_[i]) {
+			found = true;
+		}
+	}
+	return found;
 }
 
 void Player::discardCard(Card* card) {
+	std::vector<Card*>::iterator it;
 	discarded_.push_back(card);
-	std::vector<Card*>::iterator position = find(hand_.begin(), hand_.end(), card);
-    hand_.erase(position);
+
+	int j = 0;
+	for (it = hand_.begin(); it < hand_.end(); it++) {
+		if (*card == *hand_[j]) {
+			break;
+		}
+		j++;
+	}
+
+	//std::vector<Card*>::iterator position = find(hand_.begin(), hand_.end(), card);
+    hand_.erase(it);
 }
 
 
