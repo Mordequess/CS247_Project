@@ -2,6 +2,18 @@
 #include <iostream>
 #include "Card.h"
 
+
+Played::Played() {
+	for (int i = 0; i < 13; i++) {
+		playedDiamond[i] = false;
+		playedHeart[i] = false;
+		playedSpade[i] = false;
+		playedClub[i] = false;
+	}
+}
+
+
+
 std::ostream &operator<<(std::ostream &out, Played &p){
 	out << "Cards on the table:" << std::endl << "Clubs:";
 	for (int i = 0; i < 13; i++) {
