@@ -9,7 +9,7 @@ struct Played{
 	void resetBoard();
 	void setCard(Card card);
 	bool isLegal(Card card);
-
+//private:
 	bool playedCards[4][13];
 };
 
