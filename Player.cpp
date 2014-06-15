@@ -42,7 +42,7 @@ std::vector<Card*> Player::getHand() {
 	return hand_;
 }
 
-std::vector<Card*> Player::getDiscard() {
+std::vector<Card*> Player::getDiscarded() {
 	return discarded_;
 }
 

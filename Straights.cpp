@@ -60,8 +60,8 @@ int Straights::getMinScore() {
 void Straights::updateScores() {
 	for (int i = 0; i < 4; i++){
 		std::cout << "Player " << i << "'s discards: ";
-		for (int j = 0; j < players_[i].getDiscard().size(); j++) {
-			std::cout << players_[i].getDiscard()[j];
+		for (int j = 0; j < players_[i].getDiscarded().size(); j++) {
+			std::cout << *players_[i].getDiscarded()[j];
 		}
 		std::cout << std::endl << "Player " << i << "'s score: " << players_[i].getScore();
 		std::cout << " + " << players_[i].incrementScore();
@@ -100,7 +100,7 @@ void Straights::playerTurn(int position){
 			std::cout << "Player " << position << " ragequits. A computer will now take over." << std::endl;
 
 			std::vector<Card*> hand = players_[position].getHand();
-			std::vector<Card*> discard = players_[position].getDiscard();
+			std::vector<Card*> discard = players_[position].getDiscarded();
 			int score = players_[position].getScore();
 			players_[position] = new Computer(position);
 			players_[position].setHand(hand);

@@ -21,7 +21,7 @@ public:
 	bool isLegal(Card); 
 
 	std::vector<Card*> legalPlays(std::vector<Card*>);
-	std::vector<Card*> getDiscard();
+	std::vector<Card*> getDiscarded();
 	void setDiscard(std::vector<Card*>);
 	std::vector<Card*> getHand();
 	void setHand(std::vector<Card*>);
