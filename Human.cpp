@@ -2,12 +2,11 @@
 #include <vector>
 #include "Command.h"
 
-
 Human::Human(int playernum, Played* played) : Player(playernum, played) {
 }
 
 void Human::print() {
-	std::cout << *played_ << std::endl;
+	std::cout << &played_ << std::endl;
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
 	for (int i = 0; i < currHand.size() ; i++) {

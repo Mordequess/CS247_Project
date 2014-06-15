@@ -1,10 +1,17 @@
 #include "Player.h"
 #include <algorithm>
 
-Player::Player(int number, Played* played) : hand_(std::vector<Card*>()), discarded_(std::vector<Card*>()) {
+Player::Player(int number, Played* played) {
+	hand_ = std::vector<Card*>();
+	discarded_ = std::vector<Card*>();
 	score_ = 0;
 	plnumber_ = number;
 	played_ = played; 
+}
+
+Player::~Player(){
+}
+void Player::playTurn(bool ignore){
 }
 
 void Player::setHand(std::vector<Card*> playerhand) {
@@ -18,7 +25,7 @@ void Player::playCard(Card* card) {
 		played_->playedDiamond[card->getRank()] = true;
 	} else if (card->getSuit() == 2) { //
 		played_->playedHeart[card->getRank()] = true;
-	} else if (card->getSuit() == 3) { //SPades
+	} else if (card->getSuit() == 3) { //Spades
 		played_->playedSpade[card->getRank()] = true;
 	} else {
 		throw "No card was marked as played";

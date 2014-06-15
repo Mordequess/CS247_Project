@@ -7,6 +7,9 @@
 #include "Computer.h"
 #include "Straights.h"
 
+Straights::~Straights(){
+	//Implement later
+}
 
 Straights::Straights (int seed){
 	deck_ = Deck(seed);

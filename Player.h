@@ -9,7 +9,7 @@
 class Player {
 public:
 	Player(int number, Played* played);
-	//virtual ~Player();
+	virtual ~Player();
 	virtual void playTurn(bool);
 	void playCard(Card*);
 	void discardCard(Card*);
