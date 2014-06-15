@@ -5,7 +5,7 @@
 
 struct Played{
 	Played();
-	resetBoard();
+	void resetBoard();
 
 	bool playedHeart[13];
 	bool playedClub[13];
