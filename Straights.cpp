@@ -21,7 +21,7 @@ Straights::Straights (int seed){
         if (type == 'h') players_[i] = new Human(i, played_);
         else players_[i] = new Computer(i, played_);
     }
-    nextRound();
+    //nextRound();  REMOVED BECAUSE IT IS CALLED WHEN WE RETURN
 }
 
 void Straights::nextRound(){
