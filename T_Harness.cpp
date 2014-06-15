@@ -1,13 +1,21 @@
+#include <cstdlib>
+#include <stdlib.h>
 #include <iostream>
 #include "Straights.h"
 
 using namespace std;
 
-int main() {
-    Straights game = Straights(0); //*** retrieve input from std::string[args]?
+int main() {//string args shtuff
+    int seed = 0;
+    srand48(seed);
+
+    Straights game = Straights(); 
     bool end = false;
     while (!end) {
+        std::cout << "first round: ";
         game.nextRound();
+        std::cout << "made";
+
         int whosTurn = game.getFirstPlayer();
         
         //play out every card till no more in hand 
