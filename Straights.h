@@ -22,7 +22,7 @@ public:
 private:
 	Player* players_[4];
 	Deck deck_;
-	static Played* played_;
+	Played* played_;
 };
 
 #endif

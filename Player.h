@@ -26,7 +26,7 @@ public:
 	void setHand(std::vector<Card*>);
 
 	// Move this later, reset function?
-	static Played* played_;
+	Played* played_;
 
 protected:
 	int plnumber_; 

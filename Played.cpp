@@ -4,6 +4,10 @@
 
 
 Played::Played() {
+	//resetBoard();
+}
+
+Played::resetBoard(){
 	for (int i = 0; i < 13; i++) {
 		playedDiamond[i] = false;
 		playedHeart[i] = false;

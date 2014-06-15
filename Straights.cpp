@@ -36,8 +36,7 @@ void Straights::nextRound(){
 		players_[i]->setHand(hand);
 	}
 	//reset board
-	delete played_;
-	played_ = new Played();
+	resetBoard();
 	std::cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << std::endl;
 }
 
