@@ -95,7 +95,7 @@ void Player::discardCard(Card* card) {
 
 
 bool Player::isLegal(Card* card) {
-	return played_->isLegal(*card);
+	return played_->isLegal(card);
 	return true;
 }
 //play card needs to modify played_ and remove card from hand

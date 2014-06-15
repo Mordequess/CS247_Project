@@ -8,7 +8,7 @@ struct Played{
 	Played();
 	void resetBoard();
 	void setCard(Card card);
-	bool isLegal(Card card);
+	bool isLegal(Card* card);
 
 	bool playedCards[4][13];
 };
@@ -17,6 +17,6 @@ struct Played{
 
 
 
-std::ostream &operator<<(std::ostream &, Played const &);
+//std::ostream &operator<<(std::ostream &, Played const &);
 
 #endif
