@@ -13,24 +13,30 @@ public:
 	virtual void print();
 	virtual void playTurn(bool);
 	void playCard(Card);
+	void discardCard(Card &);
+
 	int incrementScore();
 	int getScore();
-	void setHand(std::vector<Card>);
 	bool inHand(Card);
 	bool isLegal(Card); 
 
-	std::vector<Card> legalPlays(std::vector<Card>);;
-	std::vector<Card> getDiscard();
-	std::vector<Card> setDiscard();
-	std::vector<Card> getHand();
-	void discardCard(Card &);
+	std::vector<Card*> legalPlays(std::vector<Card*>);
+	std::vector<Card*> getDiscard();
+	void setDiscard(std::vector<Card*>);
+	std::vector<Card*> getHand();
+	void setHand(std::vector<Card*>);
+
+	// Move this later, reset function?
+	static Played played_;
+
 protected:
 	int plnumber_; 
+
 private:
-	std::vector<Card> hand_;
-	std::vector<Card> discarded_;
+	std::vector<Card*> hand_;
+	std::vector<Card*> discarded_;
 	int score_;
-	Played played_;
+	
 };		
 
 #endif

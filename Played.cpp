@@ -1,23 +1,23 @@
 #include "Played.h"
-#include <sstream>
-using namespace std;
+#include <iostream>
+#include "Card.h"
 
-ostream &operator<<(ostream &out, Played &p){
+std::ostream &operator<<(std::ostream &out, Played &p){
 	out << "Cards on the table:" << std::endl << "Clubs:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedClub[i]) std::cout << " " << rank[i];
+		if (p.playedClub[i]) std::cout << " " << static_cast<Rank>(i);
 	}
 	out << std::endl << "Diamonds:";
 	for (int i = 0; i < 13; i++){
-		if (p.playedDiamond[i]) std::cout << " " << rank[i];
+		if (p.playedDiamond[i]) std::cout << " " << static_cast<Rank>(i);
 	}
 	out << std::endl << "Hearts:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedHeart[i]) std::cout << " " << rank[i];
+		if (p.playedHeart[i]) std::cout << " " << static_cast<Rank>(i);
 	}
 	out << std::endl << "Spades:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedSpade[i]) std::cout << " " << rank[i];
+		if (p.playedSpade[i]) std::cout << " " << static_cast<Rank>(i);
 	}
 
 	return out;

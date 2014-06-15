@@ -17,12 +17,10 @@ public:
 	void updateScores();
 	int getFirstPlayer();
 
-	void playerTurn();
+	void playerTurn(int);
 
 private:
-	void invitePlayers();
-
-	Player[4] players_;
+	Player players_[4];
 	Deck deck_;
 	Played played_;
 };

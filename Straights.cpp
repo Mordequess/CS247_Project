@@ -1,18 +1,24 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 
-#include "Deck.h"
 #include "Card.h"
-#include "Played.h"
-#include "Players.h"
 #include "Human.h"
 #include "Computer.h"
+#include "Straights.h"
 
-using namespace std;
 
 Straights::Straights (int seed){
 	deck_ = new Deck(seed);
-    invitePlayers();
+	players_ = {0};
+    for (int i = 0; i < 4; i++) {
+        std::cout << "Is player " << i << " a human(h) or a computer(c)?" << std::endl;
+        char type;
+        std::cin >> type;
+        assert (type == 'h' || type == 'c');
+        if (type == 'h') players[i] = new Human(i);
+        else players[i] = new Computer(i);
+    }
     nextRound();
 }
 
@@ -23,7 +29,7 @@ void Straights::nextRound(){
 	for (int i = 0; i < 4; i++) {
 		std::vector<Card*> hand;
 		for (int j = 0; j < 13; j++) {
-			hand.push_back(deck_[j+i*13]);
+			hand.push_back(deck_.getArray(j+i*13));
 		}
 		players_[i].setHand(hand);
 	}
@@ -66,7 +72,7 @@ void Straights::updateScores() {
 int Straights::getFirstPlayer(){
 	int first = 0;
 	//check for 7S
-	while (!players_[first].inHand(Card(3, 6))) {
+	while (!players_[first].inHand(Card(static_cast<Suit>(3), static_cast<Rank>(6)))) {
 		first++;
 	}
 	return first;
@@ -82,27 +88,26 @@ void Straights::playerTurn(int position){
 			players_[position].playTurn(first);
 			break;
 		}
-		catch () {
+		catch (std::string e) {
 			//invalid, new command
 		}
-		catch () {
+		catch (std::string e) {
 			//print deck, new command
 			std::cout << deck_;
 		}
-		catch () {
+		catch (std::string e) {
 			//ragequit
 			std::cout << "Player " << position << " ragequits. A computer will now take over." << std::endl;
 
-			std::vector<Card> hand = players_[position].getHand();
-			std::vector<Card> discard = players_[position].getDiscard();
+			std::vector<Card*> hand = players_[position].getHand();
+			std::vector<Card*> discard = players_[position].getDiscard();
 			int score = players_[position].getScore();
-			players_[position] = new Computer();
+			players_[position] = new Computer(position);
 			players_[position].setHand(hand);
 			players_[position].setDiscard(discard);
-			players_[position].incrementScore(score);
-			players_[position].playTurn();
+			players_[position].incrementScore();
 		}
-		catch () {
+		catch (...) {
 			//quit
 			throw("quit");
 		}
@@ -110,16 +115,4 @@ void Straights::playerTurn(int position){
 		//if looped, will not call human print function
 		first = false;
 	}//while
-}
-
-
-void Straights::invitePlayers () {
-	for (int i = 0; i < 4; i++) {
-        std::cout << "Is player " + i + " a human(h) or a computer(c)?" << std::endl;
-        char type;
-        std::cin >> type;
-        assert (type == 'h' || type == 'c');
-        if (type == h) players[i] = new Human(i);
-        else players[i] = new Computer(i);
-    }
 }

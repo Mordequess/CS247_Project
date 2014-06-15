@@ -1,24 +1,23 @@
-#include "player.h"
+#include "Player.h"
+#include <algorithm>
 
-Player::Player() {
+Player::Player(int number) {
 	score_ = 0;
-	hand_ = NULL;
-	discarded_ = NULL;
-	number = plnumber_;
+	plnumber_ = number;
 }
 
-void Player::setHand(std::vector<Card> playerhand) {
+void Player::setHand(std::vector<Card*> playerhand) {
 	hand_ = playerhand;
 }
 
 void Player::playCard(Card card) {
-	if(card.getSuit()) == "CLUB") {
+	if(card.getSuit() == 0 ) {
 		played_.playedClub[card.getRank()] = true;
-	} else if (card.getSuit() == "DIAMOND") {
+	} else if (card.getSuit() == 1) {
 		played_.playedDiamond[card.getRank()] = true;
-	} else if (card.getSuit() == "HEART") {
+	} else if (card.getSuit() == 2) { //
 		played_.playedHeart[card.getRank()] = true;
-	} else if (card.getSuit() == "SPADE") {
+	} else if (card.getSuit() == 3) { //SPades
 		played_.playedSpade[card.getRank()] = true;
 	} else {
 		throw "No card was marked as played";
@@ -32,46 +31,48 @@ int Player::getScore() {
 
 int Player::incrementScore () {
 	int scoreIncrement = 0;
-	for(int i = 0; i < discard_.size(0; i++)){
-		scoreIncrement += discard[i].getRank() + 1;
+	for(int i = 0; i < discarded_.size(); i++){
+		scoreIncrement += discarded_[i].getRank() + 1;
 	}
 	score_ += scoreIncrement; 
 	return scoreIncrement;
 }
 
-std::vector<Card> Player::getHand() {
+std::vector<Card*> Player::getHand() {
 	return hand_;
 }
 
-std::vector<Card> Player::getDiscard() {
-	return discard_;
+std::vector<Card*> Player::getDiscard() {
+	return discarded_;
 }
 
-std::vector<Card> Player::setDiscard(std::vector<Card> discard) {
-	discard_ = discard;
+void Player::setDiscard(std::vector<Card*> discard) {
+	discarded_ = discard;
 }
 
-std::vector<Card> Player::legalPlays(std::vector<Card> currHand, Played &p){
-	std::vector<Card> = legalCards;
+std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
+	std::vector<Card*> legalCards;
 	for (int i = 0; i < currHand.size(); i++){
-		if (isLegal(currHand[i], p)){
+		if (isLegal(currHand[i])) {
 			legalCards.push_back(currHand[i]);
 		}
 	}
+	return legalCards;
 }
 
-bool Player::inHand (Card &card) {
-	return (find(hand_.begin(), hand_.end(), card));
+bool Player::inHand (Card card) {
+
+	return (std::find(hand_.begin(), hand_.end(), card) != hand_.end());
 }
 
 void Player::discardCard(Card &card) {
-	discard_.push_back(card);
-	std::vector<Card>::iterator position = find(hand_.begin(), hand_.end(), card);
+	discarded_.push_back(card);
+	std::vector<Card*>::iterator position = find(hand_.begin(), hand_.end(), card);
     hand_.erase(position);
 }
 
 
-bool Player::isLegal(Card, Played) {
+bool Player::isLegal(Card) {
 	return true;
 }
 //play card needs to modify played_ and remove card from hand

@@ -10,15 +10,15 @@ Computer::Computer(int playernum) : Player(playernum) {
 void Computer::print() { }
 
 void Computer::playTurn(bool ignore) {
-	std::vector<Card> hand = getHand();
-	std::vector<Card> plays = legalPlays(hand);
+	std::vector<Card*> hand = getHand();
+	std::vector<Card*> plays = legalPlays(hand);
 	if (plays.size() > 0) {
-		std::cout << "Player " << plnumber_ << " plays " << plays[0] << "." << std::endl;
-		playCard(plays[0]);
+		std::cout << "Player " << plnumber_ << " plays " << *plays[0] << "." << std::endl;
+		playCard(*plays[0]);
     	hand.erase(hand.begin());
 	} else {
-		std::cout << "Player " << plnumber_ << " discards " << hand[0] << "." << std::endl;
-		discardCard(hand[0]);
+		std::cout << "Player " << plnumber_ << " discards " << *hand[0] << "." << std::endl;
+		discardCard(*hand[0]);
 	} 
 }
 
@@ -37,7 +37,7 @@ void Human::playerTurn() {
             else {
             	std::cout << "Player " << plnumber_ << " plays " << command.card << "." << std::endl;
             	playcard(command.card);
-            	std::vector<Card>::iterator position = find(hand_.begin(), hand_.end(), card);
+            	std::vector<Card*>::iterator position = find(hand_.begin(), hand_.end(), card);
     			hand_.erase(position);
             }
             break;
