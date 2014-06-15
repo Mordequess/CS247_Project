@@ -30,6 +30,16 @@ void Player::playCard(Card* card) {
 	} else {
 		throw "No card was marked as played";
 	}
+
+	std::vector<Card*>::iterator it;
+	int j = 0;
+	for (it = hand_.begin(); it < hand_.end(); it++) {
+		if (*card == *hand_[j]) {
+			break;
+		}
+		j++;
+	}
+    hand_.erase(it);
 }
 
 
@@ -82,6 +92,7 @@ void Player::discardCard(Card* card) {
 	std::vector<Card*>::iterator it;
 	discarded_.push_back(card);
 
+//*** make function later
 	int j = 0;
 	for (it = hand_.begin(); it < hand_.end(); it++) {
 		if (*card == *hand_[j]) {
@@ -89,8 +100,6 @@ void Player::discardCard(Card* card) {
 		}
 		j++;
 	}
-
-	//std::vector<Card*>::iterator position = find(hand_.begin(), hand_.end(), card);
     hand_.erase(it);
 }
 
