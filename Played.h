@@ -17,6 +17,6 @@ struct Played{
 
 
 
-std::ostream &operator<<(std::ostream &, const Played &);
+std::ostream &operator<<(std::ostream &, Played const &);
 
 #endif

@@ -5,7 +5,7 @@ Player::Player(int number, Played* played) {
 	hand_ = std::vector<Card*>();
 	discarded_ = std::vector<Card*>();
 	score_ = 0;
-	plnumber_ = number;
+	plnumber_ = number + 1;
 	played_ = played; 
 }
 

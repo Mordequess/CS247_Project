@@ -14,7 +14,7 @@ Straights::~Straights(){
 Straights::Straights (int seed){
 	deck_ = Deck(seed);
     for (int i = 0; i < 4; i++) {
-        std::cout << "Is player " << i << " a human(h) or a computer(c)?" << std::endl;
+        std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl;
         char type;
         std::cin >> type;
         assert (type == 'h' || type == 'c');
@@ -61,11 +61,11 @@ int Straights::getMinScore() {
 
 void Straights::updateScores() {
 	for (int i = 0; i < 4; i++){
-		std::cout << "Player " << i << "'s discards: ";
+		std::cout << "Player " << i + 1 << "'s discards: ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
 			std::cout << *players_[i]->getDiscarded()[j];
 		}
-		std::cout << std::endl << "Player " << i << "'s score: " << players_[i]->getScore();
+		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
 		std::cout << " + " << players_[i]->incrementScore();
 		std::cout << " = " << players_[i]->getScore() << std::endl;
 	}
@@ -98,7 +98,7 @@ void Straights::playerTurn(int position){
 		}
 		catch (std::string e) {
 			//ragequit
-			std::cout << "Player " << position << " ragequits. A computer will now take over." << std::endl;
+			std::cout << "Player " << position + 1 << " ragequits. A computer will now take over." << std::endl;
 
 			std::vector<Card*> hand = players_[position]->getHand();
 			std::vector<Card*> discard = players_[position]->getDiscarded();
