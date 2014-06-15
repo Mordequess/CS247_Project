@@ -3,13 +3,14 @@
 
 #include "Card.h"
 #include "Player.h"
+#include "Played.h"
 #include <iostream>
 #include <algorithm>
 
 class Human : public Player {
 public:
-	Human(int);
-	~Human();
+	Human(int, Played*);
+	//~Human();
 	void print();
 	void playTurn(bool);
 };

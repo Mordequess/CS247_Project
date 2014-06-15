@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <algorithm>
 
-Player::Player(int number) {
+Player::Player(int number) : hand_(std::vector<Card*>()), discarded_(std::vector<Card*>()) {
 	score_ = 0;
 	plnumber_ = number;
 }
@@ -10,15 +10,15 @@ void Player::setHand(std::vector<Card*> playerhand) {
 	hand_ = playerhand;
 }
 
-void Player::playCard(Card card) {
-	if(card.getSuit() == 0 ) {
-		played_.playedClub[card.getRank()] = true;
-	} else if (card.getSuit() == 1) {
-		played_.playedDiamond[card.getRank()] = true;
-	} else if (card.getSuit() == 2) { //
-		played_.playedHeart[card.getRank()] = true;
-	} else if (card.getSuit() == 3) { //SPades
-		played_.playedSpade[card.getRank()] = true;
+void Player::playCard(Card* card) {
+	if(card->getSuit() == 0 ) {
+		played_.playedClub[card->getRank()] = true;
+	} else if (card->getSuit() == 1) {
+		played_.playedDiamond[card->getRank()] = true;
+	} else if (card->getSuit() == 2) { //
+		played_.playedHeart[card->getRank()] = true;
+	} else if (card->getSuit() == 3) { //SPades
+		played_.playedSpade[card->getRank()] = true;
 	} else {
 		throw "No card was marked as played";
 	}
@@ -32,7 +32,7 @@ int Player::getScore() {
 int Player::incrementScore () {
 	int scoreIncrement = 0;
 	for(int i = 0; i < discarded_.size(); i++){
-		scoreIncrement += discarded_[i].getRank() + 1;
+		scoreIncrement += discarded_[i]->getRank() + 1;
 	}
 	score_ += scoreIncrement; 
 	return scoreIncrement;
@@ -60,19 +60,19 @@ std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 	return legalCards;
 }
 
-bool Player::inHand (Card card) {
+bool Player::inHand (Card* card) {
 
 	return (std::find(hand_.begin(), hand_.end(), card) != hand_.end());
 }
 
-void Player::discardCard(Card &card) {
+void Player::discardCard(Card* card) {
 	discarded_.push_back(card);
 	std::vector<Card*>::iterator position = find(hand_.begin(), hand_.end(), card);
     hand_.erase(position);
 }
 
 
-bool Player::isLegal(Card) {
+bool Player::isLegal(Card* bitch) {
 	return true;
 }
 //play card needs to modify played_ and remove card from hand

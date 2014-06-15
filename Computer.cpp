@@ -1,7 +1,7 @@
 #include "Computer.h"
 #include <vector>
 
-Computer::Computer(int playernum) : Player(playernum) {
+Computer::Computer(int playernum, Played* played) : Player(playernum, played) {
 }
 
 void Computer::playTurn(bool ignore) {

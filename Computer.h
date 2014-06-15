@@ -3,13 +3,13 @@
 
 #include "Card.h"
 #include "Player.h"
+#include "Played.h"
 
 
 class Computer : public Player {
 public:
-	Computer(int);
-	~Computer();
-	void print();
+	Computer(int, Played*);
+	//~Computer();
 	void playTurn(bool);
 private:
 

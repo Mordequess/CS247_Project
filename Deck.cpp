@@ -3,6 +3,11 @@
 #include "Card.h"
 #include "Deck.h"
 
+
+Deck::Deck() : seed_(0) {
+	newDeck();
+}
+
 Deck::Deck(int seed) : seed_(seed) {
 	newDeck();
 }

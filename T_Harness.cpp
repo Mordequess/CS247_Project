@@ -4,17 +4,16 @@
 using namespace std;
 
 int main() {
-    Straights game = new Straights(0); //*** retrieve input from std::string[args]?
-    int winner;
+    Straights game = Straights(0); //*** retrieve input from std::string[args]?
     bool end = false;
     while (!end) {
-        game.newRound();
+        game.nextRound();
         int whosTurn = game.getFirstPlayer();
         
         //play out every card till no more in hand 
         for (int i = 0; i < 13; i++) {
             try {
-                game.playerTurn( (whosTurn+j)%4 );
+                game.playerTurn( (whosTurn+i)%4 );
             }
             //check if quit command is called
             catch (std::string e) {
@@ -31,7 +30,7 @@ int main() {
      //check for ties
     int winScore = game.getMinScore();
     for (int i = 0; i < 4; i++) {
-        if (game.getScore(i) == winScore) std::cout << "Player " << winner << " wins!" << std::endl;
+        if (game.getScore(i) == winScore) std::cout << "Player " << i << " wins!" << std::endl;
     }
 }
 

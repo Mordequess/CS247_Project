@@ -6,7 +6,7 @@
 
 class Deck {
 public:
-	//Deck();
+	Deck();
 	Deck(int seed);
 	~Deck();
 

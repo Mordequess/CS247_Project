@@ -20,9 +20,9 @@ public:
 	void playerTurn(int);
 
 private:
-	Player players_[4];
+	Player* players_[4];
 	Deck deck_;
-	Played played_;
+	Played* played_;
 };
 
 #endif

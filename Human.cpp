@@ -3,10 +3,11 @@
 #include "Command.h"
 
 
-Human::Human(int playernum) : Player(playernum) { }
+Human::Human(int playernum, Played* played) : Player(playernum, played) {
+}
 
 void Human::print() {
-	std::cout << played_ << std::endl;
+	std::cout << *played_ << std::endl;
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
 	for (int i = 0; i < currHand.size() ; i++) {
@@ -15,7 +16,7 @@ void Human::print() {
 	std::cout << "\n";
 	std::cout << "Legal plays:";
 	for (int i = 0; i < currHand.size() ; i++) {
-		if (isLegal(*currHand[i])) {
+		if (isLegal(currHand[i])) {
 			std::cout << " " << *currHand[i];
 		}
 	}
@@ -32,14 +33,14 @@ void Human::playTurn(bool printinfo) {
     switch (command.type) {
         //play a card
         case PLAY: {
-            if (!(inHand(command.card)) || !(isLegal(command.card))) {
+            if (!(inHand(&command.card)) || !(isLegal(&command.card))) {
             	throw "This is not a legal play.";
             } 
             else {
             	std::vector<Card*> hand = getHand();
             	std::cout << "Player " << plnumber_ << " plays " << command.card << "." << std::endl;
-            	playCard(command.card);
-            	hand.erase(std::remove(hand.begin(), hand.end(), command.card), hand.end());
+            	playCard(&command.card);
+            	hand.erase(std::remove(hand.begin(), hand.end(), &command.card), hand.end());
                 //std::vector<Card*>::iterator position = find(hand.begin(), hand.end(), command.card);
     			//hand.erase(position); 
             }
@@ -52,7 +53,7 @@ void Human::playTurn(bool printinfo) {
             } 
             else {
             	std::cout << "Player " << plnumber_ << " discards " << command.card << "." << std::endl;
-            	discardCard(command.card);
+            	discardCard(&command.card);
             }
             break;
         }

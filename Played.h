@@ -13,10 +13,12 @@ struct Played{
 };
 
 Played::Played() {
-	/*playedDiamond = {false};
-	playedHeart = {false};
-	playedSpade = {false};
-	playedClub = {false}; */
+	for (int i = 0; i < 13; i++) {
+		playedDiamond[i] = false;
+		playedHeart[i] = false;
+		playedSpade[i] = false;
+		playedClub[i] = false;
+	}
 }
 
 std::ostream &operator<<(std::ostream &, const Played &);

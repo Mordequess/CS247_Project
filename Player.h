@@ -8,17 +8,16 @@
 
 class Player {
 public:
-	Player(int number);
-	virtual ~Player();
-	virtual void print();
+	Player(int number, Played* played);
+	//virtual ~Player();
 	virtual void playTurn(bool);
-	void playCard(Card);
-	void discardCard(Card &);
+	void playCard(Card*);
+	void discardCard(Card*);
 
 	int incrementScore();
 	int getScore();
-	bool inHand(Card);
-	bool isLegal(Card); 
+	bool inHand(Card*);
+	bool isLegal(Card*); 
 
 	std::vector<Card*> legalPlays(std::vector<Card*>);
 	std::vector<Card*> getDiscarded();
@@ -27,7 +26,7 @@ public:
 	void setHand(std::vector<Card*>);
 
 	// Move this later, reset function?
-	static Played played_;
+	Played* played_;
 
 protected:
 	int plnumber_; 
