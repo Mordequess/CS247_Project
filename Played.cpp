@@ -3,6 +3,7 @@
 
 
 Played::Played() {
+	std::cout << "played address " << &playedCards[0][0] << std::endl;
 }
 
 bool Played::isLegal(Card card) {
@@ -19,8 +20,10 @@ void Played::setCard(Card card) {
 
 void Played::resetBoard() {
 	//reset all boolean values
+	std::cout << &playedCards[0][0] << std::endl;
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 4; j++) {
+			std::cout << "test" << std::endl;
 			playedCards[j][i] = false;
 		}
 	}

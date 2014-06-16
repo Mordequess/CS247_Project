@@ -12,7 +12,8 @@ Straights::~Straights(){
 
 Straights::Straights (int seed){
 	//fill deck with values
-	deck_ = Deck(seed);
+	//deck_ = Deck(seed);
+	played_ = new Played();
 	//build player array
     for (int i = 0; i < 4; i++) {
         std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl << ">";
@@ -34,7 +35,7 @@ void Straights::nextRound(){
 			hand.push_back(deck_.getArray(j+i*13));
 		}
 		players_[i]->setHand(hand);
-	}
+	}	
 	//reset board
 	played_->resetBoard();
 	std::cout << "A new round begins. It’s player " << getFirstPlayer()+1 << "’s turn to play." << std::endl;

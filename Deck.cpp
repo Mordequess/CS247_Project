@@ -1,18 +1,21 @@
 #include <sstream>
-#include <cstdlib>
 #include <stdlib.h>
+#include <iostream>
 #include "Deck.h"
 
-Deck::Deck() : seed_(0) {
+// Deck::Deck() : seed_(0) {
+Deck::Deck(){
+	std::cout << "deck address " << &cards_ << std::endl;
+
 	newDeck();
 }
 
 Deck::~Deck(){
 }
 
-Deck::Deck(int seed) : seed_(seed) {
-	newDeck();
-}
+// Deck::Deck(int seed) : seed_(seed) {
+// 	newDeck();
+// }
 
 Card* Deck::getArray(int index) const{
 	return cards_[index];

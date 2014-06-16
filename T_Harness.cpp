@@ -2,14 +2,14 @@
 #include "Straights.h"
 #include <stdlib.h>
 
-int main() {
-    srand48(4);
+// int main() {
+//     srand48(4);
 
-//int main(int argc, char* argv[]) {
-    //if (argc >= 2) {
-    //    srand48(atoi(argv[1]));
-    // }
-    // else srand48(0);
+int main(int argc, char* argv[]) {
+    if (argc >= 2) {
+       srand48(atoi(argv[1]));
+    }
+    else srand48(0);
 
     Straights game = Straights(0);
     bool end = false;
