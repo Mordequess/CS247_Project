@@ -11,8 +11,8 @@ Straights::~Straights(){
 	//Implement later
 }
 
-Straights::Straights (){
-	//deck_ = Deck();
+Straights::Straights (int seed){
+	deck_ = Deck(seed);
     for (int i = 0; i < 4; i++) {
         std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl;
         char type;
@@ -21,7 +21,7 @@ Straights::Straights (){
         if (type == 'h') players_[i] = new Human(i, played_);
         else players_[i] = new Computer(i, played_);
     }
-        std::cout << "DONE INVITING PLAYERS";
+    //nextRound();  REMOVED BECAUSE IT IS CALLED WHEN WE RETURN
 }
 
 void Straights::nextRound(){
@@ -62,7 +62,7 @@ int Straights::getMinScore() {
 void Straights::updateScores() {
 	for (int i = 0; i < 4; i++){
 		std::cout << "Player " << i + 1 << "'s discards:";
-		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
+		if (players_[i]->getDiscarded().size() == 0) cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
 			std::cout << " " << *players_[i]->getDiscarded()[j];
 		}
@@ -92,13 +92,12 @@ void Straights::playerTurn(int position){
 		}
 		catch (std::string e) {
 			//invalid, new command
-			std::cout << e << std::endl;
 		}
-		catch (deckError e) {
+		catch (std::string e) {
 			//print deck, new command
 			std::cout << deck_;
 		}
-		catch (rquitError e) {
+		catch (std::string e) {
 			//ragequit
 			std::cout << "Player " << position + 1 << " ragequits. A computer will now take over." << std::endl;
 
@@ -110,7 +109,7 @@ void Straights::playerTurn(int position){
 			players_[position]->setDiscard(discard);
 			players_[position]->incrementScore();
 		}
-		catch (quitError e) {
+		catch (...) {
 			//quit
 			throw("quit");
 		}

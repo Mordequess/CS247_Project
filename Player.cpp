@@ -1,9 +1,12 @@
 #include "Player.h"
 //#include <algorithm>
 
-Player::Player(int number, Played* played) : played_(played), plnumber_(number+1), score_(0) {
+Player::Player(int number, Played* played) {
 	hand_ = std::vector<Card*>();
 	discarded_ = std::vector<Card*>();
+	score_ = 0;
+	plnumber_ = number + 1;
+	played_ = played; 
 }
 
 Player::~Player(){
@@ -28,6 +31,7 @@ void Player::playCard(Card* card) {
 	}
     hand_.erase(it);
 }
+
 
 int Player::getScore() {
 	return score_;

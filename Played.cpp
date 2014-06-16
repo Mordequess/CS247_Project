@@ -17,7 +17,7 @@ bool Played::isLegal(Card card) {
 
 void Played::setCard(Card card) {
 	playedCards[card.getSuit()][card.getRank	()] = true;
-//	std::cout << "This card was set to true " << card << std::endl;
+	std::cout << "This card was set to true " << card << std::endl;
 }
 
 void Played::resetBoard(){

@@ -5,11 +5,15 @@
 #include "Deck.h"
 
 
-Deck::Deck() {
+Deck::Deck() : seed_(0) {
 	newDeck();
 }
 
 Deck::~Deck(){}
+
+Deck::Deck(int seed) : seed_(seed) {
+	newDeck();
+}
 
 Card* Deck::getArray(int index) const{
 	return cards_[index];

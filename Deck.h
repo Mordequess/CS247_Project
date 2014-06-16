@@ -7,6 +7,7 @@
 class Deck {
 public:
 	Deck();
+	Deck(int seed);
 	~Deck();
 
 	Card* getArray(int) const;
@@ -17,6 +18,7 @@ public:
 private:
 	void newDeck();
 	Card* cards_[52];
+	int seed_;
 };
 
 std::ostream &operator<<(std::ostream &, const Deck &);

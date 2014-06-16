@@ -7,7 +7,7 @@
 
 class Straights {
 public:
-	Straights();
+	Straights(int seed);
 	~Straights();
 
 	void nextRound();
