@@ -69,6 +69,7 @@ void Straights::updateScores() {
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
 		std::cout << " + " << players_[i]->incrementScore();
 		std::cout << " = " << players_[i]->getScore() << std::endl;
+		players_[i]->setDiscard(std::vector<Card*>());
 	}
 }
 

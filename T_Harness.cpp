@@ -13,10 +13,16 @@ using namespace std;
 */
    // int seedfdsfsdalkjfhsdakjfsdahfsdkjhflkjsdaf;
 
-
-//int main(int argc, char* argv[]) {
 int main() {
-    //srand48(seed);
+//int main(int argc, char* argv[]) {
+ //   srand48(argc > 1 ? *argv[1] : 0);
+// int main() {
+   // std::cout << "FUCKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK" << std::endl;
+    //if (argc >= 2) {
+      //  srand48(atoi(argv[1]));
+    //}
+    //else srand48(0);
+    srand48(4);
     Straights game = Straights(0); //*** retrieve input from std::string[args]?
     bool end = false;
     while (!end) {
@@ -42,6 +48,8 @@ int main() {
     for (int i = 0; i < 4; i++) {
         if (game.getScore(i) == winScore) std::cout << "Player " << i + 1 << " wins!" << std::endl;
     }
+
+    return 0;
 }
 
 /*

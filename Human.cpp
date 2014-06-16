@@ -6,7 +6,7 @@ Human::Human(int playernum, Played* played) : Player(playernum, played) {
 }
 
 void Human::print() {
-	std::cout << played_ << std::endl; // TODO 
+	std::cout << *played_ << std::endl; // TODO 
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
 	for (int i = 0; i < currHand.size() ; i++) {

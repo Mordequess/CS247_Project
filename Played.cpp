@@ -19,7 +19,7 @@ void Played::setCard(Card card) {
 	std::cout << "This card was set to true " << card << std::endl;
 }
 
-void Played::resetBoard(){
+void Played::resetBoard() {
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 4; j++) {
 			playedCards[j][i] = false;
@@ -29,7 +29,7 @@ void Played::resetBoard(){
 
 
 
-std::ostream &operator<<(std::ostream &out, Played &p){
+std::ostream &operator<<(std::ostream &out, const Played &p){
 	out << "Cards on the table:" << std::endl << "Clubs:";
 	for (int i = 0; i < 13; i++) {
 		if (p.playedCards[0][i]) out << " " << static_cast<Rank>(i);

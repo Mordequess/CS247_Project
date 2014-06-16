@@ -82,7 +82,6 @@ void Player::discardCard(Card* card) {
 	std::vector<Card*>::iterator it;
 	discarded_.push_back(card);
 
-//*** make function later
 	int j = 0;
 	for (it = hand_.begin(); it < hand_.end(); it++) {
 		if (*card == *hand_[j]) {
