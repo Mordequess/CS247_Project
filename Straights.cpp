@@ -62,7 +62,7 @@ int Straights::getMinScore() {
 void Straights::updateScores() {
 	for (int i = 0; i < 4; i++){
 		std::cout << "Player " << i + 1 << "'s discards:";
-		if (players_[i]->getDiscarded().size() == 0) cout << " ";
+		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
 			std::cout << " " << *players_[i]->getDiscarded()[j];
 		}

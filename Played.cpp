@@ -1,6 +1,5 @@
 #include "Played.h"
 #include <iostream>
-#include "Card.h"
 
 
 Played::Played() {
@@ -16,7 +15,7 @@ bool Played::isLegal(Card card) {
 }
 
 void Played::setCard(Card card) {
-	playedCards[card.getSuit()][card.getRank	()] = true;
+	playedCards[card.getSuit()][card.getRank()] = true;
 	std::cout << "This card was set to true " << card << std::endl;
 }
 

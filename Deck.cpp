@@ -1,7 +1,6 @@
 #include <sstream>
 #include <cstdlib>
 #include <stdlib.h>
-#include "Card.h"
 #include "Deck.h"
 
 

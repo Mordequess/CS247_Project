@@ -1,9 +1,22 @@
 #include <iostream>
 #include "Straights.h"
+#include <stdlib.h>
 
 using namespace std;
 
+//int main(int argc, char* argv[]) {
+    //int test = 0;
+/*    if (argc >= 2) {
+        srand48(atoi(argv[1]));
+    }
+    else srand48(0);
+*/
+   // int seedfdsfsdalkjfhsdakjfsdahfsdkjhflkjsdaf;
+
+
+//int main(int argc, char* argv[]) {
 int main() {
+    //srand48(seed);
     Straights game = Straights(0); //*** retrieve input from std::string[args]?
     bool end = false;
     while (!end) {
