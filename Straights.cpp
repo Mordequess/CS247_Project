@@ -92,12 +92,13 @@ void Straights::playerTurn(int position){
 		}
 		catch (std::string e) {
 			//invalid, new command
+			std::cout << e << std::endl; 
 		}
-		catch (std::string e) {
+		catch (deckError e) {
 			//print deck, new command
 			std::cout << deck_;
 		}
-		catch (std::string e) {
+		catch (rquitError e) {
 			//ragequit
 			std::cout << "Player " << position + 1 << " ragequits. A computer will now take over." << std::endl;
 
@@ -109,7 +110,7 @@ void Straights::playerTurn(int position){
 			players_[position]->setDiscard(discard);
 			players_[position]->incrementScore();
 		}
-		catch (...) {
+		catch (quitError e) {
 			//quit
 			throw("quit");
 		}

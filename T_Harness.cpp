@@ -29,17 +29,14 @@ int main() {
                 game.playerTurn( (whosTurn+i)%4 );
             }
             //check if quit command is called
-            catch (std::string e) {
-                end = true;
-                break;
+            catch (...) {
+                exit(0);
             }
         }
-        //check if quit command is called
-        if (end) break;
-
         game.updateScores();
         end = game.checkEnd();
     }
+
      //check for ties
     int winScore = game.getMinScore();
     for (int i = 0; i < 4; i++) {

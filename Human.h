@@ -6,6 +6,25 @@
 #include "Played.h"
 #include <iostream>
 #include <algorithm>
+#include <stdexcept>
+
+
+
+class deckError : public std::runtime_error {
+public:
+	deckError(const std::string& e) : std::runtime_error(e) {}
+};
+
+class rquitError : public std::runtime_error {
+public:
+	rquitError(const std::string& e) : std::runtime_error(e) {}
+};
+
+class quitError : public std::runtime_error {
+public:
+	quitError(const std::string& e) : std::runtime_error(e) {}
+};
+
 
 class Human : public Player {
 public:

@@ -48,7 +48,7 @@ void Deck::newDeck(){
 std::ostream &operator<<(std::ostream& out, const Deck& d){
 	for (int i = 0; i < 4; i++){
 		for (int j = 0; j < 13; j++) {
-			out << d.getArray(j+i*13) << " ";
+			out << *d.getArray(j+i*13) << " ";
 		}
 		out << std::endl;
 	}
