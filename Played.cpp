@@ -3,7 +3,6 @@
 
 
 Played::Played() {
-	//resetBoard();
 }
 
 bool Played::isLegal(Card card) {
@@ -16,10 +15,10 @@ bool Played::isLegal(Card card) {
 
 void Played::setCard(Card card) {
 	playedCards[card.getSuit()][card.getRank()] = true;
-	std::cout << "This card was set to true " << card << std::endl;
 }
 
 void Played::resetBoard() {
+	//reset all boolean values
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 4; j++) {
 			playedCards[j][i] = false;
@@ -27,9 +26,8 @@ void Played::resetBoard() {
 	}
 }
 
-
-
 std::ostream &operator<<(std::ostream &out, const Played &p){
+	//output the played cards with correct formatting
 	out << "Cards on the table:" << std::endl << "Clubs:";
 	for (int i = 0; i < 13; i++) {
 		if (p.playedCards[0][i]) out << " " << static_cast<Rank>(i);

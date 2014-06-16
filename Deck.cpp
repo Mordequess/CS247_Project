@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include "Deck.h"
 
-
 Deck::Deck() : seed_(0) {
 	newDeck();
 }
 
-Deck::~Deck(){}
+Deck::~Deck(){
+}
 
 Deck::Deck(int seed) : seed_(seed) {
 	newDeck();
@@ -23,11 +23,11 @@ void Deck::setArray(int index, Card* newCard){
 }
 
 
-//shuffle deck using seed (default 0)
+//shuffle deck using srand seed (default 0)
 void Deck::shuffle(){
 	int n = 52;
 	while ( n > 1 ) {
-		int k = (int) (lrand48() % n); //seed_
+		int k = (int) (lrand48() % n);
 		--n;
 		Card *c = cards_[n];
 		cards_[n] = cards_[k];

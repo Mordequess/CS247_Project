@@ -2,28 +2,16 @@
 #include "Straights.h"
 #include <stdlib.h>
 
-using namespace std;
-
-//int main(int argc, char* argv[]) {
-    //int test = 0;
-/*    if (argc >= 2) {
-        srand48(atoi(argv[1]));
-    }
-    else srand48(0);
-*/
-   // int seedfdsfsdalkjfhsdakjfsdahfsdkjhflkjsdaf;
-
 int main() {
-//int main(int argc, char* argv[]) {
- //   srand48(argc > 1 ? *argv[1] : 0);
-// int main() {
-   // std::cout << "FUCKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK" << std::endl;
-    //if (argc >= 2) {
-      //  srand48(atoi(argv[1]));
-    //}
-    //else srand48(0);
     srand48(4);
-    Straights game = Straights(0); //*** retrieve input from std::string[args]?
+
+//int main(int argc, char* argv[]) {
+    //if (argc >= 2) {
+    //    srand48(atoi(argv[1]));
+    // }
+    // else srand48(0);
+
+    Straights game = Straights(0);
     bool end = false;
     while (!end) {
         game.nextRound();

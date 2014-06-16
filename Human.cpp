@@ -23,10 +23,12 @@ void Human::print() {
 }
 
 void Human::playTurn(bool printinfo) {
-	if (printinfo) {
+	//print player info only if first playerTurn call
+    if (printinfo) {
 		print();
 	}
     Command command;
+    std::cout << ">"; //*** make sure this prints
     std::cin >> command;
     
     switch (command.type) {
@@ -40,8 +42,6 @@ void Human::playTurn(bool printinfo) {
             	std::cout << "Player " << plnumber_ << " plays " << command.card << "." << std::endl;
             	playCard(&command.card);
             	hand.erase(std::remove(hand.begin(), hand.end(), &command.card), hand.end());
-                //std::vector<Card*>::iterator position = find(hand.begin(), hand.end(), command.card);
-    			//hand.erase(position); 
             }
             break;
         }

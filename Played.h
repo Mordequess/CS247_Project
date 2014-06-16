@@ -13,10 +13,6 @@ struct Played{
 	bool playedCards[4][13];
 };
 
-
-
-
-
-std::ostream &operator<<(std::ostream &, Played const &);
+std::ostream &operator<<(std::ostream &, const Played &);
 
 #endif

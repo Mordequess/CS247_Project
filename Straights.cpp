@@ -8,20 +8,20 @@
 #include "Straights.h"
 
 Straights::~Straights(){
-	//Implement later
 }
 
 Straights::Straights (int seed){
+	//fill deck with values
 	deck_ = Deck(seed);
+	//build player array
     for (int i = 0; i < 4; i++) {
-        std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl;
+        std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl << ">";
         char type;
         std::cin >> type;
         assert (type == 'h' || type == 'c');
         if (type == 'h') players_[i] = new Human(i, played_);
         else players_[i] = new Computer(i, played_);
     }
-    //nextRound();  REMOVED BECAUSE IT IS CALLED WHEN WE RETURN
 }
 
 void Straights::nextRound(){
@@ -41,6 +41,7 @@ void Straights::nextRound(){
 }
 
 bool Straights::checkEnd() {
+	//check if any player past score limit
 	for (int i = 0; i < 4; i++) {
 		if (players_[i]->getScore() >= 80 ) return true;
 	}
@@ -52,6 +53,7 @@ int Straights::getScore(int position) {
 }
 
 int Straights::getMinScore() {
+	//get lowest score of all players
 	int min = players_[0]->getScore();
 	for (int i = 1; i < 4; i++){
 		if (players_[i]->getScore() < min) min = players_[i]->getScore();
@@ -60,7 +62,9 @@ int Straights::getMinScore() {
 }
 
 void Straights::updateScores() {
+	//increment scores at end of round
 	for (int i = 0; i < 4; i++){
+		//*** make a computer constructor that takes in a human?
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
@@ -69,11 +73,13 @@ void Straights::updateScores() {
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
 		std::cout << " + " << players_[i]->incrementScore();
 		std::cout << " = " << players_[i]->getScore() << std::endl;
+		//clear hand
 		players_[i]->setDiscard(std::vector<Card*>());
 	}
 }
 
 int Straights::getFirstPlayer(){
+	//check each player's hand for 7S
 	int first = 0;
 	while (!players_[first]->inHand(new Card(static_cast<Suit>(3), static_cast<Rank>(6))) ) {
 		first++;
