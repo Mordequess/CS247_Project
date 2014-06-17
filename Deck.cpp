@@ -7,7 +7,7 @@
 Deck::Deck(){
 	for (int j = 0; j < NUM_SUITS; j++) {
 		for (int i = 0; i < NUM_RANKS; i++) {
-			cards_[i + j*13] = (new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
+			cards_[i + j*NUM_RANKS] = (new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
 		}
 	}
 }

@@ -14,7 +14,7 @@ Straights::Straights (){
 	//fill deck with values
 	played_ = new Played();
 	//build player array
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUM_PLAYERS; i++) {
         std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl << ">";
         char type;
         std::cin >> type;
@@ -28,7 +28,7 @@ void Straights::nextRound(){
 	//shuffle deck
 	deck_.shuffle();
 	//fill hands (should be empty after each round)
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < NUM_PLAYERS; i++) {
 		std::vector<Card*> hand;
 		for (int j = 0; j < 13; j++) {
 			hand.push_back(deck_.getArray(j+i*13));
@@ -42,7 +42,7 @@ void Straights::nextRound(){
 
 bool Straights::checkEnd() {
 	//check if any player past score limit
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < NUM_PLAYERS; i++) {
 		if (players_[i]->getScore() >= 80 ) return true;
 	}
 	return false;
@@ -55,7 +55,7 @@ int Straights::getScore(int position) {
 int Straights::getMinScore() {
 	//get lowest score of all players
 	int min = players_[0]->getScore();
-	for (int i = 1; i < 4; i++){
+	for (int i = 1; i < NUM_PLAYERS; i++){
 		if (players_[i]->getScore() < min) min = players_[i]->getScore();
 	}
 	return min;
@@ -63,7 +63,7 @@ int Straights::getMinScore() {
 
 void Straights::updateScores() {
 	//increment scores at end of round
-	for (int i = 0; i < 4; i++){
+	for (int i = 0; i < NUM_PLAYERS; i++){
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {

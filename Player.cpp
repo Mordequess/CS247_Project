@@ -7,7 +7,7 @@ Player::Player(int number, Played* played) {
 	hand_ = std::vector<Card*>();
 	discarded_ = std::vector<Card*>();
 	score_ = 0;
-	plnumber_ = number + 1;
+	playernum_ = number + 1;
 	played_ = played; 
 }
 
@@ -96,7 +96,7 @@ int Player::getScore() {
 }
 
 // Increment the player score, return amount that score was incremented
-int Player::incrementScore () {
+int Player::incrementScore() {
 	int scoreIncrement = 0;
 	for(int i = 0; i < discarded_.size(); i++){
 		scoreIncrement += discarded_[i]->getRank() + 1;
@@ -105,3 +105,10 @@ int Player::incrementScore () {
 	return scoreIncrement;
 } 
 
+int Player::getPlayerNum() {
+	return playernum_;
+}
+
+Played* Player::getPlayed() {
+	return played_;
+}

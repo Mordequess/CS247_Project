@@ -21,8 +21,8 @@ void Played::setCard(Card card) {
 
 //Reset all boolean values to false
 void Played::resetBoard() {
-	for (int i = 0; i < 13; i++) {
-		for (int j = 0; j < 4; j++) {
+	for (int i = 0; i < NUM_RANKS; i++) {
+		for (int j = 0; j < NUM_SUITS; j++) {
 			playedCards[j][i] = false;
 		}
 	}
@@ -33,19 +33,19 @@ std::ostream &operator<<(std::ostream &out, const Played &p){
 		"7", "8", "9", "10", "J", "Q", "K"};
 	//output the played cards with correct formatting
 	out << "Cards on the table:" << std::endl << "Clubs:";
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i < NUM_RANKS; i++) {
 		if (p.playedCards[0][i]) out << " " << ranks[i];
 	}
 	out << std::endl << "Diamonds:";
-	for (int i = 0; i < 13; i++){
+	for (int i = 0; i < NUM_RANKS; i++){
 		if (p.playedCards[1][i]) out << " " << ranks[i];
 	}
 	out << std::endl << "Hearts:";
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i < NUM_RANKS; i++) {
 		if (p.playedCards[2][i]) out << " " << ranks[i];
 	}
 	out << std::endl << "Spades:";
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i < NUM_RANKS; i++) {
 		if (p.playedCards[3][i]) out << " " << ranks[i];
 	}
 

@@ -8,7 +8,7 @@ Human::Human(int playernum, Played* played) : Player(playernum, played) { }
 
 // Print played cards, hand and legal cards
 void Human::print() {
-	std::cout << *played_ << std::endl; 
+	std::cout << *getPlayed() << std::endl; 
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
 	for (int i = 0; i < currHand.size() ; i++) {
@@ -17,7 +17,7 @@ void Human::print() {
 	std::cout << "\n";
 	std::cout << "Legal plays:";
 	for (int i = 0; i < currHand.size() ; i++) {
-		if (played_->isLegal(*currHand[i])) {
+		if (getPlayed()->isLegal(*currHand[i])) {
 			std::cout << " " << *currHand[i];
 		}
 	}
@@ -38,12 +38,12 @@ void Human::playTurn(bool printinfo) {
     // Execute command type
     switch (command.type) {
         case PLAY: {
-            if (!(inHand(&command.card)) || !(played_->isLegal(command.card))) {
+            if (!(inHand(&command.card)) || !(getPlayed()->isLegal(command.card))) {
             	throw "This is not a legal play.";
             } 
             else {
             	std::vector<Card*> hand = getHand();
-            	std::cout << "Player " << plnumber_ << " plays " << command.card << "." << std::endl;
+            	std::cout << "Player " << getPlayerNum() << " plays " << command.card << "." << std::endl;
             	playCard(&command.card);
             	//hand.erase(std::remove(hand.begin(), hand.end(), &command.card), hand.end());
             }
@@ -54,7 +54,7 @@ void Human::playTurn(bool printinfo) {
             	throw "You have a legal play. You may not discard."; 
             } 
             else {
-            	std::cout << "Player " << plnumber_ << " discards " << command.card << "." << std::endl;
+            	std::cout << "Player " << getPlayerNum() << " discards " << command.card << "." << std::endl;
             	discardCard(&command.card);
             }
             break;

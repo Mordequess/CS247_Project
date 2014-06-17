@@ -18,9 +18,9 @@ int main(int argc, char* argv[]) {
         int whosTurn = game.getFirstPlayer();
         
         //play out every card till no more in hand 
-        for (int i = 0; i < 52; i++) {
+        for (int i = 0; i < NUM_CARDS; i++) {
             try {
-                game.playerTurn( (whosTurn+i)%4 );
+                game.playerTurn( (whosTurn+i) % NUM_PLAYERS );
             }
             //check if quit command is called
             catch (char const*) {
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     }
 
     int winScore = game.getMinScore();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUM_PLAYERS; i++) {
         if (game.getScore(i) == winScore) 
             std::cout << "Player " << i + 1 << " wins!" << std::endl;
     }
