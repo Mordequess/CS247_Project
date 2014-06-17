@@ -11,8 +11,9 @@ Player::Player(int number, Played* played) {
 	played_ = played; 
 }
 
-// Player Destructor TODO Make virtual
-Player::~Player(){ }
+Player::~Player(){ 
+	delete played_;
+}
 
 // Play a card, erase it from hand
 void Player::playCard(Card* card) {

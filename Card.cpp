@@ -2,7 +2,6 @@
 #include <string>
 #include <cassert>
 
-using namespace std;
 
 Card::Card(Suit s, Rank r){
 	suit_ = s;
@@ -21,7 +20,7 @@ bool operator==(const Card &a, const Card &b){
 	return a.getSuit() == b.getSuit() && a.getRank() == b.getRank();
 }
 
-ostream &operator<<(ostream &out, const Card &c){
+std::ostream &operator<<(std::ostream &out, const Card &c){
 	std::string suits[SUIT_COUNT] = {"C", "D", "H", "S"};
 	std::string ranks[RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
 		"7", "8", "9", "10", "J", "Q", "K"};
@@ -31,7 +30,7 @@ ostream &operator<<(ostream &out, const Card &c){
 	return out;
 }
 
-istream &operator>>(istream &in, Card &c){
+std::istream &operator>>(std::istream &in, Card &c){
 	std::string suits = "CDHS", ranks = "A234567891JQK";
 	
 	std::string str;
