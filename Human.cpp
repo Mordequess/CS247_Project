@@ -64,7 +64,8 @@ void Human::playTurn(bool printinfo) {
             break;
         }
         case QUIT: {
-            throw (quitError("quit"));          // Throw to test harness to exit
+            //throw (quitError("quit"));          // Throw to test harness to exit
+            exit(0);
             break;
         }
         case RAGEQUIT: {

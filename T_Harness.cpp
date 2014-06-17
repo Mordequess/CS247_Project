@@ -19,13 +19,7 @@ int main(int argc, char* argv[]) {
         
         //play out every card till no more in hand 
         for (int i = 0; i < NUM_CARDS; i++) {
-            try {
-                game.playerTurn( (whosTurn+i) % NUM_PLAYERS );
-            }
-            //check if quit command is called
-            catch (char const*) {
-                exit(0);
-            }
+            game.playerTurn( (whosTurn+i) % NUM_PLAYERS );
         }
         game.updateScores();
         end = game.checkEnd();

@@ -119,10 +119,11 @@ void Straights::playerTurn(int position){
 			players_[position]->setDiscard(discard);
 			players_[position]->incrementScore();
 		}
+		/*
 		catch (quitError e) {
 			//quit
 			throw("quit");
-		}
+		}*/
 
 		//if looped, will not call human print function
 		first = false;
