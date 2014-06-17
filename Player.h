@@ -27,18 +27,17 @@ public:
 	int getScore();										// Accessor for player's score
 	int incrementScore(); 								// Mutator - Increments player score, returns amount it was incremented
 
-	// TODO move to private
-	Played* played_;
-
+	
 // TODO make functions protected
 protected:
 	int plnumber_; 										// playernumber 1-4
-
+	// TODO move to private
+	Played* played_;
 private:
+
 	std::vector<Card*> hand_;							// Player hand
 	std::vector<Card*> discarded_;						// Discarded cards, reset each round
 	int score_;											// Player score
-	
 };		
 
 #endif

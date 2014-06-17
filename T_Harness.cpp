@@ -27,13 +27,8 @@ int main(int argc, char* argv[]) {
                 exit(0);
             }
         }
-        //std::cout << "done round" << std::endl;
         game.updateScores();
-        //std::cout << "scores updates" << std::endl;
-
         end = game.checkEnd();
-        //std::cout << "end checked" << std::endl;
-
     }
 
     int winScore = game.getMinScore();
