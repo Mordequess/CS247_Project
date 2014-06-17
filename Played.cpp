@@ -2,11 +2,13 @@
 #include <iostream>
 
 
-Played::Played() {
-}
+Played::Played() { }
+
+
 
 bool Played::isLegal(Card card) {
 	//7, A, K
+	if (!(card.getRank() == 6 && card.getSuit() == 3) && !playedCards[3][6]) return false;
 	if (card.getRank() == 6) return true;
 	if (card.getRank() == 0) return playedCards[card.getSuit()][1];
 	if (card.getRank() == 12) return playedCards[card.getSuit()][11];
@@ -17,8 +19,8 @@ void Played::setCard(Card card) {
 	playedCards[card.getSuit()][card.getRank()] = true;
 }
 
+//Reset all boolean values to false
 void Played::resetBoard() {
-	//reset all boolean values
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 4; j++) {
 			playedCards[j][i] = false;

@@ -18,7 +18,7 @@ void Human::print() {
 	std::cout << "\n";
 	std::cout << "Legal plays:";
 	for (int i = 0; i < currHand.size() ; i++) {
-		if (isLegal(currHand[i])) {
+		if (played_->isLegal(*currHand[i])) {
 			std::cout << " " << *currHand[i];
 		}
 	}
@@ -39,7 +39,7 @@ void Human::playTurn(bool printinfo) {
     // Execute command type
     switch (command.type) {
         case PLAY: {
-            if (!(inHand(&command.card)) || !(isLegal(&command.card))) {
+            if (!(inHand(&command.card)) || !(played_->isLegal(command.card))) {
             	throw "This is not a legal play.";
             } 
             else {

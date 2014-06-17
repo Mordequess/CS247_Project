@@ -14,10 +14,6 @@ Player::Player(int number, Played* played) {
 // Player Destructor TODO Make virtual
 Player::~Player(){ }
 
-//*** make virtual TODO
-void Player::playTurn(bool ignore){ }
-
-
 // Play a card, erase it from hand
 void Player::playCard(Card* card) {
 	played_->setCard(*card);
@@ -80,7 +76,7 @@ bool Player::isLegal(Card* card) {
 std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 	std::vector<Card*> legalCards;
 	for (int i = 0; i < currHand.size(); i++){
-		if (isLegal(currHand[i])) {
+		if (played_->isLegal(*currHand[i])) {
 			legalCards.push_back(currHand[i]);
 		}
 	}
@@ -112,16 +108,5 @@ int Player::incrementScore () {
 	}
 	score_ += scoreIncrement; 
 	return scoreIncrement;
-}
-
-
-
-
-
-
-
-
-
-
-
+} //SEGFAULT ON HUMAN SCORE
 

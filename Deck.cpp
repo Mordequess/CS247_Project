@@ -3,18 +3,17 @@
 #include <iostream>
 #include "Deck.h"
 
-
-// Default constructor calls newDeck()
+// Default constructor
 Deck::Deck(){
-	for (int j = 0; j < 4; j++) {
-		for (int i = 0; i < 13; i++) {
+	for (int j = 0; j < NUM_SUITS; j++) {
+		for (int i = 0; i < NUM_RANKS; i++) {
 			cards_[i + j*13] = (new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
 		}
 	}
 }
 
 Deck::~Deck(){
-	for (int i = 0; i < cards_.size(); i_++) {
+	for (int i = 0; i < NUM_CARDS; i++) {
 		delete cards_[i];
 	}
 }
@@ -31,7 +30,7 @@ void Deck::setArray(int index, Card* newCard){
 
 //shuffle deck using srand seed (default 0)
 void Deck::shuffle(){
-	int n = 52;
+	int n = NUM_CARDS;
 	while ( n > 1 ) {
 		int k = (int) (lrand48() % n);
 		--n;
@@ -43,9 +42,9 @@ void Deck::shuffle(){
 
 //prints deck in current order
 std::ostream &operator<<(std::ostream& out, const Deck& d){
-	for (int i = 0; i < 4; i++){
-		for (int j = 0; j < 13; j++) {
-			out << *d.getArray(j+i*13) << " ";
+	for (int i = 0; i < NUM_SUITS; i++){
+		for (int j = 0; j < NUM_RANKS; j++) {
+			out << *d.getArray(j+i*NUM_RANKS) << " ";
 		}
 		out << std::endl;
 	}

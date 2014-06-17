@@ -7,8 +7,10 @@ int main(int argc, char* argv[]) {
     if (argc >= 2) {
        srand48(atoi(argv[1]));
     }
-    else srand48(0);
-
+    else { 
+        srand48(0);
+    }
+    
     Straights game = Straights();
     bool end = false;
     while (!end) {
