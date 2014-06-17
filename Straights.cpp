@@ -8,6 +8,7 @@
 #include "Straights.h"
 
 Straights::~Straights(){
+	delete played_;
 }
 
 Straights::Straights (){
@@ -67,7 +68,6 @@ void Straights::updateScores() {
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
-			//std::cout << "atLeast " << j << " " << players_[i]->getDiscarded().size() << std::endl;
 			std::cout << " " << *(players_[i]->getDiscarded()[j]);//
 		}
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
@@ -107,22 +107,11 @@ void Straights::playerTurn(int position){
 		}
 		catch (rquitError e) {
 			//ragequit
-			//*** make a computer constructor that takes in a human?
-
 			std::cout << "Player " << position + 1 << " ragequits. A computer will now take over." << std::endl;
-
-			std::vector<Card*> hand = players_[position]->getHand();
-			std::vector<Card*> discard = players_[position]->getDiscarded();
-			players_[position] = new Computer(position, played_);
-			players_[position]->setHand(hand);
-			players_[position]->setDiscard(discard);
-			players_[position]->incrementScore();
+			Player* newComp = new Computer(players_[position]);
+			delete players_[position];
+			players_[position] = newComp;
 		}
-		/*
-		catch (quitError e) {
-			//quit
-			throw("quit");
-		}*/
 
 		//if looped, will not call human print function
 		first = false;

@@ -20,9 +20,7 @@ Player::Player(Player* human) {
 	played_ = human->getPlayed(); 
 }
 
-Player::~Player(){ 
-	delete played_;
-}
+Player::~Player(){ }
 
 int Player::getPlayerNum() {
 	return playernum_;

@@ -6,10 +6,11 @@
 #include "Player.h"
 
 
+
 class Computer : public Player {
 public:
 	Computer(int, Played*);  			// Computer player constuctor
-	Computer(Human*);  	// ragequit constuctor
+	Computer(Player*);  	// ragequit constuctor
 	void playTurn(bool);				// Play computer turn 		
 private:
 

@@ -4,7 +4,7 @@
 
 // Computer player constructor, calls Player constructor
 Computer::Computer(int playernum, Played* played) : Player(playernum, played) { }
-Computer::Computer(Human* human) : Player(player) {
+Computer::Computer(Player* player) : Player(player) {
 }
 
 void Computer::playTurn(bool ignore) {
