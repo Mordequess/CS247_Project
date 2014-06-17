@@ -11,9 +11,47 @@ Player::Player(int number, Played* played) {
 	played_ = played; 
 }
 
+//copy constructor
+Player::Player(Player* human) {
+	hand_ = human->getHand();
+	discarded_ = human->getDiscarded();
+	score_ = human->getScore();
+	playernum_ = human->getPlayerNum();
+	played_ = human->getPlayed(); 
+}
+
 Player::~Player(){ 
 	delete played_;
 }
+
+int Player::getPlayerNum() {
+	return playernum_;
+}
+
+Played* Player::getPlayed() {
+	return played_;
+}
+
+std::vector<Card*> Player::getHand() {
+	return hand_;
+}
+
+void Player::setHand(std::vector<Card*> playerhand) {
+	hand_ = playerhand;
+}
+
+std::vector<Card*> Player::getDiscarded() {
+	return discarded_;
+}
+
+void Player::setDiscard(std::vector<Card*> discard) {
+	discarded_ = discard;
+}
+
+int Player::getScore() {
+	return score_;
+}
+
 
 // Play a card, erase it from hand
 void Player::playCard(Card* card) {
@@ -44,17 +82,6 @@ void Player::discardCard(Card* card) {
 }
 
 
-// Get the player's hand, returns vector of cards
-std::vector<Card*> Player::getHand() {
-	return hand_;
-}
-
-// Set the players hand from the deck
-void Player::setHand(std::vector<Card*> playerhand) {
-	hand_ = playerhand;
-}
-
-
 // Determine if a card is in the players hand
 bool Player::inHand (Card* card) {
 	//find if card is in hand
@@ -80,21 +107,13 @@ std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 }
 
 
-// Get the cards that a player has discarded, used for scoring
-std::vector<Card*> Player::getDiscarded() {
-	return discarded_;
-}
+
 
 // Set discard pile if computer takes over. TODO: Copy constructor
-void Player::setDiscard(std::vector<Card*> discard) {
-	discarded_ = discard;
-}
 
 
-// Get the player score
-int Player::getScore() {
-	return score_;
-}
+
+
 
 // Increment the player score, return amount that score was incremented
 int Player::incrementScore() {
@@ -105,11 +124,3 @@ int Player::incrementScore() {
 	score_ += scoreIncrement; 
 	return scoreIncrement;
 } 
-
-int Player::getPlayerNum() {
-	return playernum_;
-}
-
-Played* Player::getPlayed() {
-	return played_;
-}

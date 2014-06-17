@@ -10,6 +10,7 @@
 class Player {
 public:
 	Player(int number, Played* played);  				// Constructor takes player number, pointer to played cards
+	Player(Player* human);  							// Constructor takes player number, pointer to played cards
 	virtual ~Player();									// Virtual Destructor
 	virtual void playTurn(bool) = 0;					// Vitrual Playturn called by child class
 	

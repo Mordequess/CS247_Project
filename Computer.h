@@ -8,8 +8,9 @@
 
 class Computer : public Player {
 public:
-	Computer(int, Played*);  	// Computer player constuctor
-	void playTurn(bool);		// Play computer turn 		
+	Computer(int, Played*);  			// Computer player constuctor
+	Computer(Human*);  	// ragequit constuctor
+	void playTurn(bool);				// Play computer turn 		
 private:
 
 
