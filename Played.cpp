@@ -29,22 +29,24 @@ void Played::resetBoard() {
 }
 
 std::ostream &operator<<(std::ostream &out, const Played &p){
+	std::string ranks[RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
+		"7", "8", "9", "10", "J", "Q", "K"};
 	//output the played cards with correct formatting
 	out << "Cards on the table:" << std::endl << "Clubs:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedCards[0][i]) out << " " << static_cast<Rank>(i+1);
+		if (p.playedCards[0][i]) out << " " << ranks[i];
 	}
 	out << std::endl << "Diamonds:";
 	for (int i = 0; i < 13; i++){
-		if (p.playedCards[1][i]) out << " " << static_cast<Rank>(i+1);
+		if (p.playedCards[1][i]) out << " " << ranks[i];
 	}
 	out << std::endl << "Hearts:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedCards[2][i]) out << " " << static_cast<Rank>(i+1);
+		if (p.playedCards[2][i]) out << " " << ranks[i];
 	}
 	out << std::endl << "Spades:";
 	for (int i = 0; i < 13; i++) {
-		if (p.playedCards[3][i]) out << " " << static_cast<Rank>(i+1);
+		if (p.playedCards[3][i]) out << " " << ranks[i];
 	}
 
 	return out;

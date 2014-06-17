@@ -1,5 +1,4 @@
 #include "Human.h"
-
 #include <vector>
 
 
@@ -46,12 +45,12 @@ void Human::playTurn(bool printinfo) {
             	std::vector<Card*> hand = getHand();
             	std::cout << "Player " << plnumber_ << " plays " << command.card << "." << std::endl;
             	playCard(&command.card);
-            	hand.erase(std::remove(hand.begin(), hand.end(), &command.card), hand.end());
+            	//hand.erase(std::remove(hand.begin(), hand.end(), &command.card), hand.end());
             }
             break;
         }
         case DISCARD: {
-            if (legalPlays(getHand()).size() != 0) {
+            if (!(inHand(&command.card)) || legalPlays(getHand()).size() != 0) {
             	throw "You have a legal play. You may not discard."; 
             } 
             else {

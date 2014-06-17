@@ -64,11 +64,11 @@ int Straights::getMinScore() {
 void Straights::updateScores() {
 	//increment scores at end of round
 	for (int i = 0; i < 4; i++){
-		//*** make a computer constructor that takes in a human?
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
-			std::cout << " " << *players_[i]->getDiscarded()[j];
+			//std::cout << "atLeast " << j << " " << players_[i]->getDiscarded().size() << std::endl;
+			std::cout << " " << *(players_[i]->getDiscarded()[j]);//
 		}
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
 		std::cout << " + " << players_[i]->incrementScore();
@@ -97,7 +97,7 @@ void Straights::playerTurn(int position){
 			players_[position]->playTurn(first);
 			break;
 		}
-		catch (char const* e) { //*** not catching string error properly
+		catch (char const* e) { 
 			//invalid, new command
 			std::cout << e << std::endl; 
 		}
@@ -107,6 +107,8 @@ void Straights::playerTurn(int position){
 		}
 		catch (rquitError e) {
 			//ragequit
+			//*** make a computer constructor that takes in a human?
+
 			std::cout << "Player " << position + 1 << " ragequits. A computer will now take over." << std::endl;
 
 			std::vector<Card*> hand = players_[position]->getHand();

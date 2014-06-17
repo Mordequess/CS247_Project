@@ -22,7 +22,6 @@ public:
 	std::vector<Card*> getDiscarded(); 					// Returns vector of discarded cards 
 	void setDiscard(std::vector<Card*>);				// Sets player discard
 	
-	bool isLegal(Card*);  								// Checks if a card is legal play
 	std::vector<Card*> legalPlays(std::vector<Card*>);  // Returns vector of legal plays
 	
 	int getScore();										// Accessor for player's score

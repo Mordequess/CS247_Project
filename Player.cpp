@@ -28,13 +28,13 @@ void Player::playCard(Card* card) {
     hand_.erase(it);
 }
 
-// Discard a card, removes card from hand, places in discard
+// Discard a card, removes card from hand, places in discard 
 void Player::discardCard(Card* card) {
 	std::vector<Card*>::iterator it;
-	discarded_.push_back(card);
 	int j = 0;
 	for (it = hand_.begin(); it < hand_.end(); it++) {
 		if (*card == *hand_[j]) {
+			discarded_.push_back(hand_[j]);
 			break;
 		}
 		j++;
@@ -64,11 +64,6 @@ bool Player::inHand (Card* card) {
 		}
 	}
 	return found;
-}
-
-// Return true if card is legal to play
-bool Player::isLegal(Card* card) {
-	return played_->isLegal(*card);
 }
 
 
@@ -108,5 +103,5 @@ int Player::incrementScore () {
 	}
 	score_ += scoreIncrement; 
 	return scoreIncrement;
-} //SEGFAULT ON HUMAN SCORE
+} 
 

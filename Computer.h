@@ -9,7 +9,6 @@
 class Computer : public Player {
 public:
 	Computer(int, Played*);  	// Computer player constuctor
-	//~Computer();   	 		// TODO what with constructor?
 	void playTurn(bool);		// Play computer turn 		
 private:
 
