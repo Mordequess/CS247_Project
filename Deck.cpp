@@ -3,19 +3,22 @@
 #include <iostream>
 #include "Deck.h"
 
-// Deck::Deck() : seed_(0) {
-Deck::Deck(){
-	std::cout << "deck address " << &cards_ << std::endl;
 
-	newDeck();
+// Default constructor calls newDeck()
+Deck::Deck(){
+	for (int j = 0; j < 4; j++) {
+		for (int i = 0; i < 13; i++) {
+			cards_[i + j*13] = (new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
+		}
+	}
 }
 
 Deck::~Deck(){
+	for (int i = 0; i < cards_.size(); i_++) {
+		delete cards_[i];
+	}
 }
 
-// Deck::Deck(int seed) : seed_(seed) {
-// 	newDeck();
-// }
 
 Card* Deck::getArray(int index) const{
 	return cards_[index];
@@ -35,15 +38,6 @@ void Deck::shuffle(){
 		Card *c = cards_[n];
 		cards_[n] = cards_[k];
 		cards_[k] = c;
-	}
-}
-
-//fills an empty deck with all cards in sorted order
-void Deck::newDeck(){
-	for (int j = 0; j < 4; j++) {
-		for (int i = 0; i < 13; i++) {
-			cards_[i + j*13] = (new Card(static_cast<Suit>(j), static_cast<Rank>(i)));
-		}
 	}
 }
 

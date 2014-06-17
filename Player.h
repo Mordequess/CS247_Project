@@ -2,48 +2,44 @@
 #define PLAYER_H
 
 #include "Card.h"
-#include <vector>
-#include <iostream>
 #include "Played.h"
+
+#include <iostream>
+#include <vector>
 
 class Player {
 public:
-	Player(int number, Played* played);
-	virtual ~Player();
-	virtual void playTurn(bool);
-	void playCard(Card*);
-	void discardCard(Card*);
+	Player(int number, Played* played);  				// Constructor takes player number, pointer to played cards
+	virtual ~Player();									// Virtual Destructor
+	virtual void playTurn(bool);						// Vitrual Playturn called by child class
+	void playCard(Card*); 								// Play card from hand 
+	void discardCard(Card*);							// Discard card from hand
+	
+	std::vector<Card*> getHand();						// Return Player's hand
+	void setHand(std::vector<Card*>);					// Set player's hand	
+	bool inHand(Card*);									// Checks if a card is in the player's hand
 
-	int incrementScore();
-	int getScore();
-	bool inHand(Card*);
-	bool isLegal(Card*); 
+	std::vector<Card*> getDiscarded(); 					// Returns vector of discarded cards 
+	void setDiscard(std::vector<Card*>);				// Sets player discard
+	
+	bool isLegal(Card*);  								// Checks if a card is legal play
+	std::vector<Card*> legalPlays(std::vector<Card*>);  // Returns vector of legal plays
+	
+	int getScore();										// Accessor for player's score
+	int incrementScore(); 								// Mutator - Increments player score, returns amount it was incremented
 
-	std::vector<Card*> legalPlays(std::vector<Card*>);
-	std::vector<Card*> getDiscarded();
-	void setDiscard(std::vector<Card*>);
-	std::vector<Card*> getHand();
-	void setHand(std::vector<Card*>);
-
-	// Move this later, reset function?
+	// TODO move to private
 	Played* played_;
 
+// TODO make functions protected
 protected:
-	int plnumber_; 
+	int plnumber_; 										// playernumber 1-4
 
 private:
-	std::vector<Card*> hand_;
-	std::vector<Card*> discarded_;
-	int score_;
+	std::vector<Card*> hand_;							// Player hand
+	std::vector<Card*> discarded_;						// Discarded cards, reset each round
+	int score_;											// Player score
 	
 };		
 
 #endif
-
-
-
-//to be implemented in Player
-	// void printValidPlays();
-	// bool validPlay(Card);
-	// Player(Played);
-	// -> Human(Played p) : Player() : played_(p) {}

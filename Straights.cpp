@@ -10,9 +10,8 @@
 Straights::~Straights(){
 }
 
-Straights::Straights (int seed){
+Straights::Straights (){
 	//fill deck with values
-	//deck_ = Deck(seed);
 	played_ = new Played();
 	//build player array
     for (int i = 0; i < 4; i++) {
@@ -98,7 +97,7 @@ void Straights::playerTurn(int position){
 			players_[position]->playTurn(first);
 			break;
 		}
-		catch (std::string e) {
+		catch (char const* e) { //*** not catching string error properly
 			//invalid, new command
 			std::cout << e << std::endl; 
 		}

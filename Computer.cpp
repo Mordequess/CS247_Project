@@ -1,8 +1,9 @@
 #include "Computer.h"
 #include <vector>
 
-Computer::Computer(int playernum, Played* played) : Player(playernum, played) {
-}
+
+// Computer player constructor, calls Player constructor
+Computer::Computer(int playernum, Played* played) : Player(playernum, played) { }
 
 void Computer::playTurn(bool ignore) {
 	//computer AI: if no legal plays, discard first card. else play first legal card

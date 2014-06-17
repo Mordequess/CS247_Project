@@ -2,15 +2,15 @@
 #define COMPUTER_H
 
 #include "Card.h"
-#include "Player.h"
 #include "Played.h"
+#include "Player.h"
 
 
 class Computer : public Player {
 public:
-	Computer(int, Played*);
-	//~Computer();
-	void playTurn(bool);
+	Computer(int, Played*);  	// Computer player constuctor
+	//~Computer();   	 		// TODO what with constructor?
+	void playTurn(bool);		// Play computer turn 		
 private:
 
 
@@ -19,6 +19,3 @@ private:
 
 #endif
 
-// Card*[] hand_;
-// 	int score_;
-// 	int order_;

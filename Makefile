@@ -14,7 +14,7 @@ GTEST_LIBS=$(GTEST_DIR)/lib/*
 
 all: straights
 
-test: a2q2_test
+test: diffFileOutput
 
 
 Card.o: Card.cpp Card.h
@@ -30,9 +30,11 @@ Straights.o: Straights.cpp Straights.h Deck.h Card.h Played.h Player.h Human.h C
 straights: Card.o Command.o Computer.o Deck.o Human.o Played.o Player.o Straights.o T_Harness.cpp 
 	${CXX} $(CXX_FLAGS) $^ -o $@
 
-a2q2_test: UserAccountTests.cpp UserAccount.o Password.o Userid.o 
-	${CXX} $(GTEST_FLAGS) $(CXX_FLAGS) $^ $(GTEST_LIBS) -o $@;
-	-./$@
+diffFileOutput:
+	./straights 4 >> ourOutput.txt
+	./straightspro 4 >> proOutput.txt
+	diff ourOutput.txt proOutput.txt
+
 
 
 clean:

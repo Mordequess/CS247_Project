@@ -1,12 +1,15 @@
 #include "Human.h"
+
 #include <vector>
-#include "Command.h"
 
-Human::Human(int playernum, Played* played) : Player(playernum, played) {
-}
 
+// Human constructor, calls player constructor
+Human::Human(int playernum, Played* played) : Player(playernum, played) { }
+
+
+// Print played cards, hand and legal cards
 void Human::print() {
-	std::cout << *played_ << std::endl; // TODO 
+	std::cout << *played_ << std::endl; 
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
 	for (int i = 0; i < currHand.size() ; i++) {
@@ -22,17 +25,19 @@ void Human::print() {
 	std::cout << "\n";
 }
 
+
 void Human::playTurn(bool printinfo) {
 	//print player info only if first playerTurn call
     if (printinfo) {
 		print();
 	}
+    // Wait for a command
     Command command;
-    std::cout << ">"; //*** make sure this prints
+    std::cout << ">";
     std::cin >> command;
     
+    // Execute command type
     switch (command.type) {
-        //play a card
         case PLAY: {
             if (!(inHand(&command.card)) || !(isLegal(&command.card))) {
             	throw "This is not a legal play.";
@@ -45,10 +50,9 @@ void Human::playTurn(bool printinfo) {
             }
             break;
         }
-        //discard a card
         case DISCARD: {
             if (legalPlays(getHand()).size() != 0) {
-            	throw "You have a legal play. You may not discard.";
+            	throw "You have a legal play. You may not discard."; 
             } 
             else {
             	std::cout << "Player " << plnumber_ << " discards " << command.card << "." << std::endl;
@@ -56,28 +60,21 @@ void Human::playTurn(bool printinfo) {
             }
             break;
         }
-            
-        //print the deck
         case DECK: {
-            throw (deckError("print deck"));
+            throw (deckError("print deck"));    // Throw to Straights to print deck
             break;
         }
-            
-        //exit program
         case QUIT: {
-            throw (quitError("quit"));
+            throw (quitError("quit"));          // Throw to test harness to exit
             break;
         }
-
-        //replace current human player with a computer
         case RAGEQUIT: {
-            throw (rquitError ("rage quit"));
+            throw (rquitError ("rage quit"));   // Throw to Straights to remove human player
             break;
-        }
-            
+        }     
         default:
             break;
-    } // switch
+    }
 }
 
 

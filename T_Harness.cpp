@@ -2,8 +2,6 @@
 #include "Straights.h"
 #include <stdlib.h>
 
-// int main() {
-//     srand48(4);
 
 int main(int argc, char* argv[]) {
     if (argc >= 2) {
@@ -11,7 +9,7 @@ int main(int argc, char* argv[]) {
     }
     else srand48(0);
 
-    Straights game = Straights(0);
+    Straights game = Straights();
     bool end = false;
     while (!end) {
         game.nextRound();
@@ -23,7 +21,7 @@ int main(int argc, char* argv[]) {
                 game.playerTurn( (whosTurn+i)%4 );
             }
             //check if quit command is called
-            catch (...) {
+            catch (char const*) {
                 exit(0);
             }
         }
@@ -31,18 +29,13 @@ int main(int argc, char* argv[]) {
         end = game.checkEnd();
     }
 
-     //check for ties
     int winScore = game.getMinScore();
     for (int i = 0; i < 4; i++) {
-        if (game.getScore(i) == winScore) std::cout << "Player " << i + 1 << " wins!" << std::endl;
+        if (game.getScore(i) == winScore) 
+            std::cout << "Player " << i + 1 << " wins!" << std::endl;
     }
 
     return 0;
 }
 
-/*
 
-PLAYED SHOWS ADDRESS
-Implement is Valid
-
-*/
