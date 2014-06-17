@@ -4,6 +4,8 @@
 #include <sstream>
 #include "Card.h"
 
+static const int NUM_CARDS = 52;
+
 class Deck {
 public:
 	Deck();  					// Default constructor

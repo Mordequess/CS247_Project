@@ -3,10 +3,10 @@
 
 #include <iostream>
 
-static const int NUM_CARDS = 52;
+
 static const int NUM_RANKS = 13;
 static const int NUM_SUITS = 4;
-static const int NUM_PLAYERS = 4;
+
 
 enum Suit { CLUB, DIAMOND, HEART, SPADE, SUIT_COUNT };
 enum Rank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,

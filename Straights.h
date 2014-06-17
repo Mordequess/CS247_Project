@@ -5,6 +5,9 @@
 #include "Player.h"
 #include "Played.h"
 
+static const int NUM_PLAYERS = 4;
+
+
 class Straights {
 public:
 	Straights();						// Straights Constructor
