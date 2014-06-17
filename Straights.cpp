@@ -113,7 +113,6 @@ void Straights::playerTurn(int position){
 
 			std::vector<Card*> hand = players_[position]->getHand();
 			std::vector<Card*> discard = players_[position]->getDiscarded();
-			//int score = players_[position]->getScore();
 			players_[position] = new Computer(position, played_);
 			players_[position]->setHand(hand);
 			players_[position]->setDiscard(discard);

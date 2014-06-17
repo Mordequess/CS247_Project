@@ -7,12 +7,12 @@
 
 class Straights {
 public:
-	Straights();
-	~Straights();
+	Straights();						// Straights Constructor
+	~Straights();						// Default Destructor
 
-	void nextRound();
+	void nextRound();					// Function to create new round
 	bool checkEnd();
-	int getScore(int position);
+	int getScore(int playerposition);
 	int getMinScore();
 	void updateScores();
 	int getFirstPlayer();
@@ -20,7 +20,7 @@ public:
 	void playerTurn(int);
 
 private:
-	Player* players_[4];
+	Player* players_[NUM_PLAYERS];
 	Deck deck_;
 	Played* played_;
 };

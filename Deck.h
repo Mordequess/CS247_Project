@@ -9,13 +9,12 @@ public:
 	Deck();  					// Default constructor
 	~Deck();					// Default Destructor
 
-	Card* getArray(int) const;	// TODO maybe implement
-	void setArray(int, Card*);
+	Card* getArray(int) const;
 
 	void shuffle();
 
 private:
-	Card* cards_[52];
+	Card* cards_[NUM_CARDS];
 };
 
 std::ostream &operator<<(std::ostream &, const Deck &);

@@ -31,11 +31,6 @@ class rquitError : public std::runtime_error {
 public:
 	rquitError(const std::string& e) : std::runtime_error(e) {}
 };
-// Class to catch player quitting
-class quitError : public std::runtime_error {
-public:
-	quitError(const std::string& e) : std::runtime_error(e) {}
-};
 
 
 

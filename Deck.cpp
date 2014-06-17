@@ -23,10 +23,6 @@ Card* Deck::getArray(int index) const{
 	return cards_[index];
 }
 
-void Deck::setArray(int index, Card* newCard){
-	cards_[index] = newCard;
-}
-
 
 //shuffle deck using srand seed (default 0)
 void Deck::shuffle(){

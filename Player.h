@@ -30,7 +30,6 @@ protected:
 	void playCard(Card*); 								// Play card from hand 
 	void discardCard(Card*);							// Discard card from hand
 	std::vector<Card*> legalPlays(std::vector<Card*>);  // Returns vector of legal plays
-
 private:
 	Played* played_;
 	int playernum_; 									// playernumber 1-4

@@ -10,7 +10,7 @@ struct Played{
 	void setCard(Card card);
 	bool isLegal(Card card);
 //private:
-	bool playedCards[4][13];
+	bool playedCards[NUM_SUITS][NUM_RANKS];
 };
 
 std::ostream &operator<<(std::ostream &, const Played &);
