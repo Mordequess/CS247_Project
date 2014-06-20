@@ -19,7 +19,7 @@ Deck::~Deck(){
 }
 
 
-Card* Deck::getArray(int index) const{
+Card* Deck::getCard(int index) const{
 	return cards_[index];
 }
 
@@ -40,7 +40,7 @@ void Deck::shuffle(){
 std::ostream &operator<<(std::ostream& out, const Deck& d){
 	for (int i = 0; i < NUM_SUITS; i++){
 		for (int j = 0; j < NUM_RANKS; j++) {
-			out << *d.getArray(j+i*NUM_RANKS) << " ";
+			out << *d.getCard(j+i*NUM_RANKS) << " ";
 		}
 		out << std::endl;
 	}

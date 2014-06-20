@@ -32,7 +32,7 @@ void Straights::nextRound(){
 	for (int i = 0; i < NUM_PLAYERS; i++) {
 		std::vector<Card*> hand;
 		for (int j = 0; j < 13; j++) {
-			hand.push_back(deck_.getArray(j+i*13));
+			hand.push_back(deck_.getCard(j+i*13));
 		}
 		players_[i]->setHand(hand);
 	}	

@@ -11,7 +11,7 @@ public:
 	Deck();  					// Default constructor
 	~Deck();					// Default Destructor
 
-	Card* getArray(int) const;
+	Card* getCard(int) const;
 
 	void shuffle();
 
