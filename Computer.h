@@ -9,13 +9,9 @@
 
 class Computer : public Player {
 public:
-	Computer(int, Played*);  			// Computer player constuctor
-	Computer(Player*);  	// ragequit constuctor
-	void playTurn(bool);				// Play computer turn 		
-private:
-
-
-
+	Computer(int, Played*);  	// Computer player constructor
+	Computer(Player*);  		// ragequit constructor
+	void playTurn(bool);		// Play computer turn 		
 };
 
 #endif

@@ -45,6 +45,7 @@ std::ostream &operator<<(std::ostream& out, const Deck& d){
 			out << *d.getCard(j+i*NUM_RANKS) << " ";
 		}
 		out << std::endl;
+		out << std::endl;
 	}
 	return out;
 }

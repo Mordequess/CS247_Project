@@ -6,7 +6,7 @@ Played::Played() { }
 
 
 
-bool Played::isLegal(Card card) {
+bool Played::isLegal(Card card) const {
 	//7, A, K
 	if (!(card.getRank() == 6 && card.getSuit() == 3) && !playedCards[3][6]) return false;
 	if (card.getRank() == 6) return true;

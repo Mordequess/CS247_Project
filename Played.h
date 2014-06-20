@@ -8,8 +8,7 @@ struct Played{
 	Played();
 	void resetBoard();
 	void setCard(Card card);
-	bool isLegal(Card card);
-//private:
+	bool isLegal(Card card) const;
 	bool playedCards[NUM_SUITS][NUM_RANKS];
 };
 

@@ -14,19 +14,19 @@ public:
 	virtual ~Player();									// Virtual Destructor
 	virtual void playTurn(bool) = 0;					// Vitrual Playturn called by child class
 	
-	std::vector<Card*> getHand();						// Return Player's hand
+	std::vector<Card*> getHand() const;					// Return Player's hand
 	void setHand(std::vector<Card*>);					// Set player's hand	
-	bool inHand(Card*);									// Checks if a card is in the player's hand
+	bool inHand(Card*) const;							// Checks if a card is in the player's hand
 
-	std::vector<Card*> getDiscarded(); 					// Returns vector of discarded cards 
+	std::vector<Card*> getDiscarded() const; 			// Returns vector of discarded cards 
 	void setDiscard(std::vector<Card*>);				// Sets player discard
 	
-	int getScore();										// Accessor for player's score
+	int getScore() const;								// Accessor for player's score
 	int incrementScore(); 								// Mutator - Increments player score, returns amount it was incremented
 
 protected:
-	Played* getPlayed();								// returns boolean array of played cards
-	int getPlayerNum();									// Accessor for player number
+	Played* getPlayed() const;							// returns boolean array of played cards
+	int getPlayerNum() const;							// Accessor for player number
 	void playCard(Card*); 								// Play card from hand 
 	void discardCard(Card*);							// Discard card from hand
 	std::vector<Card*> legalPlays(std::vector<Card*>);  // Returns vector of legal plays

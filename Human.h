@@ -15,7 +15,7 @@
 class Human : public Player {
 public:
 	Human(int, Played*); 	// Human constructos
-	void print(); 			// Print human information for their turn
+	void print() const; 			// Print human information for their turn
 	void playTurn(bool); 	// Play a human turn
 };
 

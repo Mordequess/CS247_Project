@@ -22,15 +22,15 @@ Player::Player(Player* human) {
 
 Player::~Player(){ }
 
-int Player::getPlayerNum() {
+int Player::getPlayerNum() const {
 	return playernum_;
 }
 
-Played* Player::getPlayed() {
+Played* Player::getPlayed() const {
 	return played_;
 }
 
-std::vector<Card*> Player::getHand() {
+std::vector<Card*> Player::getHand() const {
 	return hand_;
 }
 
@@ -38,7 +38,7 @@ void Player::setHand(std::vector<Card*> playerhand) {
 	hand_ = playerhand;
 }
 
-std::vector<Card*> Player::getDiscarded() {
+std::vector<Card*> Player::getDiscarded() const {
 	return discarded_;
 }
 
@@ -46,7 +46,7 @@ void Player::setDiscard(std::vector<Card*> discard) {
 	discarded_ = discard;
 }
 
-int Player::getScore() {
+int Player::getScore() const {
 	return score_;
 }
 
@@ -81,7 +81,7 @@ void Player::discardCard(Card* card) {
 
 
 // Determine if a card is in the players hand
-bool Player::inHand (Card* card) {
+bool Player::inHand (Card* card) const {
 	//find if card is in hand
 	bool found = false;
 	for (int i = 0; i < hand_.size(); i++) {
@@ -103,14 +103,6 @@ std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 	}
 	return legalCards;
 }
-
-
-
-
-// Set discard pile if computer takes over. TODO: Copy constructor
-
-
-
 
 
 // Increment the player score, return amount that score was incremented

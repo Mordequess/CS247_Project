@@ -10,9 +10,7 @@ class Deck {
 public:
 	Deck();  											// Default constructor
 	~Deck();											// Default Destructor
-
 	Card* getCard(int) const;
-
 	void shuffle();
 private:
 	Card* cards_[NUM_CARDS];							// Array of pointers to cards in the deck

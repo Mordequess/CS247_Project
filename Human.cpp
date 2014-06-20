@@ -7,7 +7,7 @@ Human::Human(int playernum, Played* played) : Player(playernum, played) { }
 
 
 // Print played cards, hand and legal cards
-void Human::print() {
+void Human::print() const {
 	std::cout << *getPlayed() << std::endl; 
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
@@ -45,7 +45,6 @@ void Human::playTurn(bool printinfo) {
             	std::vector<Card*> hand = getHand();
             	std::cout << "Player " << getPlayerNum() << " plays " << command.card << "." << std::endl;
             	playCard(&command.card);
-            	//hand.erase(std::remove(hand.begin(), hand.end(), &command.card), hand.end());
             }
             break;
         }
@@ -64,7 +63,6 @@ void Human::playTurn(bool printinfo) {
             break;
         }
         case QUIT: {
-            //throw (quitError("quit"));          // Throw to test harness to exit
             exit(0);
             break;
         }

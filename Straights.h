@@ -10,20 +10,20 @@ static const int NUM_PLAYERS = 4;
 
 class Straights {
 public:
-	Straights();						// Straights Constructor
-	~Straights();						// Default Destructor
+	Straights();								// Straights Constructor
+	~Straights();								// Default Destructor
 
-	void nextRound();					// Function to create new round
-	bool checkEnd();
-	int getScore(int playerposition);
-	int getMinScore();
-	void updateScores();
-	int getFirstPlayer();
+	void nextRound();							// Function to create new round
+	bool checkEnd() const;						// Check if game is over
+	int getScore(int playerposition) const;		// get player score
+	int getMinScore() const;					// get lowest player score
+	void updateScores();						// update player scores
+	int getFirstPlayer() const;					// Find player with 7S
 
-	void playerTurn(int);
+	void playerTurn(int);						// call a players turn
 
 private:
-	Player* players_[NUM_PLAYERS];
+	Player* players_[NUM_PLAYERS]; 
 	Deck deck_;
 	Played* played_;
 };

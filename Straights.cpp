@@ -26,9 +26,8 @@ Straights::Straights (){
 }
 
 void Straights::nextRound(){
-	//shuffle deck
 	deck_.shuffle();
-	//fill hands (should be empty after each round)
+	//Deal hands (should be empty after each round)
 	for (int i = 0; i < NUM_PLAYERS; i++) {
 		std::vector<Card*> hand;
 		for (int j = 0; j < NUM_CARDS/4; j++) {
@@ -41,7 +40,7 @@ void Straights::nextRound(){
 	std::cout << "A new round begins. It's player " << getFirstPlayer()+1 << "'s turn to play." << std::endl;
 }
 
-bool Straights::checkEnd() {
+bool Straights::checkEnd() const {
 	//check if any player past score limit
 	for (int i = 0; i < NUM_PLAYERS; i++) {
 		if (players_[i]->getScore() >= 80 ) return true;
@@ -49,11 +48,11 @@ bool Straights::checkEnd() {
 	return false;
 }
 
-int Straights::getScore(int position) {
-	return players_[position]->getScore();
+int Straights::getScore(int playerposition) const {
+	return players_[playerposition]->getScore();
 }
 
-int Straights::getMinScore() {
+int Straights::getMinScore() const {
 	//get lowest score of all players
 	int min = players_[0]->getScore();
 	for (int i = 1; i < NUM_PLAYERS; i++){
@@ -78,7 +77,7 @@ void Straights::updateScores() {
 	}
 }
 
-int Straights::getFirstPlayer(){
+int Straights::getFirstPlayer() const {
 	//check each player's hand for 7S
 	int first = 0;
 	while (!players_[first]->inHand(new Card(static_cast<Suit>(3), static_cast<Rank>(6))) ) {
@@ -87,14 +86,14 @@ int Straights::getFirstPlayer(){
 	return first;
 }
 
-void Straights::playerTurn(int position){
+void Straights::playerTurn(int playerposition) {
 	//keep track of "first" command call
 	bool first = true;
 
 	//loop until valid input
 	while (true) {
 		try	{
-			players_[position]->playTurn(first);
+			players_[playerposition]->playTurn(first);
 			break;
 		}
 		catch (char const* e) { 
@@ -107,13 +106,13 @@ void Straights::playerTurn(int position){
 		}
 		catch (rquitError e) {
 			//ragequit
-			std::cout << "Player " << position + 1 << " ragequits. A computer will now take over." << std::endl;
-			Player* newComp = new Computer(players_[position]);
-			delete players_[position];
-			players_[position] = newComp;
+			std::cout << "Player " << playerposition + 1 << " ragequits. A computer will now take over." << std::endl;
+			Player* newComp = new Computer(players_[playerposition]);
+			delete players_[playerposition];
+			players_[playerposition] = newComp;
 		}
 
 		//if looped, will not call human print function
 		first = false;
-	}//while
+	}
 }
