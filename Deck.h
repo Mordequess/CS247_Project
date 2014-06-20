@@ -8,17 +8,16 @@ static const int NUM_CARDS = 52;
 
 class Deck {
 public:
-	Deck();  					// Default constructor
-	~Deck();					// Default Destructor
+	Deck();  											// Default constructor
+	~Deck();											// Default Destructor
 
-	Card* getArray(int) const;
-
-	void shuffle();
+	Card* getArray(int) const;							// get the array of the deck
+	void shuffle();										// Shuffle deck
 
 private:
-	Card* cards_[NUM_CARDS];
+	Card* cards_[NUM_CARDS];							// Array of pointers to cards in the deck
 };
 
-std::ostream &operator<<(std::ostream &, const Deck &);
+std::ostream &operator<<(std::ostream &, const Deck &); // Custom stream operator to print deck
 
 #endif

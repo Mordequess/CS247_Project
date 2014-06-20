@@ -12,6 +12,7 @@ Deck::Deck(){
 	}
 }
 
+// Destructor deletes card pointers
 Deck::~Deck(){
 	for (int i = 0; i < NUM_CARDS; i++) {
 		delete cards_[i];
@@ -19,6 +20,7 @@ Deck::~Deck(){
 }
 
 
+// Returns array of cards
 Card* Deck::getArray(int index) const{
 	return cards_[index];
 }
