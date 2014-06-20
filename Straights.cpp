@@ -31,8 +31,8 @@ void Straights::nextRound(){
 	//fill hands (should be empty after each round)
 	for (int i = 0; i < NUM_PLAYERS; i++) {
 		std::vector<Card*> hand;
-		for (int j = 0; j < 13; j++) {
-			hand.push_back(deck_.getArray(j+i*13));
+		for (int j = 0; j < NUM_CARDS/4; j++) {
+			hand.push_back(deck_.getCard(j+i*NUM_CARDS/4));
 		}
 		players_[i]->setHand(hand);
 	}	
