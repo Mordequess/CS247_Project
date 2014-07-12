@@ -20,10 +20,11 @@
 
 // Creates buttons with labels. Sets butBox elements to have the same size, 
 // with 10 pixels between widgets
-View::View(Controller *c, Model *m) : model_(m), controller_(c), panels(true,10), butBox(true, 10), next_button( "next" ), reset_button( "reset" ), card(deck.null()) {
+View::View(Controller *c, Model *m) : model_(m), controller_(c), panels(true,10), butBox(true, 10),
+			next_button( "next" ), reset_button( "reset" ), card(deck.null()) {
 
 	// Sets some properties of the window.
-        set_title( "CS246 MVC example" );
+    set_title("Straights Game");
 	set_border_width( 10 );
 	
 	// Add panels to the window
