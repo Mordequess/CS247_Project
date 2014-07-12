@@ -20,17 +20,31 @@
 
 // Creates buttons with labels. Sets butBox elements to have the same size, 
 // with 10 pixels between widgets
-View::View(Controller *c, Model *m) : model_(m), controller_(c), panels(true,10), butBox(true, 10),
+View::View(Controller *c, Model *m) : model_(m), controller_(c), panels(true,10), butBox(true, 10), table(13, 4, true),
 			next_button( "next" ), reset_button( "reset" ), card(deck.null()) {
+
+
+	for (int i = 0; i < 52; i++) {
+		buttons[i].set_label("Crd");
+	}
+
 
 	// Sets some properties of the window.
     set_title("Straights Game");
 	set_border_width( 10 );
+	set_default_size(800, 500);
 	
 	// Add panels to the window
 	add(panels);
 
+	add( table );
+	
+	for (int i = 0; i < 52; i++) {
+      table.attach(buttons[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
+	}
+
 	// Add button box and card image to the panels
+	panels.add( table );
 	panels.add( butBox );
 	panels.add( card );
 	card.set( deck.null() );
@@ -44,7 +58,8 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), panels(true,10)
 	next_button.signal_clicked().connect( sigc::mem_fun( *this, &View::nextButtonClicked ) );
 	reset_button.signal_clicked().connect( sigc::mem_fun( *this, &View::resetButtonClicked ) );
 	
-	
+	table.show();
+
 	// The final step is to display the buttons (they display themselves)
 	show_all();
 

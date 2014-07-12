@@ -38,6 +38,9 @@ private:
 	DeckGUI deck;
 
 	// Member widgets:
+	Gtk::Button buttons[52];
+	//Gtk::Image cards[52];
+	Gtk::Table table;
 	Gtk::HBox panels;      // Main window divided into two horizontal panels
 	Gtk::VBox butBox;      // Vertical boxes for stacking buttons vertically
 	Gtk::Button next_button;
