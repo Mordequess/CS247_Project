@@ -44,7 +44,7 @@ const char * image_names[] = {
 	"cards_png/0_12.png", "cards_png/1_12.png", "cards_png/2_12.png", "cards_png/3_12.png",
 
 	// Set up the back of a card for a place holder/null card
-	"cards_png/nothing.png"
+	"cards_png/back_1.png"
 }; 
 
 // Loads the image from the specified file name into a pixel buffer.
