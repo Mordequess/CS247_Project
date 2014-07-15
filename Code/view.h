@@ -13,6 +13,7 @@
 #ifndef MVC_VIEW_H
 #define MVC_VIEW_H
 
+
 #include <gtkmm.h>
 #include "DeckGUI.h"
 #include "observer.h"
@@ -34,15 +35,31 @@ private:
 	// Strategy Pattern member (plus signal handlers)
 	Controller *controller_;
 
-	// Card Images
+	// Card Images/
 	DeckGUI deck;
 
 	// Member widgets:
 	Gtk::Button buttons[52];
 	//Gtk::Image cards[52];
 	Gtk::Table table;
-	Gtk::HBox panels;      // Main window divided into two horizontal panels
-	Gtk::VBox butBox;      // Vertical boxes for stacking buttons vertically
+	Gtk::Frame frame; 
+	Gtk::Button players[4];
+	Gtk::VBox shell;
+	Gtk::HBox playerbox;
+	Gtk::Frame playerframe;
+    Gtk::Entry   nameField;                  // Text entry for the user's name
+    Gtk::Label   nameLabel;
+
+
+	Gtk::Button startgame;
+	Gtk::Button endgame;
+
+	Gtk::VBox tableholder;
+	Gtk::HBox hbox_1;
+	Gtk::HBox hbox_2;
+
+	//Gtk::Image * card[52];  
+
 	Gtk::Button next_button;
 	Gtk::Button reset_button;
 	Gtk::Image card;
