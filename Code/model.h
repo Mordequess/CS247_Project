@@ -14,24 +14,23 @@
 #define MVC_MODEL_H
 
 #include "subject.h"
-#include "Straights.h"
+
+const int numFaces = 13;
+const int numSuits = 4;
+const int numCards = numFaces * numSuits;
+
+enum Faces { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, NOFACE };
+enum Suits { CLUB, DIAMOND, HEART, SPADE, NOSUIT };
 
 class Model : public Subject {
 public:
     Model();
-    void startGame();
-    void quitGame();
-    void setPlayerType(int player);		//flips a player from computer to human and back
-    void ragePlayer(int player);		//calls rage quit on active player
-
-	void updatePlayed ();
-
+    Suits suit();
+    Faces face();
+    void nextCard();
+    void resetCards();
 private:
-    bool[4] playerType_;				//keeps track of whether player is human or computer: 0 = human
-    int[4] playerScore_;				//keeps track of player score
-    int[4] playerDiscard_;				//keeps track of number of discarded cards
-    Straights game;
-
+    int topCard_;
 }; // Model
 
 

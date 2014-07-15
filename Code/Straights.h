@@ -10,7 +10,7 @@ static const int NUM_PLAYERS = 4;
 
 class Straights {
 public:
-	Straights(bool[] playerType);				// Straights Constructor
+	Straights();								// Straights Constructor
 	~Straights();								// Default Destructor
 
 	void nextRound();							// Function to create new round
@@ -22,11 +22,7 @@ public:
 
 	void playerTurn(int);						// call a players turn
 
-	bool[][] getPlayedCards() const;			// return played_ array
-
-
 private:
-	Straights();
 	Player* players_[NUM_PLAYERS]; 
 	Deck deck_;
 	Played* played_;
