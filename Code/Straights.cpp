@@ -7,21 +7,19 @@
 #include "Computer.h"
 #include "Straights.h"
 
+Straights::Straights (){}
+
 Straights::~Straights(){
 	delete played_;
 }
 
-Straights::Straights (){
+Straights::Straights (bool[] playerType){
 	//fill deck with values
 	played_ = new Played();
 	//build player array
     for (int i = 0; i < NUM_PLAYERS; i++) {
-        std::cout << "Is player " << i + 1 << " a human(h) or a computer(c)?" << std::endl << ">";
-        char type;
-        std::cin >> type;
-        assert (type == 'h' || type == 'c');
-        if (type == 'h') players_[i] = new Human(i, played_);
-        else players_[i] = new Computer(i, played_);
+        if (playerType[i]) players_[i] = new Computer(i, played_);
+        else players_[i] = new Human(i, played_);
     }
 }
 
@@ -115,4 +113,10 @@ void Straights::playerTurn(int playerposition) {
 		//if looped, will not call human print function
 		first = false;
 	}
+}
+
+
+
+bool[][] Straights::getPlayedCards() const {						// Check if game is over
+	return played_->playedCards;
 }

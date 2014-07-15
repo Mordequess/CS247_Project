@@ -20,7 +20,7 @@ Computer.o: Computer.cpp Computer.h Player.h Card.h Played.h
 Deck.o: Deck.cpp Deck.h Card.h 
 Human.o: Human.cpp Human.h Command.h Card.h Player.h Played.h
 Played.o: Played.cpp Played.h Card.h
-Phlayer.o: Player.cpp Player.h Card.h Played.h
+Player.o: Player.cpp Player.h Card.h Played.h
 Straights.o: Straights.cpp Straights.h Deck.h Card.h Played.h Player.h Human.h Computer.h
 
 
