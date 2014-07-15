@@ -70,6 +70,11 @@ Glib::RefPtr<Gdk::Pixbuf> DeckGUI::image( Faces f, Suits s ) {
 	return deck[ index ];
 } // DeckGUI::getCardImage 
 
+// Returns the image for the specified card.
+Glib::RefPtr<Gdk::Pixbuf> DeckGUI::image(int index) {
+	return deck[ index ];
+} // DeckGUI::getCardImage 
+
 // Returns the image to use for the placeholder.
 Glib::RefPtr<Gdk::Pixbuf> DeckGUI::null() {
 	int size = deck.size();
