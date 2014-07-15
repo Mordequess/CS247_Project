@@ -25,12 +25,12 @@ enum Suits { CLUB, DIAMOND, HEART, SPADE, NOSUIT };
 class Model : public Subject {
 public:
     Model();
-    Suits suit();
-    Faces face();
-    void nextCard();
-    void resetCards();
+    void startGame();
+    void quitGame();
+    void setPlayerType(int player);		//flips a player from computer to human and back
+    void ragePlayer(int player);		//calls rage quit on active player
 private:
-    int topCard_;
+    bool[4] playerType_;		//keeps track of whether player is human or computer: 0 = human
 }; // Model
 
 
