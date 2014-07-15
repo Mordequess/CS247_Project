@@ -16,7 +16,7 @@
 
 Controller::Controller(Model *m) : model_(m) {}
 
-/*
+
 void Controller::nextButtonClicked() {
      model_->nextCard();
 } 
@@ -25,4 +25,3 @@ void Controller::nextButtonClicked() {
 void Controller::resetButtonClicked() {
      model_->resetCards();
 } 
-*/

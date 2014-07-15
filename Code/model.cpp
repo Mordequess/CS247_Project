@@ -13,26 +13,30 @@
 #include "model.h"
 
 
-Model::Model() {
-	playerType_ = {0,0,0,0};	//all players default to human
+Model::Model() : topCard_(-1) {}
+
+Suits Model::suit() {
+  if (topCard_ == -1) return NOSUIT;
+  
+  return (Suits) (topCard_ % numSuits);
 }
 
-void Model::startGame(int seed) {
-	//
- 	notify();
+Faces Model::face() {
+  if (topCard_ == -1) return NOFACE;
+
+  return (Faces) (topCard_ / numSuits);
 }
 
-void Model::quitGame() {
- 	//
-  	notify();
+void Model::nextCard() {
+  if (topCard_ == numCards-1) return;
+
+  topCard_ += 1;
+  notify();
+
 }
 
-void Model::setPlayerType (int player) {
-	playerType_[player] = !playerType_[player];
-	notify();
-}
 
-void Model::ragePlayer (int player) {
-	//ragequit
-	//notify();
+void Model::resetCards() {
+  topCard_ = -1;
+  notify();
 }
