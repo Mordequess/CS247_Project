@@ -28,11 +28,10 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 			tableCards[j + i*13].set(deck.null()); 	//deck.null() or deck.image(j*4 + i)
 		}
 	}
-		for (int i = 0; i < 13; i++) {
-			handImages[i].set(deck.null()); 			
-			handButtons[i].set_image(handImages[i]); 	//set hand buttons to be card backs
+	for (int i = 0; i < 13; i++) {
+		handImages[i].set(deck.null()); 			
+		handButtons[i].set_image(handImages[i]); 	//set hand buttons to be card backs
 	}
-
 
 	players[0].set_label("Player 1");
 	players[1].set_label("Player 2");
@@ -46,8 +45,10 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 	frame.set_label( "Cards Played:" );
 	frame.set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
 
+	for (int i = 0; i < 4; i++){
+		playerType[i].signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &View::playerTypeButtonClicked), i));
+	}
 
-	
 	players[0].set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
 	
 	startgame.set_label("Start new game with seed");
@@ -81,12 +82,14 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
       table.attach(tableCards[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
 	}
 
+	playerbox.set_homogeneous(true);
+
 	shell.add ( playerbox );
 	for (int i = 0; i < 4; i ++) {
 		playerbox.add ( players[i] );
 		players[i].add(play[i]);	
-		human[i].set_label("Human");
-		play[i].add(human[i]);
+		playerType[i].set_label("Human");
+		play[i].add(playerType[i]);
 		play[i].add(score[i]);
 		play[i].add(discards[i]);
 	}
@@ -122,6 +125,7 @@ void View::update0() {
 
 }
 
+<<<<<<< HEAD
 void View::update1() {
 }
 
@@ -131,6 +135,19 @@ void View::update2() {
 void View::nextButtonClicked() {
   //controller_->nextButtonClicked();
 } // View::nextButtonClicked
+=======
+void View::playerTypeButtonClicked(int playerNum) {
+	 std::string text = playerType[playerNum].get_label();
+	if (text == "Computer")
+		playerType[playerNum].set_label("Human");
+	else if (text == "Human")
+		playerType[playerNum].set_label("Computer");
+
+
+	//playerType[playerNum].set_label("Human");
+}
+
+>>>>>>> develop
 
 void View::resetButtonClicked() {
   //controller_->resetButtonClicked();

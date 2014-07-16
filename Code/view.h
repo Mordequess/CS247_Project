@@ -59,7 +59,7 @@ private:
 	Gtk::HBox playerbox;
 	Gtk::Frame players[4];
 	Gtk::VBox play[4];
-	Gtk::Button human[4];
+	Gtk::Button playerType[4];
 	Gtk::Label score[4];
 	Gtk::Label discards[4];
 
@@ -70,6 +70,7 @@ private:
 
 	// Signal handlers:
 	void nextButtonClicked();
+	void playerTypeButtonClicked(int playerNum);
 	void resetButtonClicked();
 
 }; // View
