@@ -24,7 +24,9 @@ public:
        void unsubscribe( Observer* );
 
 protected:
-       void notify();
+       void notify0();
+       void notify1();
+       void notify2();
 
 private:
        typedef std::set< Observer* > Observers;
