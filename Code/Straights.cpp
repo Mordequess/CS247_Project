@@ -67,7 +67,7 @@ void Straights::updateScores() {
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
 		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
-			std::cout << " " << *(players_[i]->getDiscarded()[j]);//
+			std::cout << " " << *(players_[i]->getDiscarded()[j]);
 		}
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
 		std::cout << " + " << players_[i]->incrementScore();
@@ -116,3 +116,12 @@ void Straights::playerTurn(int playerposition) {
 		first = false;
 	}
 }
+
+/*
+bool Straights::checkRoundEnd() const {
+	for (int i = 0; i < NUM_PLAYERS; i++) {
+		if (players_[i]->getHand().size() > 0) return false;
+	}
+	return true;
+}
+*/

@@ -15,8 +15,6 @@
 //#include "Straights.h"
 #include <stdlib.h>
 
-#include <stdlib.h>
-
 
 Model::Model() {
 	playerType_ = {0,0,0,0};	//all players default to human
@@ -54,11 +52,6 @@ void Model::quitGame() {
 	}
 
 	//change rage buttons back to human/comp
-
-	//clear scores
-	playerScore_ = {0,0,0,0};
-	playerDiscard_ = {0,0,0,0};
-
   	notify();
 }
 
@@ -71,17 +64,12 @@ bool Model::getPlayerType (int player) {
 	return playerType_[player];
 }
 
+int Model::getScore (int player) {
+	return game.getScore(player);
+}
+
 Played Model::getPlayed () {
 	return game.getPlayedCards();
-	/*
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j = 13; j++) {
-			if (played[i][j]) {
-				//images[j+i*13] = deck(j+i*13);
-			}
-		}
-	}
-	*/
 }
 
 //running the rounds
