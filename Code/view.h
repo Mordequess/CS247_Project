@@ -26,7 +26,9 @@ class View : public Gtk::Window, public Observer {
 public:
         View( Controller*, Model* );
 	virtual ~View();
-	virtual void update();	// Observer Pattern: concrete update() method
+	virtual void update0();	// Observer Pattern: concrete update() method
+	virtual void update1();	// Observer Pattern: concrete update() method
+	virtual void update2();	// Observer Pattern: concrete update() method
 
 private:
 	// Observer Pattern: to access Model accessors without having to downcast subject

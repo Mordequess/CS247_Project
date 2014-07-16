@@ -12,34 +12,32 @@
 
 #include "model.h"
 //#include "Played.h"
-//#include "Straights.h"
+#include "Straights.h"
 #include <stdlib.h>
 
 
 Model::Model() {
-	playerType_ = {0,0,0,0};	//all players default to human
-	playerScore_ = {0,0,0,0};	//all players start at 0 points
-	playerDiscard_ = {0,0,0,0};	//all players start with empty discard piles
+	//playerType_ = {0,0,0,0};	//all players default to human
 }
 
 void Model::startGame(int seed) {
 	//
 	srand48(seed);
-    Straights game = Straights(playerType_);
+    //Straights game = Straights(playerType_);
 
     //set first player
-    int whosTurn = game.getFirstPlayer();
+    //int whosTurn = game.getFirstPlayer();
     //game.nextRound();
 
 	//change human/comp buttons to rage (only humans, computers say comp?)
 
- 	notify();
+ 	notify0();
 }
 
 void Model::quitGame() {
  	//
  	//destroy game
- 	game.~Straights();
+ 	//game.~Straights();
 
 	//clear board
  	for (int i = 0; i < 52; i++) {
@@ -52,12 +50,12 @@ void Model::quitGame() {
 	}
 
 	//change rage buttons back to human/comp
-  	notify();
+  	notify0();
 }
 
 void Model::ragePlayer (int player) {
 	//ragequit
-	//notify();
+	//notify0();
 }
 
 bool Model::getPlayerType (int player) {
@@ -65,11 +63,12 @@ bool Model::getPlayerType (int player) {
 }
 
 int Model::getScore (int player) {
-	return game.getScore(player);
+	//return game.getScore(player);
+    return 0;
 }
 
 Played Model::getPlayed () {
-	return game.getPlayedCards();
+	//return game.getPlayedCards();
 }
 
 //running the rounds

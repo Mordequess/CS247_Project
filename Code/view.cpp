@@ -116,16 +116,8 @@ View::~View() {}
 
 
 void View::update0() {
-  Suits suit = model_->suit();
-  Faces face = model_->face();
-  if ( suit == NOSUIT ) 
-    card.set( deck.null() );
-  else
-    card.set( deck.image(face, suit) );
-
 }
 
-<<<<<<< HEAD
 void View::update1() {
 }
 
@@ -135,7 +127,7 @@ void View::update2() {
 void View::nextButtonClicked() {
   //controller_->nextButtonClicked();
 } // View::nextButtonClicked
-=======
+
 void View::playerTypeButtonClicked(int playerNum) {
 	 std::string text = playerType[playerNum].get_label();
 	if (text == "Computer")
@@ -146,8 +138,6 @@ void View::playerTypeButtonClicked(int playerNum) {
 
 	//playerType[playerNum].set_label("Human");
 }
-
->>>>>>> develop
 
 void View::resetButtonClicked() {
   //controller_->resetButtonClicked();

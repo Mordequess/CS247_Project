@@ -24,6 +24,7 @@ public:
 	//bool checkRoundEnd() const;					// check if all hands are empty
 
 private:
+	//Straights();								// Straights Constructor
 	Player* players_[NUM_PLAYERS]; 
 	Deck deck_;
 	Played* played_;

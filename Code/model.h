@@ -14,24 +14,25 @@
 
 #include "subject.h"
 #include "Straights.h"
+#include <vector>
 
 class Model : public Subject {
 public:
     Model();
-    void startGame();
+    void startGame(int seed);
     void quitGame();
     void setPlayerType(int player);		//flips a player from computer to human and back
     void ragePlayer(int player);		//calls rage quit on active player
 
-    int getScore();
-	void getPlayed ();
+    int getScore(int player);
+	Played getPlayed ();
 	bool getPlayerType(int player);
 
 private:
-    bool[4] playerType_;				//keeps track of whether player is human or computer: 0 = human
-    vector<Card*>[4] hands_;			//keepe a copy of each player's current hand
+    bool playerType_[4];				//keeps track of whether player is human or computer: 0 = human
+    std::vector<Card*> hands_[4];		//keeps a copy of each player's current hand
 
-    Straights game;						//instance of the game
+    //Straights game;						//instance of the game
 }; // Model
 
 #endif
