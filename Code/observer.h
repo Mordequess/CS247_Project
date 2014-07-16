@@ -16,7 +16,9 @@ class Subject;
 
 class Observer {
 public:
-	virtual void update () = 0;
+	virtual void update0 () = 0;
+	virtual void update1 () = 0;
+	virtual void update2 () = 0;
 };
 
 

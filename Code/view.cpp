@@ -113,7 +113,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(13, 4, tr
 View::~View() {}
 
 
-void View::update() {
+void View::update0() {
   Suits suit = model_->suit();
   Faces face = model_->face();
   if ( suit == NOSUIT ) 
@@ -121,6 +121,12 @@ void View::update() {
   else
     card.set( deck.image(face, suit) );
 
+}
+
+void View::update1() {
+}
+
+void View::update2() {
 }
 
 void View::nextButtonClicked() {

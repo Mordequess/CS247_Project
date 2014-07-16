@@ -9,7 +9,6 @@
  *
  */
 
-
 #ifndef MVC_MODEL_H
 #define MVC_MODEL_H
 
@@ -24,15 +23,17 @@ public:
     void setPlayerType(int player);		//flips a player from computer to human and back
     void ragePlayer(int player);		//calls rage quit on active player
 
-	void updatePlayed ();
+	void getPlayed ();
+	bool getPlayerType(int player);
 
 private:
     bool[4] playerType_;				//keeps track of whether player is human or computer: 0 = human
     int[4] playerScore_;				//keeps track of player score
     int[4] playerDiscard_;				//keeps track of number of discarded cards
-    Straights game;
+    vector<Card*>[4] hands_;			//keepe a copy of each player's current hand
+
+    Straights game;						//instance of the game
 
 }; // Model
-
 
 #endif

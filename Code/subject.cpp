@@ -9,7 +9,6 @@
  *
  */
 
-
 #include <set>
 #include "subject.h"
 #include "observer.h"
@@ -24,8 +23,20 @@ void Subject::unsubscribe (Observer *formerView) {
 }
 
 
-void Subject::notify() {
+void Subject::notify0() {
   Observers::iterator i;
   for (i = observers_.begin(); i != observers_.end(); ++i)
-    (*i)->update();
+    (*i)->update0();
+}
+
+void Subject::notify1() {
+  Observers::iterator i;
+  for (i = observers_.begin(); i != observers_.end(); ++i)
+    (*i)->update1();
+}
+
+void Subject::notify2() {
+  Observers::iterator i;
+  for (i = observers_.begin(); i != observers_.end(); ++i)
+    (*i)->update2();
 }

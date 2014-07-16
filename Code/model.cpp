@@ -11,6 +11,8 @@
 
 
 #include "model.h"
+//#include "Played.h"
+//#include "Straights.h"
 #include <stdlib.h>
 
 
@@ -66,8 +68,13 @@ void Model::ragePlayer (int player) {
 	//notify();
 }
 
-void Model::updatePlayed () {
-	bool[][] played = game.getPlayedCards();
+bool Model::getPlayerType (int player) {
+	return playerType_[player];
+}
+
+Played Model::getPlayed () {
+	return game.getPlayedCards();
+	/*
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j = 13; j++) {
 			if (played[i][j]) {
@@ -75,6 +82,7 @@ void Model::updatePlayed () {
 			}
 		}
 	}
+	*/
 }
 
 //running the rounds
