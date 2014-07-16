@@ -12,10 +12,24 @@ void Computer::playTurn(bool ignore) {
 	std::vector<Card*> hand = getHand();
 	std::vector<Card*> plays = legalPlays(hand);
 	if (plays.size() > 0) {
-		std::cout << "Player " << getPlayerNum() << " plays " << *plays[0] << "." << std::endl;
-		playCard(plays[0]);
+
+		//play highest card
+		int highest = 0;
+		for (int i = 0; i < plays.size(); i++){
+			if (plays[highest]->rank < plays[i]->rank) highest = i;
+		}
+
+		std::cout << "Player " << getPlayerNum() << " plays " << *plays[highest] << "." << std::endl;
+		playCard(plays[highest]);
 	} else {
-		std::cout << "Player " << getPlayerNum() << " discards " << *hand[0] << "." << std::endl;
-		discardCard(hand[0]);
+
+		//discard lowest card
+		int lowest = 0;
+		for (int i = 0; i < hand.size(); i++){
+			if (hand[lowest]->rank > hand[i]->rank) lowest = i;
+		}
+
+		std::cout << "Player " << getPlayerNum() << " discards " << *hand[lowest] << "." << std::endl;
+		discardCard(hand[lowest]);
 	} 
 }
