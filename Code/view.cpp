@@ -101,6 +101,8 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 
 	for (int i = 0; i < 13; i++) {
       hand_table.attach(handButtons[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
+		handButtons[i].signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &View::cardButtonClicked), i));
+
 	}
 
 
@@ -149,3 +151,10 @@ void View::startGameButtonClicked() {
 void View::endGameButtonClicked() {
 	endgame.set_label("Muffin");
 }
+
+
+void View::cardButtonClicked(int cardnum) {
+	std::cout << cardnum << std::endl;
+}
+
+//48x70

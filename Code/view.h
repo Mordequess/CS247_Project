@@ -74,6 +74,7 @@ private:
 	void playerTypeButtonClicked(int playerNum);
 	void startGameButtonClicked();
 	void endGameButtonClicked();
+	void cardButtonClicked(int cardnum);
 
 
 
