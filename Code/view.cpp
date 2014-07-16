@@ -20,14 +20,17 @@
 
 // Creates buttons with labels. Sets Vpanel elements to have the same size, 
 // with 10 pixels between widgets
-View::View(Controller *c, Model *m) : model_(m), controller_(c), table(13, 4, true), hand_table(13, 1, true), card(deck.null()) {
+View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, true), hand_table(1, 13, true), card(deck.null()) {
 
 	//set initial values for all elements
-	for (int i = 0; i < 52; i++) {
-		tableCards[i].set(deck.null()); 	//when setting cards to be face up, set to deck(i)
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 13; j++) {
+			tableCards[j + i*13].set(deck.null()); 	//deck.null() or deck.image(j*4 + i)
+		}
 	}
 		for (int i = 0; i < 13; i++) {
-		handCards[i].set(deck.null()); 	//when setting cards to be face up, set to deck(i)
+			handImages[i].set(deck.null()); 			
+			handButtons[i].set_image(handImages[i]); 	//set hand buttons to be card backs
 	}
 
 
@@ -44,10 +47,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(13, 4, tr
 	frame.set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
 
 
-	players[0].set_label( "Player 1" );
-	players[1].set_label( "Player 2" );
-	players[2].set_label( "Player 3" );
-	players[3].set_label( "Player 4" );
+	
 	players[0].set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
 	
 	startgame.set_label("Start new game with seed");
@@ -55,8 +55,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(13, 4, tr
 
 	// Sets some properties of the window.
     set_title("Straights Game");
-	//set_border_width( 10 );
-	set_default_size(800, 500);
+	set_default_size(760, 500);
 
     //add elements to the shell and views
 	shell.add ( hbox_1 );
@@ -98,7 +97,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(13, 4, tr
 	playerhand_frame.add(hand_table);
 
 	for (int i = 0; i < 13; i++) {
-      hand_table.attach(handCards[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
+      hand_table.attach(handButtons[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
 	}
 
 
@@ -130,9 +129,9 @@ void View::update2() {
 }
 
 void View::nextButtonClicked() {
-  controller_->nextButtonClicked();
+  //controller_->nextButtonClicked();
 } // View::nextButtonClicked
 
 void View::resetButtonClicked() {
-  controller_->resetButtonClicked();
+  //controller_->resetButtonClicked();
 } // View::resetButtonClicked

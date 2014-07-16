@@ -15,6 +15,8 @@
 //#include "Straights.h"
 #include <stdlib.h>
 
+#include <stdlib.h>
+
 
 Model::Model() {
 	playerType_ = {0,0,0,0};	//all players default to human
@@ -23,6 +25,7 @@ Model::Model() {
 }
 
 void Model::startGame(int seed) {
+	//
 	srand48(seed);
     Straights game = Straights(playerType_);
 
@@ -36,6 +39,7 @@ void Model::startGame(int seed) {
 }
 
 void Model::quitGame() {
+ 	//
  	//destroy game
  	game.~Straights();
 
@@ -56,11 +60,6 @@ void Model::quitGame() {
 	playerDiscard_ = {0,0,0,0};
 
   	notify();
-}
-
-void Model::setPlayerType (int player) {
-	playerType_[player] = !playerType_[player];
-	notify();
 }
 
 void Model::ragePlayer (int player) {
@@ -108,3 +107,6 @@ Played Model::getPlayed () {
             std::cout << "Player " << i + 1 << " wins!" << std::endl;
     }
 */
+
+
+

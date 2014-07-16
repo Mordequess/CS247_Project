@@ -52,7 +52,8 @@ private:
 	Gtk::Frame frame; 
 	Gtk::Table table;
 	Gtk::Image tableCards[52];
-	Gtk::Image handCards[13];
+	Gtk::Button handButtons[13];
+	Gtk::Image handImages[13];
 	
 	//Gtk::Frame playerframe;
 	Gtk::HBox playerbox;
@@ -64,8 +65,6 @@ private:
 
 	Gtk::Frame playerhand_frame;
 	Gtk::Table hand_table;
-
-
 
 	Gtk::Image card;
 
