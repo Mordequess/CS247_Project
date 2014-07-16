@@ -21,6 +21,8 @@ public:
 	int getFirstPlayer() const;					// Find player with 7S
 
 	void playerTurn(int);						// call a players turn
+
+	Player* getplayer(int playernum);
 	//bool checkRoundEnd() const;					// check if all hands are empty
 
 private:

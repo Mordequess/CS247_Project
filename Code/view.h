@@ -71,9 +71,11 @@ private:
 	Gtk::Image card;
 
 	// Signal handlers:
-	void nextButtonClicked();
 	void playerTypeButtonClicked(int playerNum);
-	void resetButtonClicked();
+	void startGameButtonClicked();
+	void endGameButtonClicked();
+
+
 
 }; // View
 

@@ -39,7 +39,6 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 	players[3].set_label("Player 4");
 
     
-    nameLabel.set_text("Enter Seed: ");
     nameField.set_text( "0" );
 
 	frame.set_label( "Cards Played:" );
@@ -51,8 +50,10 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 
 	players[0].set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
 	
-	startgame.set_label("Start new game with seed");
+	startgame.set_label("Start new game with seed:");
+	startgame.signal_clicked().connect( sigc::mem_fun( *this, &View::startGameButtonClicked ) );
 	endgame.set_label("End current game");
+	endgame.signal_clicked().connect( sigc::mem_fun( *this, &View::endGameButtonClicked ) );
 
 	// Sets some properties of the window.
     set_title("Straights Game");
@@ -65,7 +66,6 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
     // Add the text entry widget to the vertical box section of the dialog box.
 	hbox_1.add ( startgame );
 	hbox_1.add ( hbox_2 );
-	hbox_2.add ( nameLabel );
 	hbox_2.add ( nameField );
 	hbox_1.add ( endgame );
 
@@ -124,21 +124,28 @@ void View::update1() {
 void View::update2() {
 }
 
-void View::nextButtonClicked() {
-  //controller_->nextButtonClicked();
-} // View::nextButtonClicked
-
 void View::playerTypeButtonClicked(int playerNum) {
 	 std::string text = playerType[playerNum].get_label();
-	if (text == "Computer")
+	if (text == "Computer") {
 		playerType[playerNum].set_label("Human");
-	else if (text == "Human")
+	}
+	else if (text == "Human") {
 		playerType[playerNum].set_label("Computer");
+	}
 
 
 	//playerType[playerNum].set_label("Human");
 }
 
-void View::resetButtonClicked() {
-  //controller_->resetButtonClicked();
-} // View::resetButtonClicked
+void View::startGameButtonClicked() {
+	startgame.set_label("Muffin");
+	std::string name = nameField.get_text();
+	int seed = atoi(name.c_str());
+	std::cout << seed << std::endl;
+
+}
+
+
+void View::endGameButtonClicked() {
+	endgame.set_label("Muffin");
+}

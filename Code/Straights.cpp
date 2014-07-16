@@ -61,6 +61,10 @@ int Straights::getMinScore() const {
 	return min;
 }
 
+Player* Straights::getplayer(int playernum){
+	return players_[playernum];
+}
+
 void Straights::updateScores() {
 	//increment scores at end of round
 	for (int i = 0; i < NUM_PLAYERS; i++){
