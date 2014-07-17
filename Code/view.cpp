@@ -143,6 +143,52 @@ void View::updateRoundEnd() {
 	//clear table
 	setNullCards();
 
+
+	Gtk::Dialog dialog( "Round Results", *this );
+	Gtk::VBox* contentArea = dialog.get_vbox();
+
+	for (int i = 0; i < 4; i++) {
+		Player* active = model_->getPlayer(i);
+
+		roundDiscard[i].set_label("Player " +  convert(i +1) + "'s discards: " + convert(active->getDiscarded()));
+		roundDiscard[i].set_justify( Gtk::JUSTIFY_LEFT);
+		contentArea->pack_start(roundDiscard[i], true, false );
+		roundDiscard[i].show();
+
+		roundScore[i].set_label("Player " +  convert(i +1) + "'s score: " + convert(active->getScore()) + "\n");
+		roundScore[i].set_justify( Gtk::JUSTIFY_LEFT);
+		contentArea->pack_start(roundScore[i], true, false );
+		roundScore[i].show();
+	}
+
+
+	if (model_->checkEnd()){
+		extra.set_label(model_->getWinners());
+	}
+	else {
+		extra.set_label("A new round begins. It's player " + convert(model_->getActivePlayer() + 1) + "'s turn to play.");
+	}
+	extra.set_justify( Gtk::JUSTIFY_LEFT);
+	contentArea->pack_start(extra, true, false );
+	extra.show();
+            
+    dialog.add_button( Gtk::Stock::OK, Gtk::RESPONSE_OK);
+
+    int result = dialog.run();
+    std::string name;
+    switch (result) {
+        case Gtk::RESPONSE_OK:
+        case Gtk::RESPONSE_ACCEPT:
+            name = nameField.get_text();
+            std::cout << "Entered '" << name << "'" << std::endl;
+            break;
+        case Gtk::RESPONSE_CANCEL:
+            std::cout << "dialog cancelled" << std::endl;
+            break;
+        default:
+            std::cout << "unexpected button clicked" << std::endl;
+            break;
+    } // switch
 	//show dialogue
 	//list scores, discards
 	//list winners if game over
@@ -254,6 +300,14 @@ void View::cardButtonClicked(int cardnum) {
 std::string convert(int num) {
 	std::ostringstream convert;   // stream used for the conversion
 	convert << num;      // insert the textual representation of 'Number' in the characters in the stream
+	return convert.str(); // set 'Result' to the contents of the stream
+}
+
+std::string convert(std::vector<Card*> cards) {
+	std::ostringstream convert;   // stream used for the conversion
+	for (int i = 0; i < cards.size(); i++) {
+		convert << " " << *(cards[i]);
+	}
 	return convert.str(); // set 'Result' to the contents of the stream
 }
 

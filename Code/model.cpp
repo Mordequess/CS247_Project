@@ -26,7 +26,6 @@ Model::Model() {
 void Model::playTurn() {
     //play until human turn
     while (playerType_[activePlayer_]) {
-        //*** loop only until hands are empty
         if (game->getPlayer(activePlayer_)->getHand().size() == 0) break;
         game->playerTurn(activePlayer_);
         activePlayer_ = ++activePlayer_%4;
@@ -36,19 +35,12 @@ void Model::playTurn() {
     notifyDrawHand();
 
     if (game->getPlayer(activePlayer_)->getHand().size() == 0) {
+
         game->updateScores();
         notifyRoundEnd();
 
-        if (game->checkEnd()) {
-            int winScore = game->getMinScore();
-            for (int i = 0; i < NUM_PLAYERS; i++) {
-                if (game->getScore(i) == winScore) {
-                    //std::cout << "Player " << i + 1 << " wins!" << std::endl;
-                    //***game end update
-                }
-            }
-        }
-        else {
+        if (!checkEnd()) {
+            notifyRoundEnd();
             game->nextRound();
             //set first player
             activePlayer_ = game->getFirstPlayer();
@@ -104,8 +96,22 @@ void Model::ragePlayer () {
     playTurn();
 }
 
+std::string Model::getWinners () {
+    int winScore = game->getMinScore();
+    std::ostringstream winners;   // stream used for the conversion
+    for (int i = 0; i < 4; i++) {
+        if (game->getScore(i) == winScore) 
+            winners << "Player " << i + 1 << " wins!" << std::endl;
+    }
+    return winners.str();
+}
+
 bool Model::gameIsNull () {
     return game == NULL;
+}
+
+bool Model::checkEnd () {
+    return game->checkEnd();
 }
 
 bool Model::getPlayerType (int player) {

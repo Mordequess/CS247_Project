@@ -39,6 +39,9 @@ void Straights::nextRound(){
 	deck_.shuffle();
 	//Deal hands (should be empty after each round)
 	for (int i = 0; i < NUM_PLAYERS; i++) {
+		//clear hand
+		players_[i]->setDiscard(std::vector<Card*>());
+		
 		std::vector<Card*> hand;
 		for (int j = 0; j < NUM_CARDS/4; j++) {
 			hand.push_back(deck_.getCard(j+i*NUM_CARDS/4));
@@ -91,8 +94,6 @@ void Straights::updateScores() {
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
 		std::cout << " + " << players_[i]->incrementScore();
 		std::cout << " = " << players_[i]->getScore() << std::endl;
-		//clear hand
-		players_[i]->setDiscard(std::vector<Card*>());
 	}
 }
 

@@ -15,6 +15,7 @@
 
 
 #include <gtkmm.h>
+#include <vector>
 #include "DeckGUI.h"
 #include "observer.h"
 
@@ -23,6 +24,7 @@ class Model;
 
 
 std::string convert(int);
+std::string convert(std::vector<Card*>);
 
 
 class View : public Gtk::Window, public Observer {
@@ -68,6 +70,11 @@ private:
 	Gtk::Button playerType[4];
 	Gtk::Label score[4];
 	Gtk::Label discards[4];
+
+	Gtk::Label roundScore[4];
+	Gtk::Label roundDiscard[4];
+	Gtk::Label extra;
+	
 
 	Gtk::Frame playerhand_frame;
 	Gtk::Table hand_table;

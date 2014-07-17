@@ -31,6 +31,8 @@ public:
     Played* getPlayed ();
 	Player* getPlayer (int player);
     bool gameIsNull();
+    bool checkEnd();
+    std::string getWinners();
 	bool getPlayerType(int player);
     void setPlayerType(int player);     //flips a player from computer to human and back
 
