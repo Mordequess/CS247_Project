@@ -84,7 +84,7 @@ void Player::discardCard(Card* card) {
 bool Player::inHand (Card* card) const {
 	//find if card is in hand
 	bool found = false;
-	for (int i = 0; i < hand_.size(); i++) {
+	for (unsigned int i = 0; i < hand_.size(); i++) {
 		if (*card == *hand_[i]) {
 			found = true;
 		}
@@ -96,7 +96,7 @@ bool Player::inHand (Card* card) const {
 // Return a vactor of legal plays for the player
 std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 	std::vector<Card*> legalCards;
-	for (int i = 0; i < currHand.size(); i++){
+	for (unsigned int i = 0; i < currHand.size(); i++){
 		if (played_->isLegal(*currHand[i])) {
 			legalCards.push_back(currHand[i]);
 		}
@@ -108,7 +108,7 @@ std::vector<Card*> Player::legalPlays(std::vector<Card*> currHand){
 // Increment the player score, return amount that score was incremented
 int Player::incrementScore() {
 	int scoreIncrement = 0;
-	for(int i = 0; i < discarded_.size(); i++){
+	for(unsigned int i = 0; i < discarded_.size(); i++){
 		scoreIncrement += discarded_[i]->getRank() + 1;
 	}
 	score_ += scoreIncrement; 

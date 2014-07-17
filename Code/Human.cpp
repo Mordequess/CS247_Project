@@ -11,12 +11,12 @@ void Human::print() const {
 	std::cout << *getPlayed() << std::endl; 
 	std::vector<Card*> currHand = getHand();
 	std::cout << "Your hand:";
-	for (int i = 0; i < currHand.size() ; i++) {
+	for (unsigned int i = 0; i < currHand.size() ; i++) {
 		std::cout << " " << *currHand[i];
 	}
 	std::cout << "\n";
 	std::cout << "Legal plays:";
-	for (int i = 0; i < currHand.size() ; i++) {
+	for (unsigned int i = 0; i < currHand.size() ; i++) {
 		if (getPlayed()->isLegal(*currHand[i])) {
 			std::cout << " " << *currHand[i];
 		}

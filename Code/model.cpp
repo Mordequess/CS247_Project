@@ -28,19 +28,15 @@ void Model::playTurn() {
     while (playerType_[activePlayer_]) {
         if (game->getPlayer(activePlayer_)->getHand().size() == 0) break;
         game->playerTurn(activePlayer_);
-        activePlayer_ = ++activePlayer_%4;
+        activePlayer_ = (activePlayer_+1)%4;
     }
-    //update board, show human player's hand
-    notifyCardPlayed();
-    notifyDrawHand();
 
     if (game->getPlayer(activePlayer_)->getHand().size() == 0) {
-
+        //clean up the round
         game->updateScores();
         notifyRoundEnd();
 
         if (!checkEnd()) {
-            notifyRoundEnd();
             game->nextRound();
             //set first player
             activePlayer_ = game->getFirstPlayer();
@@ -48,6 +44,14 @@ void Model::playTurn() {
             //run player rounds
             playTurn();
         }
+        else {
+            quitGame();
+        }
+    }
+    else {
+        //update board, show human player's hand 
+        notifyDrawHand();
+        notifyCardPlayed();
     }
 }
 
@@ -68,8 +72,8 @@ void Model::startGame(int seed) {
 }
 
 void Model::quitGame() {
- 	//destroy game
- 	game->~Straights();
+ 	//destroy game if (!gameIsNull()) 
+ 	delete game;
     game = NULL;
 
   	notifyGameStartEnd();
@@ -85,7 +89,7 @@ void Model::cardPlayDiscard (int card, bool legal) {
     }
 
     //move on to next player
-    activePlayer_ = ++activePlayer_%4;
+    activePlayer_ = (activePlayer_+1)%4;
     playTurn();
 }
 

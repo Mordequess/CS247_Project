@@ -14,7 +14,7 @@ void Computer::playTurn(bool ignore) {
 
 		//play highest card
 		int highest = 0;
-		for (int i = 0; i < plays.size(); i++){
+		for (unsigned int i = 0; i < plays.size(); i++){
 			if (plays[highest]->getRank() < plays[i]->getRank()) highest = i;
 		}
 
@@ -24,7 +24,7 @@ void Computer::playTurn(bool ignore) {
 
 		//discard lowest card
 		int lowest = 0;
-		for (int i = 0; i < hand.size(); i++){
+		for (unsigned int i = 0; i < hand.size(); i++){
 			if (hand[lowest]->getRank() > hand[i]->getRank()) lowest = i;
 		}
 

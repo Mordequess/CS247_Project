@@ -88,7 +88,7 @@ void Straights::updateScores() {
 
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
-		for (uint j = 0; j < players_[i]->getDiscarded().size(); j++) { //why uint? odd warning
+		for (unsigned int j = 0; j < players_[i]->getDiscarded().size(); j++) { //why unsigned int? odd warning
 			std::cout << " " << *(players_[i]->getDiscarded()[j]);
 		}
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();

@@ -49,6 +49,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 	startgame.set_label("Start new game with seed:");
 	startgame.signal_clicked().connect( sigc::mem_fun( *this, &View::startGameButtonClicked ) );
 	endgame.set_label("End current game");
+	endgame.set_sensitive(false);
 	endgame.signal_clicked().connect( sigc::mem_fun( *this, &View::endGameButtonClicked ) );
 
 	// Sets some properties of the window.
@@ -171,7 +172,7 @@ void View::updateRoundEnd() {
 	extra.set_justify( Gtk::JUSTIFY_LEFT);
 	contentArea->pack_start(extra, true, false );
 	extra.show();
-            
+    std::cout << "I have ended a round" << std::endl;  
     dialog.add_button( Gtk::Stock::OK, Gtk::RESPONSE_OK);
 
     int result = dialog.run();
@@ -206,8 +207,10 @@ void View::updateGameStartEnd() {
 			playerType[i].set_sensitive(false);
 			if (!model_->getPlayerType(i)) playerType[i].set_label("Rage Quit");
 		}
+		endgame.set_sensitive(true);
 	}
 	else {
+		endgame.set_sensitive(false);
 		//disable hand
 		for(int i = 0; i < 13; i ++) {
 			handButtons[i].set_sensitive(false);
@@ -227,7 +230,7 @@ void View::updateDrawHand() {
 
 	Player* active = model_->getPlayer(model_->getActivePlayer());
 	Played* table = model_->getPlayed();
-	for (int i = 0; i < active->getHand().size(); i++) {
+	for (unsigned int i = 0; i < active->getHand().size(); i++) {
 		//check if card is legal (or if no legal plays), make button clickable
 		handButtons[i].set_sensitive(false);
 		if (active->legalPlays(active->getHand()).size() == 0 || table->isLegal(*active->getHand()[i])) {
@@ -235,7 +238,7 @@ void View::updateDrawHand() {
 		}
 		handImages[i].set(deck.image(active->getHand()[i]->getSuit() + active->getHand()[i]->getRank() * 4));
 	}
-	for (int i = active->getHand().size(); i < 13; i++) {
+	for (unsigned int i = active->getHand().size(); i < 13; i++) {
 		handButtons[i].set_sensitive(false);
 		handImages[i].set(deck.null());
 	}
@@ -305,7 +308,7 @@ std::string convert(int num) {
 
 std::string convert(std::vector<Card*> cards) {
 	std::ostringstream convert;   // stream used for the conversion
-	for (int i = 0; i < cards.size(); i++) {
+	for (unsigned int i = 0; i < cards.size(); i++) {
 		convert << " " << *(cards[i]);
 	}
 	return convert.str(); // set 'Result' to the contents of the stream
