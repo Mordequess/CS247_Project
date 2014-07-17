@@ -16,6 +16,8 @@
 #include "model.h"
 #include "subject.h"
 #include "DeckGUI.h"
+
+#include <cstring>
 #include <iostream>
 
 // Creates buttons with labels. Sets Vpanel elements to have the same size, 
@@ -23,15 +25,9 @@
 View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, true), hand_table(1, 13, true), card(deck.null()) {
 
 	//set initial values for all elements
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 13; j++) {
-			tableCards[j + i*13].set(deck.null()); 	//deck.null() or deck.image(j*4 + i)
-		}
-	}
-	for (int i = 0; i < 13; i++) {
-		handImages[i].set(deck.null()); 			
-		handButtons[i].set_image(handImages[i]); 	//set hand buttons to be card backs
-	}
+	setNullCards();
+	setScoreZero();
+	setDiscardZero();
 
 	players[0].set_label("Player 1");
 	players[1].set_label("Player 2");
@@ -69,11 +65,6 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 	hbox_2.add ( nameField );
 	hbox_1.add ( endgame );
 
-
-	for(int i = 0; i < 4; i ++) {
-		score[i].set_label("Score: ");
-		discards[i].set_label("Discards: ");
-	}
 	// Add the horizontal box for laying out the images to the frame.
 	shell.add ( frame );
 	frame.add( table );
@@ -100,9 +91,9 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 	playerhand_frame.add(hand_table);
 
 	for (int i = 0; i < 13; i++) {
-      hand_table.attach(handButtons[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
+     	hand_table.attach(handButtons[i], i % 13, (i % 13) + 1, i / 13, (i / 13) + 1);
 		handButtons[i].signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &View::cardButtonClicked), i));
-
+		handButtons[i].set_sensitive(false);
 	}
 
 
@@ -114,47 +105,156 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 
 } // View::View
 
+void View::setNullCards() {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 13; j++) {
+			tableCards[j + i*13].set(deck.null()); 	//deck.null() or deck.image(j*4 + i)
+		}
+	}
+	for (int i = 0; i < 13; i++) {
+		handImages[i].set(deck.null()); 			
+		handButtons[i].set_image(handImages[i]); 	//set hand buttons to be card backs
+	}
+}
+
+void View::setScoreZero() {
+	for(int i = 0; i < 4; i ++) {
+		score[i].set_label("Score: 0");
+	}
+}
+
+void View::setDiscardZero() {
+	for(int i = 0; i < 4; i ++) {
+		discards[i].set_label("Discards: 0");
+	}
+}
+
 View::~View() {}
 
+void View::updateRoundEnd() {
+	//reset discards, set score
+	for (int i = 0; i < 4; i++){
+		Player* active = model_->getPlayer(i);
+		discards[i].set_label("Discards: 0");
+		score[i].set_label("Score: " + convert(active->getScore()));
+	}
+	setDiscardZero();
 
-void View::update0() {
+	//clear table
+	setNullCards();
+
+	//show dialogue
+	//list scores, discards
+	//list winners if game over
+	//else list first player for next round
 }
 
-void View::update1() {
+
+void View::updateGameStartEnd() {
+	setNullCards();
+	setScoreZero();
+	setDiscardZero();
+	if (!model_->gameIsNull()){
+		//disable all player buttons, set human buttons to rage
+		for(int i = 0; i < 4; i ++) {
+			playerType[i].set_sensitive(false);
+			if (!model_->getPlayerType(i)) playerType[i].set_label("Rage Quit");
+		}
+	}
+	else {
+		//disable hand
+		for(int i = 0; i < 13; i ++) {
+			handButtons[i].set_sensitive(false);
+			handImages[i].set(deck.null());
+		}
+		//enable player buttons, set rage buttons to human/comp
+		for(int i = 0; i < 4; i ++) {
+			playerType[i].set_sensitive(true);
+			if (!model_->getPlayerType(i)) playerType[i].set_label("Human");
+		}
+	}
 }
 
-void View::update2() {
+void View::updateDrawHand() {
+	//turn off rage button
+	playerType[model_->getActivePlayer()].set_sensitive(true);
+
+	Player* active = model_->getPlayer(model_->getActivePlayer());
+	Played* table = model_->getPlayed();
+	for (int i = 0; i < active->getHand().size(); i++) {
+		//check if card is legal (or if no legal plays), make button clickable
+		handButtons[i].set_sensitive(false);
+		if (active->legalPlays(active->getHand()).size() == 0 || table->isLegal(*active->getHand()[i])) {
+			handButtons[i].set_sensitive(true);
+		}
+		handImages[i].set(deck.image(active->getHand()[i]->getSuit() + active->getHand()[i]->getRank() * 4));
+	}
+	for (int i = active->getHand().size(); i < 13; i++) {
+		handButtons[i].set_sensitive(false);
+		handImages[i].set(deck.null());
+	}
+}
+
+void View::updateCardPlayed() {
+	Played* cards = model_->getPlayed();
+	for (int i = 0; i < 4; i++) {
+
+		Player* active = model_->getPlayer(i);
+		discards[i].set_label("Discards: " + convert(active->getDiscarded().size()));
+
+
+		for (int j = 0; j < 13; j++) {
+			if(cards->playedCards[i][j] == true) {
+				tableCards[j + i*13].set(deck.image(j*4 + i)); 	//deck.null() or deck.image(j*4 + i)
+			}
+		}
+	}
 }
 
 void View::playerTypeButtonClicked(int playerNum) {
-	 std::string text = playerType[playerNum].get_label();
-	if (text == "Computer") {
-		playerType[playerNum].set_label("Human");
+	if (model_->gameIsNull()){
+		if (model_->getPlayerType(playerNum)) {
+			playerType[playerNum].set_label("Human");
+		}
+		else {
+			playerType[playerNum].set_label("Computer");
+		}
 	}
-	else if (text == "Human") {
+	else {
+		//ragequit the player
 		playerType[playerNum].set_label("Computer");
+		playerType[playerNum].set_sensitive(false);
 	}
-
-
-	//playerType[playerNum].set_label("Human");
+	controller_->playerTypeButtonClicked(playerNum);
 }
 
 void View::startGameButtonClicked() {
-	startgame.set_label("Muffin");
+	//startgame.set_label("Muffin");
 	std::string name = nameField.get_text();
 	int seed = atoi(name.c_str());
 	std::cout << seed << std::endl;
-
+	controller_->startGameButtonClicked(seed);
 }
 
 
 void View::endGameButtonClicked() {
-	endgame.set_label("Muffin");
+	controller_->endGameButtonClicked();
 }
 
 
 void View::cardButtonClicked(int cardnum) {
-	std::cout << cardnum << std::endl;
+	//turn off rage button
+	playerType[model_->getActivePlayer()].set_sensitive(false);
+
+	Player* active = model_->getPlayer(model_->getActivePlayer());
+	Played* table = model_->getPlayed();
+	controller_->cardButtonClicked(cardnum, table->isLegal(*active->getHand()[cardnum]));
+}
+
+std::string convert(int num) {
+	std::ostringstream convert;   // stream used for the conversion
+	convert << num;      // insert the textual representation of 'Number' in the characters in the stream
+	return convert.str(); // set 'Result' to the contents of the stream
 }
 
 //48x70

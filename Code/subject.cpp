@@ -23,20 +23,26 @@ void Subject::unsubscribe (Observer *formerView) {
 }
 
 
-void Subject::notify0() {
+void Subject::notifyGameStartEnd() {
   Observers::iterator i;
   for (i = observers_.begin(); i != observers_.end(); ++i)
-    (*i)->update0();
+    (*i)->updateGameStartEnd();
 }
 
-void Subject::notify1() {
+void Subject::notifyDrawHand() {
   Observers::iterator i;
   for (i = observers_.begin(); i != observers_.end(); ++i)
-    (*i)->update1();
+    (*i)->updateDrawHand();
 }
 
-void Subject::notify2() {
+void Subject::notifyRoundEnd() {
   Observers::iterator i;
   for (i = observers_.begin(); i != observers_.end(); ++i)
-    (*i)->update2();
+    (*i)->updateRoundEnd();
+}
+
+void Subject::notifyCardPlayed() {
+  Observers::iterator i;
+  for (i = observers_.begin(); i != observers_.end(); ++i)
+    (*i)->updateCardPlayed();
 }

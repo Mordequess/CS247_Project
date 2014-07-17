@@ -24,9 +24,10 @@ public:
        void unsubscribe( Observer* );
 
 protected:
-       void notify0();
-       void notify1();
-       void notify2();
+       void notifyGameStartEnd();
+       void notifyDrawHand();
+       void notifyCardPlayed();
+       void notifyRoundEnd();
 
 private:
        typedef std::set< Observer* > Observers;

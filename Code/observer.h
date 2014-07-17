@@ -16,9 +16,10 @@ class Subject;
 
 class Observer {
 public:
-	virtual void update0 () = 0;
-	virtual void update1 () = 0;
-	virtual void update2 () = 0;
+	virtual void updateGameStartEnd () = 0;
+	virtual void updateRoundEnd () = 0;
+	virtual void updateDrawHand () = 0;
+	virtual void updateCardPlayed () = 0;
 };
 
 

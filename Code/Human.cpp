@@ -30,6 +30,10 @@ void Human::playTurn(bool printinfo) {
     if (printinfo) {
 		print();
 	}
+
+    /*
+
+
     // Wait for a command
     Command command;
     std::cout << ">";
@@ -73,6 +77,8 @@ void Human::playTurn(bool printinfo) {
         default:
             break;
     }
+
+    */
 }
 
 

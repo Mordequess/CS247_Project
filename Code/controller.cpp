@@ -16,13 +16,25 @@
 
 Controller::Controller(Model *m) : model_(m) {}
 
-/*
-void Controller::nextButtonClicked() {
-     model_->nextCard();
+void Controller::playerTypeButtonClicked(int player) {
+	if (model_->gameIsNull()){
+		model_->setPlayerType(player);
+	}
+	else {
+		//rage
+		model_->ragePlayer();
+	}
+}
+
+void Controller::cardButtonClicked(int card, bool legal) {
+	model_->cardPlayDiscard(card, legal);
 } 
 
-
-void Controller::resetButtonClicked() {
-     model_->resetCards();
+void Controller::startGameButtonClicked(int seed) {
+	model_->startGame(seed);
 } 
-*/
+
+void Controller::endGameButtonClicked() {
+	model_->quitGame();
+} 
+

@@ -25,6 +25,16 @@ Straights::Straights (){
     }
 }
 
+Straights::Straights (bool playerType[]){
+	//fill deck with values
+	played_ = new Played();
+	//build player array
+    for (int i = 0; i < NUM_PLAYERS; i++) {
+	    if (playerType[i]) players_[i] = new Computer(i, played_);
+	    else players_[i] = new Human(i, played_);
+	}
+}
+
 void Straights::nextRound(){
 	deck_.shuffle();
 	//Deal hands (should be empty after each round)
@@ -61,16 +71,21 @@ int Straights::getMinScore() const {
 	return min;
 }
 
-Player* Straights::getplayer(int playernum){
+Player* Straights::getPlayer(int playernum){
 	return players_[playernum];
+}
+
+Played* Straights::getPlayedCards(){
+	return played_;
 }
 
 void Straights::updateScores() {
 	//increment scores at end of round
 	for (int i = 0; i < NUM_PLAYERS; i++){
+
 		std::cout << "Player " << i + 1 << "'s discards:";
 		if (players_[i]->getDiscarded().size() == 0) std::cout << " ";
-		for (int j = 0; j < players_[i]->getDiscarded().size(); j++) {
+		for (uint j = 0; j < players_[i]->getDiscarded().size(); j++) { //why uint? odd warning
 			std::cout << " " << *(players_[i]->getDiscarded()[j]);
 		}
 		std::cout << std::endl << "Player " << i + 1 << "'s score: " << players_[i]->getScore();
@@ -110,10 +125,7 @@ void Straights::playerTurn(int playerposition) {
 		}
 		catch (rquitError e) {
 			//ragequit
-			std::cout << "Player " << playerposition + 1 << " ragequits. A computer will now take over." << std::endl;
-			Player* newComp = new Computer(players_[playerposition]);
-			delete players_[playerposition];
-			players_[playerposition] = newComp;
+			rageQuit(playerposition);
 		}
 
 		//if looped, will not call human print function
@@ -121,6 +133,12 @@ void Straights::playerTurn(int playerposition) {
 	}
 }
 
+void Straights::rageQuit(int playerposition){
+	std::cout << "Player " << playerposition + 1 << " ragequits. A computer will now take over." << std::endl;
+	Player* newComp = new Computer(players_[playerposition]);
+	delete players_[playerposition];
+	players_[playerposition] = newComp;
+}
 /*
 bool Straights::checkRoundEnd() const {
 	for (int i = 0; i < NUM_PLAYERS; i++) {

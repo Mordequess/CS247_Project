@@ -22,13 +22,17 @@ class Controller;
 class Model;
 
 
+std::string convert(int);
+
+
 class View : public Gtk::Window, public Observer {
 public:
         View( Controller*, Model* );
 	virtual ~View();
-	virtual void update0();	// Observer Pattern: concrete update() method
-	virtual void update1();	// Observer Pattern: concrete update() method
-	virtual void update2();	// Observer Pattern: concrete update() method
+	virtual void updateRoundEnd();	// Observer Pattern: concrete update() method
+	virtual void updateGameStartEnd();	// Observer Pattern: concrete update() method
+	virtual void updateDrawHand();	// Observer Pattern: concrete update() method
+	virtual void updateCardPlayed();	// Observer Pattern: concrete update() method
 
 private:
 	// Observer Pattern: to access Model accessors without having to downcast subject
@@ -70,13 +74,17 @@ private:
 
 	Gtk::Image card;
 
+	void setNullCards();
+	void setScoreZero();
+	void setDiscardZero();
+
+
 	// Signal handlers:
 	void playerTypeButtonClicked(int playerNum);
+	
 	void startGameButtonClicked();
 	void endGameButtonClicked();
 	void cardButtonClicked(int cardnum);
-
-
 
 }; // View
 
