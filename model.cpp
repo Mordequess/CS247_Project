@@ -16,12 +16,16 @@ void Model::playTurn() {
     while (playerType_[activePlayer_]) {
         if (game->getPlayer(activePlayer_)->getHand().size() == 0) break;
         game->playerTurn(activePlayer_);
+        notifyCardPlayed();
         activePlayer_ = (activePlayer_+1)%4;
     }
 
     if (game->getPlayer(activePlayer_)->getHand().size() == 0) {
         //clean up the round
+        notifyCardPlayed();
         game->updateScores();
+        notifyCardPlayed();
+
         notifyRoundEnd();
 
         if (!checkEnd()) {

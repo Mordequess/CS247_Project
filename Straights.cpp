@@ -37,7 +37,7 @@ void Straights::nextRound(){
 		players_[i]->setHand(hand);
 	}	
 	//reset board
-	played_->resetBoard();
+		played_->resetBoard();
 }
 
 bool Straights::checkEnd() const {

@@ -136,16 +136,13 @@ View::~View() {}
 // Reset after round ends
 void View::updateRoundEnd() {
 	//reset discards, set score
+	//View::updateCardPlayed();
+	
 	for (int i = 0; i < 4; i++){
 		Player* active = model_->getPlayer(i);
 		discards[i].set_label("Discards: 0");
 		score[i].set_label("Score: " + convert(active->getScore()));
 	}
-	setDiscardZero();
-
-	//clear table
-	setNullCards();
-
 
 	// Show score dialog
 	Gtk::Dialog dialog( "Round Results", *this );
@@ -166,6 +163,8 @@ void View::updateRoundEnd() {
 	}
 
 
+
+
 	if (model_->checkEnd()){
 		extra.set_label(model_->getWinners());
 	}
@@ -176,6 +175,10 @@ void View::updateRoundEnd() {
 	contentArea->pack_start(extra, true, false );
 	extra.show();
     dialog.add_button( Gtk::Stock::OK, Gtk::RESPONSE_OK);
+
+    	//clear table
+	setDiscardZero();
+	setNullCards();
 
     int result = dialog.run();
     std::string name;
