@@ -19,12 +19,11 @@ void Model::playTurn() {
         notifyCardPlayed();
         activePlayer_ = (activePlayer_+1)%4;
     }
+    notifyCardPlayed();
 
     if (game->getPlayer(activePlayer_)->getHand().size() == 0) {
         //clean up the round
-        notifyCardPlayed();
         game->updateScores();
-        notifyCardPlayed();
 
         notifyRoundEnd();
 
@@ -43,7 +42,6 @@ void Model::playTurn() {
     else {
         //update board, show human player's hand 
         notifyDrawHand();
-        notifyCardPlayed();
     }
 }
 

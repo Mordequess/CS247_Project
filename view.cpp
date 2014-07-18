@@ -136,8 +136,7 @@ View::~View() {}
 // Reset after round ends
 void View::updateRoundEnd() {
 	//reset discards, set score
-	//View::updateCardPlayed();
-	
+
 	for (int i = 0; i < 4; i++){
 		Player* active = model_->getPlayer(i);
 		discards[i].set_label("Discards: 0");
@@ -178,7 +177,7 @@ void View::updateRoundEnd() {
 
     	//clear table
 	setDiscardZero();
-	setNullCards();
+	updateDrawHand();
 
     int result = dialog.run();
     std::string name;
@@ -193,6 +192,8 @@ void View::updateRoundEnd() {
             std::cout << "unexpected button clicked" << std::endl;
             break;
     } // switch
+
+	setNullCards();
 }
 
 
