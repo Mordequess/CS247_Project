@@ -1,15 +1,3 @@
-/*
- * MVC example of GTKmm program
- *
- * View class.  Is responsible for buttons (that user clicks) and for displaying
- * the top card of the deck.
- *
- *  Created by Jo Atlee on 06/07/09.
- *  Copyright 2009 UW. All rights reserved.
- *
- */
-
-
 #include "observer.h"
 #include "view.h"
 #include "controller.h"
@@ -24,43 +12,47 @@
 // with 10 pixels between widgets
 View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, true), hand_table(1, 13, true), card(deck.null()) {
 
+	// Sets some properties of the window.
+    set_title("Straights Game");
+	set_default_size(760, 500);
+
 	//set initial values for all elements
 	setNullCards();
 	setScoreZero();
 	setDiscardZero();
 
-	players[0].set_label("Player 1");
-	players[1].set_label("Player 2");
-	players[2].set_label("Player 3");
-	players[3].set_label("Player 4");
 
-    
-    nameField.set_text( "0" );
-
-	frame.set_label( "Cards Played:" );
-	frame.set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
-
-	for (int i = 0; i < 4; i++){
-		playerType[i].signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &View::playerTypeButtonClicked), i));
-	}
-
-	players[0].set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
-	
+	// Start game, end game buttons
 	startgame.set_label("Start new game with seed:");
 	startgame.signal_clicked().connect( sigc::mem_fun( *this, &View::startGameButtonClicked ) );
 	endgame.set_label("End current game");
 	endgame.set_sensitive(false);
 	endgame.signal_clicked().connect( sigc::mem_fun( *this, &View::endGameButtonClicked ) );
 
-	// Sets some properties of the window.
-    set_title("Straights Game");
-	set_default_size(760, 500);
+    // Seed
+    nameField.set_text( "0" );
+
+    // Board
+	frame.set_label( "Cards Played:" );
+	frame.set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
+
+	//Player Labels
+	players[0].set_label("Player 1");
+	players[1].set_label("Player 2");
+	players[2].set_label("Player 3");
+	players[3].set_label("Player 4");
+	players[0].set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
+
+	// Human / computer buttons
+	for (int i = 0; i < 4; i++){
+		playerType[i].signal_clicked().connect(sigc::bind<int>(sigc::mem_fun(*this, &View::playerTypeButtonClicked), i));
+	}
+
 
     //add elements to the shell and views
-	shell.add ( hbox_1 );
-
     // Add the text entry widget to the dialog box.
     // Add the text entry widget to the vertical box section of the dialog box.
+	shell.add ( hbox_1 );
 	hbox_1.add ( startgame );
 	hbox_1.add ( hbox_2 );
 	hbox_2.add ( nameField );
@@ -76,6 +68,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 
 	playerbox.set_homogeneous(true);
 
+	// Players scores and discards
 	shell.add ( playerbox );
 	for (int i = 0; i < 4; i ++) {
 		playerbox.add ( players[i] );
@@ -86,6 +79,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 		play[i].add(discards[i]);
 	}
 	
+	// Player Hand
 	playerhand_frame.set_label( "Current Hand:" );
 	playerhand_frame.set_label_align( Gtk::ALIGN_LEFT, Gtk::ALIGN_TOP );
 	shell.add(playerhand_frame);
@@ -98,6 +92,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 	}
 
 
+	// Add the base shell to window
 	add ( shell );
 	show_all();
 
@@ -106,6 +101,8 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table(4, 13, tr
 
 } // View::View
 
+
+// Set Hand
 void View::setNullCards() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 13; j++) {
@@ -118,20 +115,25 @@ void View::setNullCards() {
 	}
 }
 
+// Initialize score
 void View::setScoreZero() {
 	for(int i = 0; i < 4; i ++) {
 		score[i].set_label("Score: 0");
 	}
 }
 
+// Reset Discard
 void View::setDiscardZero() {
 	for(int i = 0; i < 4; i ++) {
 		discards[i].set_label("Discards: 0");
 	}
 }
 
+// Destructor
 View::~View() {}
 
+
+// Reset after round ends
 void View::updateRoundEnd() {
 	//reset discards, set score
 	for (int i = 0; i < 4; i++){
@@ -145,6 +147,7 @@ void View::updateRoundEnd() {
 	setNullCards();
 
 
+	// Show score dialog
 	Gtk::Dialog dialog( "Round Results", *this );
 	Gtk::VBox* contentArea = dialog.get_vbox();
 
@@ -172,7 +175,6 @@ void View::updateRoundEnd() {
 	extra.set_justify( Gtk::JUSTIFY_LEFT);
 	contentArea->pack_start(extra, true, false );
 	extra.show();
-    std::cout << "I have ended a round" << std::endl;  
     dialog.add_button( Gtk::Stock::OK, Gtk::RESPONSE_OK);
 
     int result = dialog.run();
@@ -190,11 +192,8 @@ void View::updateRoundEnd() {
             std::cout << "unexpected button clicked" << std::endl;
             break;
     } // switch
-	//show dialogue
-	//list scores, discards
-	//list winners if game over
-	//else list first player for next round
 }
+
 
 
 void View::updateGameStartEnd() {
@@ -244,14 +243,12 @@ void View::updateDrawHand() {
 	}
 }
 
+
 void View::updateCardPlayed() {
 	Played* cards = model_->getPlayed();
 	for (int i = 0; i < 4; i++) {
-
 		Player* active = model_->getPlayer(i);
 		discards[i].set_label("Discards: " + convert(active->getDiscarded().size()));
-
-
 		for (int j = 0; j < 13; j++) {
 			if(cards->playedCards[i][j] == true) {
 				tableCards[j + i*13].set(deck.image(j*4 + i)); 	//deck.null() or deck.image(j*4 + i)
@@ -300,12 +297,16 @@ void View::cardButtonClicked(int cardnum) {
 	controller_->cardButtonClicked(cardnum, table->isLegal(*active->getHand()[cardnum]));
 }
 
+
+// Helper to convert num to string
 std::string convert(int num) {
 	std::ostringstream convert;   // stream used for the conversion
 	convert << num;      // insert the textual representation of 'Number' in the characters in the stream
 	return convert.str(); // set 'Result' to the contents of the stream
 }
 
+
+// Helper to turn card to string
 std::string convert(std::vector<Card*> cards) {
 	std::ostringstream convert;   // stream used for the conversion
 	for (unsigned int i = 0; i < cards.size(); i++) {

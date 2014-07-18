@@ -31,5 +31,3 @@ Played.o: Played.cpp Played.h Card.h
 Phlayer.o: Player.cpp Player.h Card.h Played.h
 Straights.o: Straights.cpp Straights.h Deck.h Card.h Played.h Player.h Human.h Computer.h
 
-#straights: Card.o Command.o Computer.o Deck.o Human.o Played.o Player.o Straights.o Game.cpp 
-#	${CXX} $(CXX_FLAGS) $^ -o $@

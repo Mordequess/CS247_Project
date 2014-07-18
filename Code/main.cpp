@@ -1,16 +1,3 @@
-/*
- * MVC example of GTKmm program
- *
- * Displays top card of sorted deck of cards. When "next" button is clicked, 
- * the next card is displayed on top of deck.  When the "reset" button is
- * clicked, the top card of a full sorted deck is displayed
- *
- *  Created by Jo Atlee on 06/07/09.
- *  Copyright 2009 UW. All rights reserved.
- *
- */
-
-
 #include <gtkmm/main.h>
 #include "model.h"
 #include "controller.h"

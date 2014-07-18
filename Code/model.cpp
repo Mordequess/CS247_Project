@@ -1,17 +1,4 @@
-/*
- * MVC example of GTKmm program
- *
- * Model class.  Is responsible keeping track of the deck of cards.  
- * It knows nothing about views or controllers.
- *
- *  Created by Jo Atlee on 06/07/09.
- *  Copyright 2009 UW. All rights reserved.
- *
- */
-
-
 #include "model.h"
-//#include "Played.h"
 #include "Straights.h"
 #include <stdlib.h>
 
@@ -23,6 +10,7 @@ Model::Model() {
     }
 }
 
+// Plays a turn
 void Model::playTurn() {
     //play until human turn
     while (playerType_[activePlayer_]) {
@@ -55,6 +43,7 @@ void Model::playTurn() {
     }
 }
 
+// Start a new game
 void Model::startGame(int seed) {
     //end existing game
     if (!gameIsNull()) quitGame();
@@ -79,6 +68,7 @@ void Model::quitGame() {
   	notifyGameStartEnd();
 }
 
+// Play or discard card
 void Model::cardPlayDiscard (int card, bool legal) {
     //play or discard the card
     if (legal) {
@@ -93,6 +83,7 @@ void Model::cardPlayDiscard (int card, bool legal) {
     playTurn();
 }
 
+// Rage quit
 void Model::ragePlayer () {
 	//ragequit
     game->rageQuit(activePlayer_);
@@ -100,6 +91,7 @@ void Model::ragePlayer () {
     playTurn();
 }
 
+// Return Winners
 std::string Model::getWinners () {
     int winScore = game->getMinScore();
     std::ostringstream winners;   // stream used for the conversion
@@ -110,61 +102,45 @@ std::string Model::getWinners () {
     return winners.str();
 }
 
+// Returns true if no game exists
 bool Model::gameIsNull () {
     return game == NULL;
 }
 
+// Checks if game is over
 bool Model::checkEnd () {
     return game->checkEnd();
 }
 
+// returns the type of player (human or computer)
 bool Model::getPlayerType (int player) {
     return playerType_[player];
 }
 
+// Set the player type to human or computer
 void Model::setPlayerType (int player) {
     playerType_[player] = !playerType_[player];
 }
 
+// Get player score
 int Model::getScore (int player) {
     return game->getScore(player);
 }
 
+// Return player with current turn
 int Model::getActivePlayer () {
     return activePlayer_;
 }
 
+// Get played cards
 Played* Model::getPlayed () {
     return game->getPlayedCards();
 }
 
+// Get player
 Player* Model::getPlayer (int player) {
     return game->getPlayer(player);
 }
-
-//running the rounds
-/*
-    bool end = false;
-    while (!end) {
-        game.nextRound();
-        int whosTurn = game.getFirstPlayer();
-        
-        //play out every card till no more in hand 
-        for (int i = 0; i < NUM_CARDS; i++) {
-            game.playerTurn( (whosTurn+i) % NUM_PLAYERS );
-        }
-        game.updateScores();
-        end = game.checkEnd();
-    }
-*/
-
-//winners
-/*int winScore = game.getMinScore();
-    for (int i = 0; i < NUM_PLAYERS; i++) {
-        if (game.getScore(i) == winScore) 
-            std::cout << "Player " << i + 1 << " wins!" << std::endl;
-    }
-*/
 
 
 
