@@ -18,7 +18,6 @@ void Computer::playTurn(bool ignore) {
 			if (plays[highest]->getRank() < plays[i]->getRank()) highest = i;
 		}
 
-		std::cout << "Player " << getPlayerNum() << " plays " << *plays[highest] << "." << std::endl;
 		playCard(plays[highest]);
 	} else {
 
@@ -27,8 +26,6 @@ void Computer::playTurn(bool ignore) {
 		for (unsigned int i = 0; i < hand.size(); i++){
 			if (hand[lowest]->getRank() > hand[i]->getRank()) lowest = i;
 		}
-
-		std::cout << "Player " << getPlayerNum() << " discards " << *hand[lowest] << "." << std::endl;
 		discardCard(hand[lowest]);
 	} 
 }

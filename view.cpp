@@ -183,10 +183,8 @@ void View::updateRoundEnd() {
         case Gtk::RESPONSE_OK:
         case Gtk::RESPONSE_ACCEPT:
             name = nameField.get_text();
-            std::cout << "Entered '" << name << "'" << std::endl;
             break;
         case Gtk::RESPONSE_CANCEL:
-            std::cout << "dialog cancelled" << std::endl;
             break;
         default:
             std::cout << "unexpected button clicked" << std::endl;
